@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -43,7 +44,7 @@ class PassportAuthController extends Controller
             $token = auth()->user()->createToken('purpleApp')->accessToken;
             return response()->json(['token' => $token->token], 200);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => 'Email or Password is wrong.'], 401);
         }
     }
 }
