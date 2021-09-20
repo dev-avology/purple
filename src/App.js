@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Route  } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import Signup from "./components/SignUp/SignUp";
+import Signin from "./components/SignIn/SignIn";
+import Home from "./components/Home/Home";
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-class App extends Component {
+export default class App extends Component {
   render() {
+    const login = localStorage.getItem("isLoggedIn");
+
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      {login ? (
+        <BrowserRouter>
+          <Header />
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/signin" component={Signin}></Route>
+          <Route path="/signup" component={Signup}></Route>
+          <Footer />
+        </BrowserRouter>
+      ) : (
+        <BrowserRouter>
+          <Header />
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/signin" component={Signin}></Route>
+          <Route path="/signup" component={Signup}></Route>
+          <Footer />
+        </BrowserRouter>
+      )}
       </div>
     );
   }
 }
-
-export default App;
