@@ -4,7 +4,7 @@ import LogoImg from '../logo.png';
 
 const Logo = () => {
     return (
-       <NavLink to="/"><img src={LogoImg} alt="site-logo" /></NavLink>
+       <NavLink to={`${process.env.PUBLIC_URL}/`}><img src={LogoImg} alt="site-logo" /></NavLink>
     );
 }
  

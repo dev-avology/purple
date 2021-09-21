@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Nav, NavItem, NavLink, TabContent, TabPane, Input, Button, Form, Row, FormGroup, Label } from 'reactstrap';
+import { Nav, NavLink, TabContent, TabPane, Input, Button, Label } from 'reactstrap';
 import classnames from 'classnames';
 export default class Signup extends Component {
   userData;
@@ -37,7 +37,7 @@ export default class Signup extends Component {
     if (this.validateForm()) {
     this.setState({ isLoading: true });
     axios
-      .post("https://poojas.sg-host.com/purple/backend-services/api/register", {
+      .post(process.env.REACT_APP_API_URL+"/api/register", {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
@@ -156,7 +156,7 @@ export default class Signup extends Component {
                 <div className="col-lg-6 offset-lg-3">
                     <div className="signup">
                         <h2>Join Redbubble</h2>
-                        <p>Already have an account? <Link to="/signin">Login</Link></p>
+                        <p>Already have an account? <Link to={`${process.env.PUBLIC_URL}/signin`}>Login</Link></p>
                         <div className="signup_form_tab">
                         <nav>
                         <Nav tabs id="nav-tab">

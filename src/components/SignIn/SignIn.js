@@ -37,7 +37,7 @@ export default class Signin extends Component {
     if (this.validateForm()) {
     this.setState({ isLoading: true });
     axios
-      .post("https://poojas.sg-host.com/purple/backend-services/api/login", {
+      .post(process.env.REACT_APP_API_URL+"/api/login", {
         email: this.state.email,
         password: this.state.password,
       })
@@ -149,11 +149,11 @@ export default class Signin extends Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to="/home" />;
+      return <Redirect to={`${process.env.PUBLIC_URL}/`} />;
     }
     const login = localStorage.getItem("isLoggedIn");
     if (login) {
-      return <Redirect to="/home" />;
+      return <Redirect to={`${process.env.PUBLIC_URL}/`} />;
     }
     const isLoading = this.state.isLoading;
 
@@ -168,7 +168,7 @@ export default class Signin extends Component {
                 <div className="col-lg-6 offset-lg-3">
                     <div className="signup">
                         <h2>Log In</h2>
-                        <p>Need an account? <NavLink to="/signup">SignUp</NavLink></p>
+                        <p>Need an account? <NavLink to={`${process.env.PUBLIC_URL}/signup`}>SignUp</NavLink></p>
                         <div className="signup_form_tab">
                             <div className="signup_form">
                                 <Form className="containers" autoComplete="off">

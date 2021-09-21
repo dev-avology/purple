@@ -17,17 +17,17 @@ export default class App extends Component {
       {login ? (
         <BrowserRouter>
           <Header />
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/signin" component={Signin}></Route>
-          <Route path="/signup" component={Signup}></Route>
+          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}></Route>
+          <Route path={`${process.env.PUBLIC_URL}/signin`} component={Signin}></Route>
+          <Route path={`${process.env.PUBLIC_URL}/signup`} component={Signup}></Route>
           <Footer />
         </BrowserRouter>
       ) : (
         <BrowserRouter>
           <Header />
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/signin" component={Signin}></Route>
-          <Route path="/signup" component={Signup}></Route>
+          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}></Route>
+          <Route path={`${process.env.PUBLIC_URL}/signin`} component={Signin}></Route>
+          <Route path={`${process.env.PUBLIC_URL}/signup`} component={Signup}></Route>
           <Footer />
         </BrowserRouter>
       )}
