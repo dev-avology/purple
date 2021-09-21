@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route  } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route  } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Signup from "./components/SignUp/SignUp";
@@ -17,17 +17,17 @@ export default class App extends Component {
       {login ? (
         <BrowserRouter basename="/purple">
           <Header />
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/signin" component={Signin}></Route>
-          <Route path="/signup" component={Signup}></Route>
+          <HashRouter exact path="/" component={Home}></HashRouter>
+          <HashRouter path="/signin" component={Signin}></HashRouter>
+          <HashRouter path="/signup" component={Signup}></HashRouter>
           <Footer />
         </BrowserRouter>
       ) : (
         <BrowserRouter basename="/purple">
           <Header />
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/signin" component={Signin}></Route>
-          <Route path="/signup" component={Signup}></Route>
+          <HashRouter exact path="/" component={Home}></HashRouter>
+          <HashRouter path="/signin" component={Signin}></HashRouter>
+          <HashRouter path="/signup" component={Signup}></HashRouter>
           <Footer />
         </BrowserRouter>
       )}
