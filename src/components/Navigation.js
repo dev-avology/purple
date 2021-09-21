@@ -23,8 +23,8 @@ export default class Navigation extends Component {
                </div>
             </li>
             <li><a href="#">Sell your art</a></li>
-            <li><NavLink to={`${process.env.PUBLIC_URL}/signin`}>Login</NavLink></li> 
-            <li><NavLink to={`${process.env.PUBLIC_URL}/signup`}>Signup</NavLink></li> 
+            <li><NavLink to={`${process.env.REACT_APP_BASE_URL}/signin`}>Login</NavLink></li> 
+            <li><NavLink to={`${process.env.REACT_APP_BASE_URL}/signup`}>Signup</NavLink></li> 
             <li>
                <a href="#"> <img className="color_icon" src="images/heart_icon.png" alt="" /></a>
             </li>
