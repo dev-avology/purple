@@ -15,7 +15,7 @@ export default class App extends Component {
     return (
       <div className="App">
       {login ? (
-        <BrowserRouter>
+        <BrowserRouter basename={'/purple'}>
           <Header />
           <Route exact path="/" component={Home}></Route>
           <Route path="/signin" component={Signin}></Route>
