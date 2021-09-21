@@ -156,7 +156,7 @@ export default class Signup extends Component {
                 <div className="col-lg-6 offset-lg-3">
                     <div className="signup">
                         <h2>Join Redbubble</h2>
-                        <p>Already have an account? <Link to={`${process.env.REACT_APP_BASE_URL}/signin`}>Login</Link></p>
+                        <p>Already have an account? <Link to="/signin">Login</Link></p>
                         <div className="signup_form_tab">
                         <nav>
                         <Nav tabs id="nav-tab">
