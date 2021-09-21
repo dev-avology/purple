@@ -42,6 +42,7 @@ class PassportAuthController extends Controller
         return response()->json(['error' => 'role value is not correct.'], 422);
     }
  
+
     /**
      * Login
     */
