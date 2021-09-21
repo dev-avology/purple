@@ -19,15 +19,15 @@ export default class App extends Component {
           <Header />
           <Route exact path="/" component={Home}></Route>
           <Route path="/signin" component={Signin}></Route>
-          <Route path="}/signup" component={Signup}></Route>
+          <Route path="/signup" component={Signup}></Route>
           <Footer />
         </BrowserRouter>
       ) : (
-        <BrowserRouter>
+        <BrowserRouter basename="/purple">
           <Header />
           <Route exact path="/" component={Home}></Route>
           <Route path="/signin" component={Signin}></Route>
-          <Route path="}/signup" component={Signup}></Route>
+          <Route path="/signup" component={Signup}></Route>
           <Footer />
         </BrowserRouter>
       )}
