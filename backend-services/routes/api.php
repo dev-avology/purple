@@ -19,7 +19,7 @@ use App\Http\Controllers\Api\Auth\PassportAuthController;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
-Route::middleware(['auth:api'])->group(function() {
+Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('logout', [PassportAuthController::class, 'logout']); 
 });
