@@ -16,9 +16,10 @@ use App\Http\Controllers\Api\Auth\PassportAuthController;
 |
 */
 
-Route::get('test', function() {
-    return response()->json('This is a test api.');
-});
-
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
+
+Route::middleware(['auth:api'])->group(function() {
+
+    Route::get('logout', [PassportAuthController::class, 'logout']); 
+});

@@ -15,9 +15,6 @@ class PassportAuthController extends Controller
         $this->roles = config('params.roles');
     }
 
-    /**
-     * Registration
-    */
     public function register(Request $request)
     {
         $this->validate($request, [
@@ -39,14 +36,11 @@ class PassportAuthController extends Controller
            
             $token = $user->createToken('purpleApp', [$request->role])->accessToken;
      
-            return response()->json(['token' => $token->token, 'user_data' => $user_data], 200);
+            return response()->json(['token' => $token, 'user_data' => $user_data], 200);
         }
         return response()->json(['error' => 'role value is not correct.'], 422);
     }
- 
-    /**
-     * Login
-    */
+
     public function login(Request $request)
     {
         $data = [
@@ -57,10 +51,18 @@ class PassportAuthController extends Controller
         if (auth()->attempt($data)) {
             $user_data = $this->getUserData(auth()->user());
             $token = auth()->user()->createToken('purpleApp', [$user_data['role']])->accessToken;
-            return response()->json(['token' => $token->token, 'user_data' => $user_data], 200);
+            return response()->json(['token' => $token, 'user_data' => $user_data], 200);
         } else {
             return response()->json(['error' => 'Email or Password is wrong.'], 401);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $user = auth()->user()->token();
+        $user->revoke();
+        return response()->json(['message' => 'User logged out successfully.'], 200);
+    
     }
 
     /**
@@ -72,7 +74,7 @@ class PassportAuthController extends Controller
         return in_array($role, $this->roles);
     }
 
-    private function getUserData($user = null)
+    private function getUserData($user)
     {
         return [
             'role'    => $user->role,
