@@ -31,12 +31,10 @@ class PassportAuthController extends Controller
                 'password' => bcrypt($request->password),
                 'role' => $request->role,
             ]);
-
-            $user_data = $this->getUserData($user);
            
             $token = $user->createToken('purpleApp', [$request->role])->accessToken;
      
-            return response()->json(['token' => $token, 'user_data' => $user_data], 200);
+            return response()->json(['token' => $token], 200);
         }
         return response()->json(['error' => 'role value is not correct.'], 422);
     }
@@ -49,9 +47,9 @@ class PassportAuthController extends Controller
         ];
  
         if (auth()->attempt($data)) {
-            $user_data = $this->getUserData(auth()->user());
-            $token = auth()->user()->createToken('purpleApp', [$user_data['role']])->accessToken;
-            return response()->json(['token' => $token, 'user_data' => $user_data], 200);
+            $role = auth()->user()->role;
+            $token = auth()->user()->createToken('purpleApp', [$role])->accessToken;
+            return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'Email or Password is wrong.'], 401);
         }
