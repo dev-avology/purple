@@ -1,18 +1,23 @@
-import React from "react";
-import Logo from './Logo';
-import './Style.css';
-import Navigation from './Navigation';
+import React from "react"
+import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
+import LoginMenu from "./LoginMenu"
+import PrimaryMenu from "./PrimaryMenu"
+import SearchIcon from '../images/search_icon.png'
+import AccountMenu from "./AccountMenu"
+
+const login = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null
 const Header = () => {
     return (
-        <header>
+    <header>
         <div className="header_top_section">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3">
                         <div className="site-logo">
-                            <Logo />
+                            <Link to="/"><StaticImage alt="" src='../images/logo.png'/></Link>
                             <div className="mobile_header_icon">
-                                <a className="mobile_serch_icon"><img src="images/search_icon.png" alt="" /></a>
+                                <Link href="/" onClick="return false" className="mobile_serch_icon"><img src={SearchIcon} /></Link>
                                 <h1 className="mobile-menu">
                                     <span><i className="fa fa-bars"></i></span>
                                 </h1>
@@ -22,7 +27,16 @@ const Header = () => {
 
                     <div className="col-lg-9">
                         <div className="middle_navigation">
-                                <Navigation />
+                        {login ? (
+                                <>
+                                <AccountMenu />
+                                </>
+                            ) : (
+                                <>
+                                <LoginMenu />
+                                </>
+                            )
+                        }
                         </div>
                     </div>
                 </div>
@@ -35,22 +49,8 @@ const Header = () => {
                         <div className="header_navigation">
                             <div className="navigation" id="mySidenav">
                                 <div className="middle_navigation">
-                                        <Navigation />
                                 </div>
-                                <div className="nav-main">
-                                    <a className="closebtn">×</a>
-                                    <ul className="menu1 text-center">
-                                        <li className="active"><a href="fan-art.html">Wall Art</a></li>
-                                        <li><a to="#">Art Board Prints </a></li>
-                                        <li><a to="#">Art Prints</a></li>
-                                        <li><a to="#">Canvas Prints</a></li>
-                                        <li><a to="#">Framed Prints</a></li>
-                                        <li><a to="#">Metal Prints</a></li>
-                                        <li><a to="#">Mounted Prints</a></li>
-                                        <li><a to="#">Photographic Prints</a></li>
-                                        <li><a to="#">Posters</a></li>
-                                    </ul>
-                                </div>
+                                <PrimaryMenu />
                             </div>
                         </div>
                     </div>
