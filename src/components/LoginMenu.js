@@ -9,14 +9,14 @@ const LoginMenu = () => {
                 <li>
                     <Search />
                 </li>
-                <li><Link to="sell-your-art.html">Sell your art</Link></li>
+                <li><Link to="#">Sell your art</Link></li>
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/signup">Signup</Link></li>
                 <li>
                     <Link to="/login"> <StaticImage alt="" src="../images/heart_icon.png"  /></Link>
                 </li>
                 <li>
-                    <Link to="cart.html"><StaticImage alt="" src="../images/cart_icon.png"  /></Link>
+                    <Link to="#"><StaticImage alt="" src="../images/cart_icon.png"  /></Link>
                 </li>
             </ul>
         </>

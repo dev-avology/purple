@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import { logout } from "../hooks/UserAuth"
 import Search from "./Search"
 const AccountMenu = () => {
     return (
@@ -9,18 +10,21 @@ const AccountMenu = () => {
                 <li>
                     <Search />
                 </li>
-                <li><Link to="sell-your-art.html">Sell your art</Link></li>
-                <li><Link to="/login">My Account</Link>
+                <li><Link to="#">Sell your art</Link></li>
+                <li><Link to="/account">My Account</Link>
                     <ul className="sub-menu">
-                        <li><Link to="/login">Logout</Link></li>
+                        <li><Link to="#login" onClick={e => {
+            logout()
+            e.preventDefault()
+          }}>Logout</Link></li>
                     </ul>
                 </li>
                 
                 <li>
-                    <Link to="/login"> <StaticImage alt="" src="../images/heart_icon.png" /></Link>
+                    <Link to="#"> <StaticImage alt="" src="../images/heart_icon.png" /></Link>
                 </li>
                 <li>
-                    <Link to="/login"><StaticImage alt="" src="../images/cart_icon.png" /></Link>
+                    <Link to="#"><StaticImage alt="" src="../images/cart_icon.png" /></Link>
                 </li>
             </ul>
         </>

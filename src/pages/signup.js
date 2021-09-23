@@ -1,9 +1,9 @@
 import React from "react"
-import Login from '../components/Login'
+import Signup from '../components/Signup'
 import { account, isAuthenticated } from "../hooks/UserAuth"
 import Layout from "../components/layout"
 
-const LoginPage = () => {
+const SignupPage = () => {
   
   if (isAuthenticated()) {
     account()
@@ -11,9 +11,9 @@ const LoginPage = () => {
   }
   return (
     <Layout>
-        <Login />
+        <Signup />
     </Layout>
   )
 }
 
-export default LoginPage
+export default SignupPage
