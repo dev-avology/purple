@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Row, FormGroup, Label, Input } from "reactstrap";
-import { account, isAuthenticated } from "../hooks/UserAuth"
+import { account, isAuthenticated } from "src/hooks/UserAuth"
 import axios from "axios";
 import { Helmet } from 'react-helmet';
 import { Link } from "gatsby"

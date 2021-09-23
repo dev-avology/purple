@@ -4,6 +4,7 @@ module.exports = {
     title: "purple",
   },
   plugins: [
+    "gatsby-plugin-root-import",
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {

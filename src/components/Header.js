@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import LoginMenu from "./LoginMenu"
-import PrimaryMenu from "./PrimaryMenu"
-import SearchIcon from '../images/search_icon.png'
-import AccountMenu from "./AccountMenu"
-import { isAuthenticated } from "../hooks/UserAuth"
+import LoginMenu from "src/components/LoginMenu"
+import PrimaryMenu from "src/components/PrimaryMenu"
+import SearchIcon from 'src/images/search_icon.png'
+import AccountMenu from "src/components/AccountMenu"
+import { isAuthenticated } from "src/hooks/UserAuth"
 
 
 const Header = () => {

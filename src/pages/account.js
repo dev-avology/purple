@@ -1,6 +1,6 @@
 import React from "react"
-import Layout from "../components/layout"
-import { login, isAuthenticated, getProfile } from "../hooks/UserAuth"
+import Layout from "src/components/layout"
+import { login, isAuthenticated, getProfile } from "src/hooks/UserAuth"
 
 const Account = () => {
     if (!isAuthenticated()) {

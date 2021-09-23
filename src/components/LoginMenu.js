@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import Search from "./Search"
+import Search from "src/components/Search"
 const LoginMenu = () => {
     return (
         <>

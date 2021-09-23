@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { logout } from "../hooks/UserAuth"
-import Search from "./Search"
+import { logout } from "src/hooks/UserAuth"
+import Search from "src/components/Search"
 const AccountMenu = () => {
     return (
         <>
