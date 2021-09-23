@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://poojas.sg-host.com/purple",
     title: "purple",
   },
   plugins: [
@@ -17,7 +17,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: "${__dirname}/src/images/icon.png",
       },
     },
     "gatsby-plugin-sharp",
@@ -27,7 +27,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/images/",
+        path: "${__dirname}/src/images/",
       },
       __key: "images",
     },
