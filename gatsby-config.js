@@ -5,6 +5,7 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-root-import",
+    'gatsby-plugin-resolve-src',
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
