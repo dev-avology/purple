@@ -9,7 +9,7 @@ export default class Footer extends Component {
             <div className="footer">
                 <div className="container">
                     <div className="mobile_footer_logo text-center">
-                        <Link to="#"><img src="images/footer_logo.png" alt="" /></Link>
+                        <Link to="#"><StaticImage src="../images/footer_logo.png" alt="" /></Link>
                     </div>
 					<div className="footer_language mobile_footer_language text-center">
 						<ul>
@@ -17,9 +17,9 @@ export default class Footer extends Component {
 						<div className="dropdown_language">
 						<div className="language-picker js-language-picker">
 						<form action="" className="language-picker__form">
-						<label for="language-picker-select">Select your language</label>
-						<select name="language-picker-select" id="language-picker-select">
-							<option lang="en" value="english" selected>English</option>
+						<label>Select your language</label>
+						<select name="language-picker-select">
+							<option lang="en" value="english" defaultValue>English</option>
 							<option lang="fr" value="francais">French</option>
 						</select>
 						</form>
@@ -94,7 +94,7 @@ export default class Footer extends Component {
 					<div className="row footer_logo">
 						<div className="col-lg-6">
 							<div className="desktop_footer_logo text-left">
-								<Link to="#"><img src="images/footer_logo.png" alt="" /></Link>
+								<Link to="#"><StaticImage src="../images/footer_logo.png" alt="" /></Link>
 							</div>
 						</div>
 						<div className="col-lg-6">
@@ -104,17 +104,17 @@ export default class Footer extends Component {
 							<div className="dropdown_language">
 							<div className="language-picker js-language-picker">
 							<form action="" className="language-picker__form">
-							<label for="language-picker-select">Select your language</label>
-							<select name="language-picker-select" id="language-picker-select">
-								<option lang="en" value="english" selected>English</option>
+							<label>Select your language</label>
+							<select name="language-picker-select">
+								<option lang="en" value="english" defaultValue>English</option>
 								<option lang="fr" value="francais">French</option>
 							</select>
 							</form>
 							</div>
 							</div>
 							</li>
-							<li><Link className="dollar_btn" href="#">DOLLAR($)</Link></li>
-							<li><Link className="euro_btn" href="#">EURO(€)</Link></li>
+							<li><Link className="dollar_btn" to="#">DOLLAR($)</Link></li>
+							<li><Link className="euro_btn" to="#">EURO(€)</Link></li>
 							</ul>
 							</div>
 						</div>
