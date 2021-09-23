@@ -5,9 +5,11 @@ import LoginMenu from "./LoginMenu"
 import PrimaryMenu from "./PrimaryMenu"
 import SearchIcon from '../images/search_icon.png'
 import AccountMenu from "./AccountMenu"
+import { isAuthenticated } from "../hooks/UserAuth"
 
-const login = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') : null
+
 const Header = () => {
+
     return (
     <header>
         <div className="header_top_section">
@@ -17,7 +19,7 @@ const Header = () => {
                         <div className="site-logo">
                             <Link to="/"><StaticImage alt="" src='../images/logo.png'/></Link>
                             <div className="mobile_header_icon">
-                                <Link href="/" onClick="return false" className="mobile_serch_icon"><img src={SearchIcon} /></Link>
+                                <Link to="/" className="mobile_serch_icon"><img alt="" src={SearchIcon} /></Link>
                                 <h1 className="mobile-menu">
                                     <span><i className="fa fa-bars"></i></span>
                                 </h1>
@@ -27,10 +29,10 @@ const Header = () => {
 
                     <div className="col-lg-9">
                         <div className="middle_navigation">
-                        {login ? (
-                                <>
-                                <AccountMenu />
-                                </>
+                        {isAuthenticated() ? (
+                               <>
+                               <AccountMenu />
+                               </>
                             ) : (
                                 <>
                                 <LoginMenu />
