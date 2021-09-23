@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://poojas.sg-host.com/purple",
+    siteUrl: "https://purplestaging.gatsbyjs.io",
     title: "purple",
   },
   plugins: [
