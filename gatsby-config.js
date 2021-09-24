@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://purplestaging.gatsbyjs.io",
     title: "purple",
   },
   plugins: [
+    "gatsby-plugin-root-import",
+    'gatsby-plugin-resolve-src',
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
@@ -17,7 +19,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: `${__dirname}/src/images/icon.png`,
       },
     },
     "gatsby-plugin-sharp",
@@ -27,7 +29,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/images/",
+        path: `${__dirname}/src/images/`,
       },
       __key: "images",
     },

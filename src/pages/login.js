@@ -1,7 +1,7 @@
 import React from "react"
-import Login from '../components/Login'
-import { account, isAuthenticated } from "../hooks/UserAuth"
-import Layout from "../components/layout"
+import Login from 'src/components/Login'
+import { account, isAuthenticated } from "src/hooks/UserAuth"
+import Layout from "src/components/Layout"
 
 const LoginPage = () => {
   
