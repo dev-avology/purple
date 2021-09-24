@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\Auth\PassportAuthController;
-use App\Http\Controllers\APi\User\UserProfileController;
+use App\Http\Controllers\Api\User\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
