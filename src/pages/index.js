@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Helmet } from 'react-helmet';
 import Layout from "src/components/Layout"
-import {Banner} from "src/components/HomeSections"
+import {Banner,ProductRange} from "src/components/HomeSections"
 // markup
 const IndexPage = () => {
   return (
@@ -10,6 +10,7 @@ const IndexPage = () => {
             <title>Home | Splashen</title>
           </Helmet>
           <Banner />
+          <ProductRange />
       </Layout>
   )
 }

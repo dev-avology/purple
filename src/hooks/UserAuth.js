@@ -1,5 +1,5 @@
 import { navigate } from "gatsby"
-
+import axios from 'axios';
 // ...
 const isBrowser = typeof window !== "undefined"
 
@@ -20,6 +20,14 @@ export const isAuthenticated = () => {
   }
 
   return localStorage.getItem("isLoggedIn") === "true"
+}
+
+export const CurrentUserToken = () => {
+  if (!isBrowser) {
+    return;
+  }
+
+  return localStorage.getItem("userData")
 }
 
 export const login = () => {
@@ -68,12 +76,39 @@ const setSession = (cb = () => {}) => (err, authResult) => {
   }
   
   export const getProfile = () => {
-    user = {name: 'test'}
-    return user
+    let token = CurrentUserToken()
+    token = JSON.parse(token)
+    axios.get(process.env.GATSBY_API_URL+"/api/get-user-data", {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer '+token.token
+      }
+    })
+    .then(function (response) {
+       return response.data
+    }) .catch((error) => {
+      console.log(error);
+      
+    })
   }
   
   export const logout = () => {
-    localStorage.setItem("isLoggedIn", false)
-    navigate("/login")
+    let token = CurrentUserToken()
+    token = JSON.parse(token)
+    console.log('Bearer '+ token.token);
+    
+    /*axios.get(process.env.GATSBY_API_URL+"/api/logout", {
+        params: {
+          Accept: 'application/json',
+          Authorization: 'Barear'+ token.token
+        }
+      })
+      .then(function (response) {
+        console.log(response)
+        localStorage.setItem("isLoggedIn", false)
+        localStorage.setItem("userData", false)
+      })
+*/
+    //navigate("/login")
     //auth.logout()
   }

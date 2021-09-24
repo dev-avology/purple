@@ -77,7 +77,7 @@ onSignInHandler = () => {
       }
     })
     .catch((error) => {
-      console.log(error.response.status);
+      //console.log(error.response.status);
       if(error.response.status === 401){
           //redirect to login
           this.setState({ isLoading: false });
@@ -152,7 +152,7 @@ render() {
   const isLoading = this.state.isLoading;
   if (isAuthenticated()) {
     account()
-    return <p>Redirecting to Account...</p>
+    return null
   }
 
   return (

@@ -9,9 +9,10 @@ const Account = () => {
     }
   
     const user = getProfile()
+    console.log(user)
     return (
       <Layout>
-        {user.name}
+        {user}
       </Layout>
 )
 }
