@@ -1,12 +1,15 @@
 import * as React from "react"
+import { Helmet } from 'react-helmet';
 import Layout from "src/components/Layout"
-
+import {Banner} from "src/components/HomeSections"
 // markup
 const IndexPage = () => {
   return (
       <Layout>
-      {process.env.NODE_ENV}
-      {process.env.GATSBY_API_URL}
+          <Helmet>
+            <title>Home | Splashen</title>
+          </Helmet>
+          <Banner />
       </Layout>
   )
 }
