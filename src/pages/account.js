@@ -9,7 +9,7 @@ const Account = () => {
     }
   
     const user = getProfile()
-    console.log(user)
+    console.log(user);
     return (
       <Layout>
         {user}
