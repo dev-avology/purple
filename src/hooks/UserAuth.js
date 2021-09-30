@@ -75,32 +75,21 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     auth.parseHash(setSession())
   }
   
-  export const getProfile = async () => {
+  export const getProfile = () => {
     let token = CurrentUserToken()
     token = JSON.parse(token)
     
     try {
-      const resp = await axios.get(process.env.GATSBY_API_URL+"/api/get-user-data", {
-      headers: {
-        Accept: 'application/json',
-        Authorization: 'Bearer '+token.token
-      }
-    })
-    //console.log(resp);
-    user = resp.data
-  } catch (err) {
-    // Handle Error Here
-    
-  }
-  //console.log(JSON.stringify(user));
-  return JSON.parse(JSON.stringify(user))
-  //console.log(resp)
-    /*.then(function (response) {
-       return response.data
-    }) .catch((error) => {
-      console.log(error);
-      
-    })*/
+      const resp = axios.get(process.env.GATSBY_API_URL+"/api/get-user-data", {
+        headers: {
+          Accept: 'application/json',
+          Authorization: 'Bearer '+token.token
+        }
+        }).then(resp1 => resp1)
+        return resp
+    } catch (err) {
+
+    }
 
   }
   
