@@ -23,7 +23,7 @@ const AccountMenu = () => {
                                     <span>Avology</span>
                                 </div>
                             </Link>
-                            <Link to="/account">Dashboard</Link>
+                            <Link to="/dashboard">Dashboard</Link>
                             <Link to="#">View Shop</Link>
                             <Link to="#">Activity Feed</Link>
                             <Link to="#">Manage Portfolio</Link>
@@ -31,7 +31,7 @@ const AccountMenu = () => {
                             <span className="order_history">
                                 <Link to="#">Order History</Link>
                                 <Link to="#">BubbleMail</Link>
-                                <Link to="account-details.html">Account Settings</Link>
+                                <Link to="/account">Account Settings</Link>
                             </span>
                             <Link to="#">RB Blog</Link>
                             <Link to="#login" className="account_logout" onClick={e => {

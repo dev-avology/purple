@@ -43,7 +43,7 @@ export const account = () => {
     if (!isBrowser) {
       return
     }
-    navigate("/account")
+    navigate("/dashboard")
     //auth.authorize()
   
   }
@@ -62,7 +62,7 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     tokens.expiresAt = expiresAt
     user = authResult.idTokenPayload
     localStorage.setItem("isLoggedIn", true)
-    navigate("/account")
+    navigate("/dashboard")
     cb()
   }
 }
@@ -96,20 +96,22 @@ const setSession = (cb = () => {}) => (err, authResult) => {
   export const logout = () => {
     let token = CurrentUserToken()
     token = JSON.parse(token)
-    console.log('Bearer '+ token.token);
+    //console.log('Bearer '+token.token);
     
-    /*axios.get(process.env.GATSBY_API_URL+"/api/logout", {
-        params: {
+    axios.get(process.env.GATSBY_API_URL+"/api/logout", {
+      headers: {
           Accept: 'application/json',
-          Authorization: 'Barear'+ token.token
+          Authorization: 'Bearer '+ token.token
         }
       })
       .then(function (response) {
-        console.log(response)
+        //console.log(response)
+
         localStorage.setItem("isLoggedIn", false)
         localStorage.setItem("userData", false)
+        window.location.href = "/login"
       })
-*/
-    //navigate("/login")
+
+      
     //auth.logout()
   }
