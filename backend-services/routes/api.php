@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\User\UserProfileController;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
-Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
+Route::middleware(['auth:sanctum', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-user-data', [UserProfileController::class, 'getUserProfile']);
     Route::get('logout', [PassportAuthController::class, 'logout']);
