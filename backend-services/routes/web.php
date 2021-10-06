@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+Route::group(['middleware' => ['auth']], function(){
+
+    Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('orders', [AdminController::class, 'orders'])->name('orders');
+    Route::get('abandoned-checkouts', [AdminController::class, 'abandonedCheckouts'])->name('abandoned-checkouts');
+    Route::get('artworks', [AdminController::class, 'artWorks'])->name('artworks');
+    Route::get('collections', [AdminController::class, 'collections'])->name('collections');
+    Route::get('tags', [AdminController::class, 'tags'])->name('tags');
+    Route::get('customers', [AdminController::class, 'customers'])->name('customers');
+    Route::get('analytics', [AdminController::class, 'analytics'])->name('analytics');
+    Route::get('discounts', [AdminController::class, 'discounts'])->name('discounts');
+    Route::get('preferences', [AdminController::class, 'preferences'])->name('preferences');
+
+ });
