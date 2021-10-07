@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\Auth\PassportAuthController;
 use App\Http\Controllers\Api\User\UserProfileController;
+use App\Http\Controllers\Api\User\ArtWorkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,10 @@ use App\Http\Controllers\Api\User\UserProfileController;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
-Route::middleware(['auth:sanctum', 'scope:buyer,seller'])->group(function() {
+Route::middleware(['auth', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-user-data', [UserProfileController::class, 'getUserProfile']);
+    Route::post('save-art-work', [ArtWorkController::class, 'saveArtWork']);
     Route::get('logout', [PassportAuthController::class, 'logout']);
 
 });

@@ -71,14 +71,4 @@ class PassportAuthController extends Controller
     {
         return in_array($role, $this->roles);
     }
-
-    private function getUserData($user)
-    {
-        return [
-            'role'    => $user->role,
-            'name'    => $user->name,
-            'email'   => $user->email,
-            'user_id' => $user->id,
-        ];
-    }
 }
