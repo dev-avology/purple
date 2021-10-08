@@ -21,7 +21,7 @@ use App\Http\Controllers\Api\User\ArtWorkController;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
-Route::middleware(['auth', 'scope:buyer,seller'])->group(function() {
+Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-user-data', [UserProfileController::class, 'getUserProfile']);
     Route::post('save-art-work', [ArtWorkController::class, 'saveArtWork']);
