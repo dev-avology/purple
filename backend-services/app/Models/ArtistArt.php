@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class ArtistArt extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'title',
+        'art_id',
+        'slug',
+        'tags',
+        'description',
+        'art_photo_path',
+        'artwork_media_id',
+        'is_mature_content',
+        'is_public',
+    ];
 }
