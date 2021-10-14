@@ -5052,14 +5052,14 @@ body.signup_body .header_navigation {
 .uplaod-fils label.custom-file-upload:hover span {
     color: #fff;
 }
-img.white_img {
+.uplaod-fils label.custom-file-upload span .white_img {
     display: none;
 }
-.uplaod-fils label.custom-file-upload:hover span img.black_img {
+.uplaod-fils label.custom-file-upload:hover span .black_img {
     display: none;
 }
-.uplaod-fils label.custom-file-upload:hover span img.white_img {
-    display: block;
+.uplaod-fils label.custom-file-upload:hover span .white_img {
+    display: inline-block;
     margin: 0 auto;
 }
 .uplaod-fils_text {
