@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\Auth\PassportAuthController;
 use App\Http\Controllers\Api\User\UserProfileController;
 use App\Http\Controllers\Api\User\ArtWorkController;
 use App\Http\Controllers\Api\User\ArtWorkMediaController;
-use App\Http\Controllers\Api\User\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +25,11 @@ Route::post('login', [PassportAuthController::class, 'login']);
 Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-user-data', [UserProfileController::class, 'getUserProfile']);
+    Route::post('save-user-profile', [UserProfileController::class, 'saveUserProfile']);
 
     Route::post('save-art-work', [ArtWorkController::class, 'saveArtWork']);
 
     Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
-
-    Route::post('save-user-profile', [ProfileController::class, 'saveUserProfile']);
 
     Route::get('logout', [PassportAuthController::class, 'logout']);
 
