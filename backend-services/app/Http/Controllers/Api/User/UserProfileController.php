@@ -17,7 +17,7 @@ class UserProfileController extends Controller
     public function __construct()
     {
         $this->availableExtensions = config('file-upload-extensions.image');
-        $this->profileUploadPath = config('file-upload-paths.profile');
+        $this->profilePhotoUploadPath = config('file-upload-paths.profile');
         $this->profileCoverPhotoUploadPath = config('file-upload-paths.profile-cover');
         $this->uploadService = new uploadService();
     }
@@ -59,7 +59,7 @@ class UserProfileController extends Controller
     }
 
     private function uploadProfile($userAvatar) {
-        $profilePhoto = $this->uploadService->handleUploadedImages($userAvatar, $this->profileUploadPath, $this->availableExtensions);
+        $profilePhoto = $this->uploadService->handleUploadedImages($userAvatar, $this->profilePhotoUploadPath, $this->availableExtensions);
 
         if (!$profilePhoto) return false;
         return $profilePhoto;
