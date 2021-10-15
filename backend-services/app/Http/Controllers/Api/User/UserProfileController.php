@@ -52,13 +52,18 @@ class UserProfileController extends Controller
             }
         }
 
+        $display_name = $request->display_name;
+        if (!$request->display_name) {
+            $display_name = 'username';
+        } 
+
         $dataArray = [
             'user_id' => auth()->user()->id,
             'user_avatar' => $profilePhoto,
             'cover_image' => $coverImage,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'display_name' => $request->display_name,
+            'display_name' => ,
             'bio' => $request->bio,
         ];
         Profile::updateOrCreate(['user_id' => auth()->user()->id],$dataArray);
