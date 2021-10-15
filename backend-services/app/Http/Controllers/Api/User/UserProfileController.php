@@ -63,7 +63,7 @@ class UserProfileController extends Controller
             'cover_image' => $coverImage,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'display_name' => ,
+            'display_name' => $display_name,
             'bio' => $request->bio,
         ];
         Profile::updateOrCreate(['user_id' => auth()->user()->id],$dataArray);
