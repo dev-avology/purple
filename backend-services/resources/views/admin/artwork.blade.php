@@ -77,7 +77,7 @@
               <div class="card-body">
               	<div class="row">
               		<div class="col-6">
-              			<img src="dist/img/mona-lisa.png" class="img-fluid">
+              			<img src="{{asset('public/admin/dist/img/mona-lisa.png')}}" class="img-fluid">
               		</div>
               		<div class="col-6">
               			<button class="btn btn-secondary w-100 h-100">

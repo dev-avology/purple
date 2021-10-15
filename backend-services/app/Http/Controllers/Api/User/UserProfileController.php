@@ -32,23 +32,30 @@ class UserProfileController extends Controller
     }
 
     public function saveUserProfile(Request $request) {
+        
+        $profilePhoto = null;
+        $coverImage = null;
 
-        $profilePhoto = $this->uploadProfile($request->user_avatar);
-
-        if (!$profilePhoto) {
-            return response()->json(['message' => 'You have upload incorrect file type of profile photo.'], 400);
+        if (isset($request->user_avatar)) {
+            $profilePhoto = $this->uploadProfile($request->user_avatar);
+            
+            if (!$profilePhoto) {
+                return response()->json(['message' => 'You have upload incorrect file type of profile photo.'], 400);
+            }
         }
+        
+        if (isset($request->cover_image)) {
+            $coverImage = $this->uploadProfileCover($request->cover_image);
 
-        $coverImage = $this->uploadProfileCover($request->cover_image);
-
-        if (!$coverImage) {
-            return response()->json(['message' => 'You have upload incorrect file type of profile photo.'], 400);
+            if (!$coverImage) {
+                return response()->json(['message' => 'You have upload incorrect file type of cover photo.'], 400);
+            }
         }
 
         $dataArray = [
             'user_id' => auth()->user()->id,
             'user_avatar' => $profilePhoto,
-            'cover_image' =>$coverImage,
+            'cover_image' => $coverImage,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'display_name' => $request->display_name,

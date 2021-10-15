@@ -48,7 +48,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr onclick="window.location='artwork.php';">
+                      <tr id="open-artwork">
                         <td>
                           <img src="{{asset('public/admin/dist/img/mona-lisa.png')}}" width="auto" height="45px">
                         </td>
@@ -72,5 +72,17 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+@endsection
+
+@section('pagescripts')
+
+<script>
+  
+  $('#open-artwork').click(function() {
+    window.location="{{route('artwork', ['artWorkID' => 'test'])}}";
+  });
+
+</script>
 
 @endsection

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminArtWorkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
     Route::get('abandoned-checkouts', [AdminController::class, 'abandonedCheckouts'])->name('abandoned-checkouts');
-    Route::get('artworks', [AdminController::class, 'artWorks'])->name('artworks');
+
+    Route::get('artworks/', [AdminArtWorkController::class, 'index'])->name('artworks');
+    Route::get('artwork/{artWorkID}', [AdminArtWorkController::class, 'artWork'])->name('artwork');
+    
     Route::get('collections', [AdminController::class, 'collections'])->name('collections');
     Route::get('tags', [AdminController::class, 'tags'])->name('tags');
     Route::get('customers', [AdminController::class, 'customers'])->name('customers');
