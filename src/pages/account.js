@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default class Account extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     getProfile()
     .then(user => {
       this.setState({
