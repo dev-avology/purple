@@ -23,11 +23,20 @@ class UserProfileController extends Controller
     }
 
     public function getUserProfile() {
+        
+        $userProfile = Profile::where('user_id', auth()->user()->id)->first();
+
         return [
-            'id' => auth()->user()->id,
-            'name' => auth()->user()->name,
-            'email' => auth()->user()->email,
-            'role' => auth()->user()->role,
+            'id'            => auth()->user()->id,
+            'name'          => auth()->user()->name,
+            'email'         => auth()->user()->email,
+            'role'          => auth()->user()->role,
+            'user_avatar'   => optional($userProfile)->user_avatar,
+            'cover_image'   => optional($userProfile)->cover_image,
+            'first_name'    => optional($userProfile)->first_name,
+            'last_name'     => optional($userProfile)->last_name,
+            'display_name'  => optional($userProfile)->display_name,
+            'bio'           => optional($userProfile)->bio,
         ];
     }
 

@@ -26,6 +26,7 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-user-data', [UserProfileController::class, 'getUserProfile']);
     Route::post('save-user-profile', [UserProfileController::class, 'saveUserProfile']);
+    Route::get('get-user-profile-status', [UserProfileController::class, 'getProfileStatus']);
 
     Route::post('save-art-work', [ArtWorkController::class, 'saveArtWork']);
 
