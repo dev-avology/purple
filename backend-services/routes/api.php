@@ -30,6 +30,7 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::post('save-art-work', [ArtWorkController::class, 'saveArtWork']);
 
     Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
+    Route::get('get-designs-count', [ArtWorkMediaController::class, 'returnCountOfTotalArts']);
 
     Route::get('logout', [PassportAuthController::class, 'logout']);
 

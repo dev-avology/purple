@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('public/admin/dist/css/adminlte.min.css')}}">
+  <!---Custom CSS--->
+  <link rel="stylesheet" href="{{asset('public/admin/dist/css/style.css')}}">
   <!-- Date Range style -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 

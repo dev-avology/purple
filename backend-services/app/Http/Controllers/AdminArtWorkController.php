@@ -16,12 +16,12 @@ class AdminArtWorkController extends Controller
 
     public function index(Request $request) {
 
-        $artistArts = ArtistArt::paginate($this->artworkListLimit);
+        $artistArts = ArtistArt::get();
 
-        if ($request->ajax()) {
-            $artworkData = view()->render();
-            return response()->json(['html' => $artworkData], 200);
-        }
+        // if ($request->ajax()) {
+        //     $artworkData = view('admin.ajax-templates.artistArts', ['artistArts' => $artistArts])->render();
+        //     return response()->json(['html' => $artworkData], 200);
+        // }
         return view('admin.artworks', ['artistArts' => $artistArts]);
     }
 
