@@ -31,7 +31,7 @@ const AccountMenu = () => {
                             <span className="order_history">
                                 <Link to="#">Order History</Link>
                                 <Link to="#">BubbleMail</Link>
-                                <Link to="/account">Account Settings</Link>
+                                <Link to="#">Account Settings</Link>
                             </span>
                             <Link to="#">RB Blog</Link>
                             <Link to="#login" className="account_logout" onClick={e => {

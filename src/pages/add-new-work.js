@@ -1,11 +1,12 @@
 import React, {Component} from "react"
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet'
 import Layout from "src/components/Layout"
-import { login, isAuthenticated, getProfile } from "src/hooks/UserAuth"
+import { login, isAuthenticated, getProfile, CurrentUserToken } from "src/hooks/UserAuth"
 import { getArtworkMedia } from "src/components/ApiStore"
 import { Newsletter } from "src/components/NewsletterForm"
 import { StaticImage } from "gatsby-plugin-image"
 import axios from 'axios';
+import { navigate } from "gatsby-link";
 
 export default class AddNewWork extends Component {
 
@@ -15,6 +16,9 @@ componentDidMount() {
         this.setState({
         userdata: user.data,
         });
+        this.setState({
+            user_id: user.data.id,
+            });
     })
     .catch(error => {
         // Handle/report error
@@ -29,21 +33,34 @@ componentDidMount() {
     .catch(error => {
         // Handle/report error
     })
- console.log(this.state.getArtwork)   
 }
     constructor(props) {
         super(props);
         this.state = {
           userdata: "",
+          isLoading: false,
           file: null,
           selectedFile: null,
           getArtwork: "",
           step: 1,
+          user_id: "",
           title: "",
           tags: "",
           description: "",
-          tags: "",
+          is_mature_content: "",
+          is_public: "",
+          currentData: [],
+          limit: 3,
+          errMsgfileupload: "",
+          errMsgTitle: "",
+          errMsgTags: "",
+          errMsgDescription: "",
+          errMsgIsMature: "",
+          errMsgIsPublic: "",
+          errMsgArtwork: "",
+          successMsg: "",
         }
+        
         this.handleChange = this.handleChange.bind(this)
       }
 
@@ -61,17 +78,93 @@ componentDidMount() {
     this.handleStep(2)
     }
 
+    selectData(id, event) {
+        let isSelected = event.currentTarget.checked
+        let find =  this.state.currentData.indexOf(id)
+        if (isSelected) {
+          if (this.state.currentData.length < this.state.limit) {
+            this.state.currentData.push(id)
+            this.setState({ currentData: this.state.currentData })
+          }else{
+            event.preventDefault()
+            event.currentTarget.checked = false
+          }
+        } else {
+            this.state.currentData.splice(find, 1)
+          this.setState({currentData: this.state.currentData})
+        }
+    } 
+
     onChangehandler = (e) => {
         let name = e.target.name;
         let value = e.target.value;
         let data = {};
         data[name] = value;
         this.setState(data);
-      };
+      }
+     
+onFormSubmit = (e) => {
+    e.preventDefault();
+    if(this.validateForm()){
+        this.setState({ isLoading: true });
+        
+        const data = new FormData() 
+        data.append('art_photo', this.state.selectedFile)
+        data.append('user_id', this.state.user_id)
+        data.append('title', this.state.title)
+        data.append('tags', this.state.tags)
+        data.append('description', this.state.description)
+        data.append('artwork_media_id', this.state.currentData.toString())
+        data.append('is_mature_content', this.state.is_mature_content)
+        data.append('is_public', this.state.is_public)
 
-onFormSubmit(){
-    console.log(this.statw.selectedFile)
+        
+        let token = CurrentUserToken()
+        token = JSON.parse(token)
+        
+        axios.post(process.env.GATSBY_API_URL+"/api/save-art-work", 
+            data,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Accept: 'application/json',
+                    Authorization: 'Bearer '+token.token
+            }
+        })
+        .then((response) => {
+        this.setState({ isLoading: false });
+        if (response.status === 200) {
+            //console.log(response)
+            this.setState({
+                successMsg: response.data.message,
+                //redirect: true,
+              });
+              setTimeout(() => {
+                this.setState({ successMsg: "" });
+              }, 3000);
+              navigate("/dashboard")
+        }
+        if (
+            response.data.status === "failed" &&
+            response.data.success === undefined
+        ) {
+            
+        } else if (
+            response.data.status === "failed" &&
+            response.data.success === false
+        ) {
+        
+        }
+        })
+        .catch((error) => {
+            this.setState({ isLoading: false });
+        if(error.response.status === 401){
+            //redirect to login
+            console.log(error)
+        }
 
+        });
+    }
     /*try {
         // make axios post request
         const response = await axios({
@@ -85,17 +178,106 @@ onFormSubmit(){
       }*/
     }
 
+    validateForm() {
+        let formIsValid = true;
+
+        if (!this.state.selectedFile) {
+            formIsValid = false;
+            //errors["email"] = "*Please enter your email-ID.";
+            this.setState({
+              errMsgfileupload: "*Please select your design.",
+            });
+            setTimeout(() => {
+              this.setState({ errMsgfileupload: "" });
+            }, 4000);
+        }
+
+        if (!this.state.title) {
+            formIsValid = false;
+            //errors["email"] = "*Please enter your email-ID.";
+            this.setState({
+                errMsgTitle: "*Title field is required.",
+            });
+            setTimeout(() => {
+              this.setState({ errMsgTitle: "" });
+            }, 4000);
+        }
+
+        if (!this.state.tags) {
+            formIsValid = false;
+            //errors["email"] = "*Please enter your email-ID.";
+            this.setState({
+                errMsgTags: "*Tags field is required.",
+            });
+            setTimeout(() => {
+              this.setState({ errMsgTags: "" });
+            }, 4000);
+        }
+
+        if (!this.state.description) {
+            formIsValid = false;
+            //errors["email"] = "*Please enter your email-ID.";
+            this.setState({
+                errMsgDescription: "*Description field is required.",
+            });
+            setTimeout(() => {
+              this.setState({ errMsgDescription: "" });
+            }, 4000);
+        }
+        if (this.state.currentData.length === 0) {
+            formIsValid = false;
+            //errors["email"] = "*Please enter your email-ID.";
+            this.setState({
+                errMsgArtwork: "*Please select atleast one Artwork Media.",
+            });
+            setTimeout(() => {
+              this.setState({ errMsgArtwork: "" });
+            }, 4000);
+        }
+
+        if (!this.state.is_mature_content) {
+            formIsValid = false;
+            //errors["email"] = "*Please enter your email-ID.";
+            this.setState({
+                errMsgIsMature: "* Please select one option.",
+            });
+            setTimeout(() => {
+              this.setState({ errMsgIsMature: "" });
+            }, 4000);
+        }
+
+        if (!this.state.is_public) {
+            formIsValid = false;
+            //errors["email"] = "*Please enter your email-ID.";
+            this.setState({
+                errMsgIsPublic: "* Please select one option.",
+            });
+            setTimeout(() => {
+              this.setState({ errMsgIsPublic: "" });
+            }, 4000);
+        }
+
+        return formIsValid;
+    }
+
     render() {
+
         if (!isAuthenticated()) {
             login()
             return null
           }
+
+          const isLoading = this.state.isLoading;
           const Userdata = this.state.userdata
-          //const gg = JSON.parse(this.state.getArtwork);
-          console.log(this.state.getArtwork)
-          const arrayOfObjects = [
-            this.state.getArtwork
-          ];
+
+          const getArtworkCheckbox = [];
+          for (let x of this.state.getArtwork) {
+            getArtworkCheckbox.push(
+                <label key={x.id} className="select_checkbox">{x.media_type}
+                    <input type="checkbox" value={x.id}  onChange={this.selectData.bind(this, x.id)} />
+                    <span className="checkmark"></span>
+                </label>);
+            }
 
         return(
             <Layout>
@@ -108,6 +290,7 @@ onFormSubmit(){
                             <div className="col-lg-12">
                                 <div className="add_new_work">
                                     <h2>Add new work</h2>
+                                    <form encType="multipart/form-data" onSubmit={this.onFormSubmit}>
                                     <div className="step1" style={this.state.step === 1 ? ( null ) :( { display: "none" } )}>
                                     <div className="uplaod-fils">
                                         <label className="custom-file-upload">
@@ -122,13 +305,7 @@ onFormSubmit(){
                                         <p>We recommend high-resolution JPEG, PNG or GIF files with a minimum of 1000px resolution. For more help, check out our <a href="#">design guide</a></p>
                                     </div>
                                     </div>
-
-                                        {arrayOfObjects.map((item, index) => (
-                                            <>{item[index].map(itm => <div>itm.id</div>)}
-                                            </>
-                                        )
-                                        )}
-
+                                    
                                     <div className="step2" style={this.state.step === 2 ? ( null ) :( { display: "none" } )}>
                                         <div className="uplaod_images_main">
                                             <div className="uplaod_images">
@@ -137,7 +314,7 @@ onFormSubmit(){
                                                     <div className="uplaod_images_hover">
                                                         <div className="uplaod-fils">
                                                             <label className="custom-file-upload">
-                                                                <input type="file" />
+                                                                <input type="file" onChange={this.handleChange}/>
                                                                 <span><span>Replace Image</span></span>
                                                             </label>
                                                         </div>
@@ -160,15 +337,18 @@ onFormSubmit(){
                                                                     <input required="" type="text" name="title" placeholder="Use 4 to 8 words to describe your work" className="" 
                                                                     value={this.state.title}
                                                                     onChange={this.onChangehandler}/>
+                                                                    <span className="text-danger">{this.state.errMsgTitle}</span>
                                                                 </div>
                                                                 <div className="col-lg-12">
                                                                     <label>Tags <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Tags are how your audience finds your work. Use 15 relevant tags per upload. Use search terms your audience would look for to find your work, including your name. Make sure to separate tags with commas. Example: panda, bear, black and white.</div></span></label>
                                                                     <textarea placeholder="Separate tags with commas." className="" name="tags" id=""
                                                                     onChange={this.onChangehandler}>{this.state.tags}</textarea>
+                                                                    <span className="text-danger">{this.state.errMsgTags}</span>
                                                                 </div>
                                                                 <div className="col-lg-12">
                                                                     <label>Description <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Share the story or meaning behind your work. You don’t have to give away any secrets, but your audience will appreciate a little insight into what you created.</div></span></label>
                                                                     <textarea placeholder="Describe your work to get your audience excited" className="" name="description" id="" onChange={this.onChangehandler}>{this.state.description}</textarea>
+                                                                    <span className="text-danger">{this.state.errMsgDescription}</span>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -197,33 +377,15 @@ onFormSubmit(){
                                         </div>
 
 
-                                        <div class="media_select_sec">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="media_select">
+                                        <div className="media_select_sec">
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-lg-12">
+                                                        <div className="media_select">
                                                             <h2>Media – Select up to 2</h2>
-                                                            <div class="media_select_checkbox">
-                                                                <label class="select_checkbox">Photography
-                                                                    <input type="checkbox" />
-                                                                    <span class="checkmark"></span>
-                                                                </label>
-                                                                <label class="select_checkbox">Design &amp; Illustration
-                                                                    <input type="checkbox" />
-                                                                    <span class="checkmark"></span>
-                                                                </label>
-                                                                <label class="select_checkbox">Painting &amp; Mixed Media
-                                                                    <input type="checkbox" />
-                                                                    <span class="checkmark"></span>
-                                                                </label>
-                                                                <label class="select_checkbox">Drawing
-                                                                    <input type="checkbox" />
-                                                                    <span class="checkmark"></span>
-                                                                </label>
-                                                                <label class="select_checkbox">Digital Art
-                                                                    <input type="checkbox" />
-                                                                    <span class="checkmark"></span>
-                                                                </label>
+                                                            <div className="media_select_checkbox">
+                                                                {getArtworkCheckbox}
+                                                                <span className="text-danger">{this.state.errMsgArtwork}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -231,8 +393,73 @@ onFormSubmit(){
                                             </div>
                                         </div>
                                         
+                                        <div className="who_can_work_sec">
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-lg-6">
+                                                        <div className="who_can_work">
+                                                            <h3>Who can view this work?</h3>
+                                                            <div className="custom_check_work">
+                                                                <label className="check_work">Anybody (public)
+                                                                    <input type="radio" name="is_public" value="1" onChange={this.onChangehandler}/>
+                                                                    <span className="radiobtn"></span>
+                                                                </label>
+                                                                <label className="check_work">Only You (private)
+                                                                    <input type="radio" name="is_public" value="0" onChange={this.onChangehandler}/>
+                                                                    <span className="radiobtn"></span>
+                                                                </label>
+                                                                <span className="text-danger">{this.state.errMsgIsPublic}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-lg-6">
+                                                        <div className="mature_content">
+                                                            <h3>Is this mature content?</h3>
+                                                            <p>Nudity or lingerie, adult language, alcohol or drugs, blood, guns or violence. <a href="#">Not sure? See guidelines</a>.</p>
+                                                            <div className="custom_check_work">
+                                                                <label className="check_work">Yes
+                                                                    <input type="radio" name="is_mature_content" value="1" onChange={this.onChangehandler}/>
+                                                                    <span className="radiobtn"></span>
+                                                                </label>
+                                                                <label className="check_work">No
+                                                                    <input type="radio" name="is_mature_content" value="0" onChange={this.onChangehandler}/>
+                                                                    <span className="radiobtn"></span>
+                                                                </label>
+                                                                <span className="text-danger">{this.state.errMsgIsMature}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="rights_declaration_sec">
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-lg-12">
+                                                        <div className="rights_declaration">
+                                                            <label className="declaration_checkbox">I have the right to sell products containing this artwork, including (1) any featured company’s name or logo, (2) any featured person’s name or face, and (3) any featured words or images created by someone else.
+                                                                <input type="checkbox" />
+                                                                <span className="checkmark"></span>
+                                                            </label>
+                                                            <button type="submit" className="btn">Save work {isLoading ? (
+                                                                <span
+                                                                    className="spinner-border spinner-border-sm ml-5"
+                                                                    role="status"
+                                                                    aria-hidden="true"
+                                                                ></span>
+                                                                ) : (
+                                                                <span></span>
+                                                                )}</button>
+                                                                <span className="text-success">{this.state.successMsg}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
-                                    
+                                </form>
                                 </div>
                             </div>
                         </div>
