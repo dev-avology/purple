@@ -5501,6 +5501,7 @@ body.signup_body .header_navigation {
 .edit_profile {
     display: flex;
     align-items: center;
+    flex-wrap:wrap;
 }
 .edit_profile .account_profile img {
     width: 100px;
@@ -5977,4 +5978,11 @@ ul.sub-menu {
 }
 a.account_profile .gatsby-image-wrapper-constrained {
     vertical-align: middle;
+}
+.swal-overlay {
+  background-color: rgb(134 93 204 / 50%);
+}
+.cover_image_inner {
+    flex: 1 100%;
+    margin-bottom: 20px;
 }
