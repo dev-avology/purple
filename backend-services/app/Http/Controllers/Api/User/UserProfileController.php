@@ -26,13 +26,24 @@ class UserProfileController extends Controller
         
         $userProfile = Profile::where('user_id', auth()->user()->id)->first();
 
+        $userProfileImage = null;
+        $userCoverImage = null;
+
+        if (optional($userProfile)->user_avatar) {
+            $userProfileImage = asset(config('file-upload-paths.profile').'/'.optional($userProfile)->user_avatar);
+        }
+
+        if (optional($userProfile)->cover_image) {
+            $userCoverImage = asset(config('file-upload-paths.profile-cover').'/'.optional($userProfile)->cover_image);
+        }
+
         return [
             'id'            => auth()->user()->id,
             'name'          => auth()->user()->name,
             'email'         => auth()->user()->email,
             'role'          => auth()->user()->role,
-            'user_avatar'   => asset(config('file-upload-paths.profile').'/'.optional($userProfile)->user_avatar),
-            'cover_image'   => asset(config('file-upload-paths.profile-cover').'/'.optional($userProfile)->cover_image),
+            'user_avatar'   => $userProfileImage,
+            'cover_image'   => $userCoverImage,
             'first_name'    => optional($userProfile)->first_name,
             'last_name'     => optional($userProfile)->last_name,
             'display_name'  => optional($userProfile)->display_name,
