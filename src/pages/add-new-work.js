@@ -5,8 +5,9 @@ import { login, isAuthenticated, getProfile, CurrentUserToken } from "src/hooks/
 import { getArtworkMedia } from "src/components/ApiStore"
 import { Newsletter } from "src/components/NewsletterForm"
 import { StaticImage } from "gatsby-plugin-image"
-import axios from 'axios';
-import { navigate } from "gatsby-link";
+import axios from 'axios'
+import { navigate } from "gatsby-link"
+import swal from 'sweetalert'
 
 export default class AddNewWork extends Component {
 
@@ -96,11 +97,11 @@ componentDidMount() {
     } 
 
     onChangehandler = (e) => {
-        let name = e.target.name;
-        let value = e.target.value;
-        let data = {};
-        data[name] = value;
-        this.setState(data);
+        let name = e.target.name
+        let value = e.target.value
+        let data = {}
+        data[name] = value
+        this.setState(data)
       }
      
 onFormSubmit = (e) => {
@@ -132,17 +133,19 @@ onFormSubmit = (e) => {
             }
         })
         .then((response) => {
-        this.setState({ isLoading: false });
+        this.setState({ isLoading: false })
         if (response.status === 200) {
-            //console.log(response)
-            this.setState({
-                successMsg: response.data.message,
-                //redirect: true,
-              });
+              swal({
+                title: "Saved",
+                text: response.data.message,
+                icon: "success",
+                timer: 2000,
+                button: false
+              })
               setTimeout(() => {
-                this.setState({ successMsg: "" });
-              }, 3000);
-              navigate("/dashboard")
+                navigate("/dashboard")
+              }, 3000)
+              
         }
         if (
             response.data.status === "failed" &&
@@ -160,7 +163,13 @@ onFormSubmit = (e) => {
             this.setState({ isLoading: false });
         if(error.response.status === 401){
             //redirect to login
-            console.log(error)
+            swal({
+                title: error.response.data.message,
+                text: "",
+                icon: "error",
+                timer: 2000,
+                button: false
+              })
         }
 
         });
