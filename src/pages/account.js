@@ -390,11 +390,11 @@ export default class Account extends Component {
 											<div className="col-lg-12">
 												<label htmlFor="Display Name">Display Name</label>
 												<div className="edit_profile_checkbox">
-													<label htmlFor="real name" className="profile_radiobtn">Always show my real name
+													<label htmlFor="display_name" className="profile_radiobtn">Always show my real name
 														<input type="radio" name="display_name" value="real_name" onChange={this.onChangehandler} checked={this.state.display_name === "real_name" ? (true) : (false)}/>
 														<span className="radiobtn"></span>
 													</label>
-													<label htmlFor="user name" className="profile_radiobtn">Always show my username (text)
+													<label htmlFor="display_name" className="profile_radiobtn">Always show my username (text)
 														<input type="radio" name="display_name" value="username" onChange={this.onChangehandler} checked={this.state.display_name === "username" ? (true) : (false)}/>
 														<span className="radiobtn"></span>
 													</label>

@@ -1,10 +1,24 @@
 import React, {useState} from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { logout } from "src/hooks/UserAuth"
+import { logout,isAuthenticated, getProfile } from "src/hooks/UserAuth"
 import Search from "src/components/Search"
 const AccountMenu = () => {
     const [toggle, setToggle] = useState('0')
+
+    const [userData, setuserData] = React.useState([]);
+
+React.useEffect(() => {
+    if(isAuthenticated){
+        getProfile()
+        .then(result => {
+            setuserData(result.data);
+        })
+        .catch(error => {
+            // Handle/report error
+        })
+    }
+  }, []);
     return (
         <>
             <ul>
@@ -14,13 +28,13 @@ const AccountMenu = () => {
                 <li>
                     <div className="profile">
                         <Link className="account_profile" to="#" onClick={(e) => { e.preventDefault(); toggle === '0' ? setToggle('1') : setToggle('0')}}>
-                            <StaticImage src="../images/rb-default-avatar.png" alt="" />
+                        {userData.user_avatar ? (<img src={userData.user_avatar} alt="" />): (<StaticImage src="../images/rb-default-avatar.png" alt="" />)}
                         </Link>
                         <div className={`account_category ${toggle === '0' ? 'closed' :  'opened' }`}>
                             <Link to="#" className="account_category_profile">
                                 <div className="account_profile" onClick={(e) => { e.preventDefault(); toggle === '0' ? setToggle('1') : setToggle('0')}}>
-                                    <StaticImage src="../images/rb-default-avatar.png" alt="" />
-                                    <span>Avology</span>
+                                {userData.user_avatar ? (<img src={userData.user_avatar} alt="" />): (<StaticImage src="../images/rb-default-avatar.png" alt="" />)}
+                                    <span>{userData.display_name === 'username' ? (userData.name) : (userData.first_name +' '+userData.last_name)}</span>
                                 </div>
                             </Link>
                             <Link to="/dashboard">Dashboard</Link>
