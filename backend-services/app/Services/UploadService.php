@@ -19,6 +19,11 @@ class UploadService
     }
 
     private function validateFileExtension($fileExtension, $availableExtensions) {
-        return array_search($fileExtension, $availableExtensions);
+        foreach ($availableExtensions as $extension) {
+            if ($extension == $fileExtension) {
+                return true;
+            }
+        }
+        return false;
     }
 }

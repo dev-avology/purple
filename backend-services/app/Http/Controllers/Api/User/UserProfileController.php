@@ -55,6 +55,7 @@ class UserProfileController extends Controller
         
         $profilePhoto = null;
         $coverImage = null;
+        $dataArray = array();
 
         if (isset($request->user_avatar)) {
             $profilePhoto = $this->uploadProfile($request->user_avatar);
@@ -79,15 +80,28 @@ class UserProfileController extends Controller
 
         $dataArray = [
             'user_id' => auth()->user()->id,
-            'user_avatar' => $profilePhoto,
-            'cover_image' => $coverImage,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'display_name' => $display_name,
+            'user_avatar' => $profilePhoto,
+            'cover_image' => $coverImage,
             'bio' => $request->bio,
         ];
-        Profile::updateOrCreate(['user_id' => auth()->user()->id],$dataArray);
-        return response()->json(['status' => 200, 'message' => 'profile has been updated successfully.']);
+
+        $filteredDataArray = array_filter($dataArray);
+        
+        $message = 'Profile has been updated successfully.';
+
+        if ((count($filteredDataArray) == 3) && isset($filteredDataArray['user_avatar'])) {
+            $message = "Profile Photo has been updated successfully.";
+        }
+
+        if((count($filteredDataArray) == 3) && isset($filteredDataArray['cover_image'])) {
+            $message = "Cover Photo has been updated successfully.";
+        }
+
+        Profile::updateOrCreate(['user_id' => auth()->user()->id],$filteredDataArray);
+        return response()->json(['status' => 200, 'message' => $message]);
     }
 
     private function uploadProfile($userAvatar) {

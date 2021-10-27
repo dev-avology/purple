@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'image' => ['jpg', 'png', 'jpeg'],
+    'image' => ['png', 'jpeg', 'JPG', 'jpg'],
 ];
