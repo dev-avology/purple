@@ -13,12 +13,12 @@ const AccountMenu = () => {
                 </li>
                 <li>
                     <div className="profile">
-                        <Link className="account_profile" to="#" onClick={() => {toggle === '0' ? setToggle('1') : setToggle('0')}}>
+                        <Link className="account_profile" to="#" onClick={(e) => { e.preventDefault(); toggle === '0' ? setToggle('1') : setToggle('0')}}>
                             <StaticImage src="../images/rb-default-avatar.png" alt="" />
                         </Link>
                         <div className={`account_category ${toggle === '0' ? 'closed' :  'opened' }`}>
                             <Link to="#" className="account_category_profile">
-                                <div className="account_profile" onClick={() => {toggle === '0' ? setToggle('1') : setToggle('0')}}>
+                                <div className="account_profile" onClick={(e) => { e.preventDefault(); toggle === '0' ? setToggle('1') : setToggle('0')}}>
                                     <StaticImage src="../images/rb-default-avatar.png" alt="" />
                                     <span>Avology</span>
                                 </div>

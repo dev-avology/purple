@@ -23,3 +23,12 @@ export const getDesignCount = () => {
         }
     })
 }
+
+export const getAllCategories = () => {
+    return axios.get(process.env.GATSBY_API_URL+'/api/get-all-categories', {
+        headers: {
+            Accept: 'application/json',
+        }
+    })
+}
+

@@ -309,10 +309,10 @@ export default class Account extends Component {
               </ul>
               <h3>ACCOUNT SETTINGS</h3>
               <ul>
-                  <li class="active"><Link href="/account">Edit Profile</Link></li>
-                  <li><Link href="#">Edit Payment Details <span>!</span></Link></li>
-                  <li><Link href="#">Change Password</Link></li>
-                  <li><Link href="#">Cancel Account</Link></li>
+                  <li className="active"><Link to="/account">Edit Profile</Link></li>
+                  <li><Link to="#">Edit Payment Details <span>!</span></Link></li>
+                  <li><Link to="#">Change Password</Link></li>
+                  <li><Link to="#">Cancel Account</Link></li>
               </ul>
 
             </div>
@@ -327,7 +327,7 @@ export default class Account extends Component {
                     
                       {this.state.avatarURL ? ( <img src={this.state.avatarURL} alt="" /> ) : ( Userdata.user_avatar ? ( <img src={Userdata.user_avatar} alt="" /> ) : (<StaticImage src="../images/rb-default-avatar.png" alt="" />) )}
                     </div>
-                    <label className="edit_profile-upload"> <span>Choose image</span>
+                    <label htmlFor="image" className="edit_profile-upload"> <span>Choose image</span>
                       <input type="file" id="avatar" onChange={this.FileChange}/>
                     </label>
                     <div className="upload_btn">
@@ -349,7 +349,7 @@ export default class Account extends Component {
 								<h2>Cover image</h2>
 								<div className="edit_profile">
                     {Userdata.cover_image ? ( <div className="cover_image_inner"><img src={Userdata.cover_image} alt="" /></div> ) : (null)}
-									<label className="edit_profile-upload" onChange={this.CoverFileChange}> <span>Choose image</span>
+									<label htmlFor="image" className="edit_profile-upload" onChange={this.CoverFileChange}> <span>Choose image</span>
 										<input type="file" id="cover_image" />
 									</label>
 									<div className="upload_btn">
@@ -373,35 +373,35 @@ export default class Account extends Component {
 									<form>
 										<div className="row">
 											<div className="col-lg-6">
-												<label>First Name</label>
+												<label htmlFor="First Name">First Name</label>
 												<input type="text" name="first_name" className="form-control" value={this.state.first_name} placeholder="" onChange={this.onChangehandler}/>
                         <span className="text-danger">{this.state.errMsgFirstName}</span>
 											</div>
 											<div className="col-lg-6">
-												<label>last Name</label>
+												<label htmlFor="Last Name">Last Name</label>
 												<input type="text" name="last_name" className="form-control" value={this.state.last_name} placeholder="" onChange={this.onChangehandler}/>
                         <span className="text-danger">{this.state.errMsgLastName}</span>
 											</div>
 											<div className="col-lg-12">
-												<label>Email Address</label>
+												<label htmlFor="Email Address">Email Address</label>
 												<input type="email" className="form-control" placeholder="" value={Userdata.email ? (Userdata.email) : ("")} disabled/>
 											</div>
 											
 											<div className="col-lg-12">
-												<label>Display Name</label>
+												<label htmlFor="Display Name">Display Name</label>
 												<div className="edit_profile_checkbox">
-													<label className="profile_radiobtn">Always show my real name
+													<label htmlFor="real name" className="profile_radiobtn">Always show my real name
 														<input type="radio" name="display_name" value="real_name" onChange={this.onChangehandler} checked={this.state.display_name === "real_name" ? (true) : (false)}/>
 														<span className="radiobtn"></span>
 													</label>
-													<label className="profile_radiobtn">Always show my user name (text)
+													<label htmlFor="user name" className="profile_radiobtn">Always show my username (text)
 														<input type="radio" name="display_name" value="username" onChange={this.onChangehandler} checked={this.state.display_name === "username" ? (true) : (false)}/>
 														<span className="radiobtn"></span>
 													</label>
 												</div>
 											</div>
 											<div className="col-lg-12">
-												<label>Bio</label>
+												<label htmlFor="Bio">Bio</label>
 												<textarea name="bio" className="form-control" placeholder="" onChange={this.onChangehandler} value={this.state.bio}></textarea>
 												<p>Tell your customers a little about yourself in 500 characters or less.</p>
 											</div>

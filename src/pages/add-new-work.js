@@ -7,6 +7,7 @@ import { Newsletter } from "src/components/NewsletterForm"
 import { StaticImage } from "gatsby-plugin-image"
 import axios from 'axios'
 import { navigate } from "gatsby-link"
+import { Link } from "gatsby"
 import swal from 'sweetalert'
 
 export default class AddNewWork extends Component {
@@ -276,16 +277,15 @@ onFormSubmit = (e) => {
             return null
           }
 
-          const isLoading = this.state.isLoading;
-          const Userdata = this.state.userdata
+          const isLoading = this.state.isLoading
+          const getArtworkCheckbox = []
 
-          const getArtworkCheckbox = [];
           for (let x of this.state.getArtwork) {
             getArtworkCheckbox.push(
-                <label key={x.id} className="select_checkbox">{x.media_type}
+                <label htmlFor={x.media_type} key={x.id} className="select_checkbox">{x.media_type}
                     <input type="checkbox" value={x.id}  onChange={this.selectData.bind(this, x.id)} />
                     <span className="checkmark"></span>
-                </label>);
+                </label>)
             }
 
         return(
@@ -302,7 +302,7 @@ onFormSubmit = (e) => {
                                     <form encType="multipart/form-data" onSubmit={this.onFormSubmit}>
                                     <div className="step1" style={this.state.step === 1 ? ( null ) :( { display: "none" } )}>
                                     <div className="uplaod-fils">
-                                        <label className="custom-file-upload">
+                                        <label htmlFor="image" className="custom-file-upload">
                                             <input type="file" onChange={this.handleChange}/>
                                             <img src={this.state.file} alt=""/>
                                             {this.state.file ? ( 
@@ -311,7 +311,7 @@ onFormSubmit = (e) => {
                                     </div>
                                     <div className="uplaod-fils_text">
                                         <h3>File requirements</h3>
-                                        <p>We recommend high-resolution JPEG, PNG or GIF files with a minimum of 1000px resolution. For more help, check out our <a href="#">design guide</a></p>
+                                        <p>We recommend high-resolution JPEG, PNG or GIF files with a minimum of 1000px resolution. For more help, check out our <Link to="#">design guide</Link></p>
                                     </div>
                                     </div>
                                     
@@ -322,7 +322,7 @@ onFormSubmit = (e) => {
                                                     <img src={this.state.file} alt=""/>
                                                     <div className="uplaod_images_hover">
                                                         <div className="uplaod-fils">
-                                                            <label className="custom-file-upload">
+                                                            <label htmlFor="image" className="custom-file-upload">
                                                                 <input type="file" onChange={this.handleChange}/>
                                                                 <span><span>Replace Image</span></span>
                                                             </label>
@@ -333,8 +333,8 @@ onFormSubmit = (e) => {
                                             <div className="language-tab">
                                                 <nav>
                                                     <div className="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                                        <a className="nav-item nav-link active" id="new-english-tab" data-toggle="tab" href="#new-english" role="tab" aria-controls="new-english" aria-selected="true">English</a>
-                                                        <a className="nav-item nav-link" id="nav-french-tab" data-toggle="tab" href="#nav-french" role="tab" aria-controls="nav-french" aria-selected="false">French</a>
+                                                        <Link className="nav-item nav-link active" id="new-english-tab" data-toggle="tab" to="#new-english" role="tab" aria-controls="new-english" aria-selected="true">English</Link>
+                                                        <Link className="nav-item nav-link" id="nav-french-tab" data-toggle="tab" to="#nav-french" role="tab" aria-controls="nav-french" aria-selected="false">French</Link>
                                                     </div>
                                                 </nav>
                                                 <div className="tab-content" id="nav-tabContent">
@@ -342,21 +342,21 @@ onFormSubmit = (e) => {
                                                         <form>
                                                             <div className="row">
                                                                 <div className="col-lg-12">
-                                                                    <label>Title (required) <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Use a descriptive title that explains your artwork. This makes it easier for people to find your design based on their searches.</div></span></label>
+                                                                    <label htmlFor="Title">Title (required) <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Use a descriptive title that explains your artwork. This makes it easier for people to find your design based on their searches.</div></span></label>
                                                                     <input required="" type="text" name="title" placeholder="Use 4 to 8 words to describe your work" className="" 
                                                                     value={this.state.title}
                                                                     onChange={this.onChangehandler}/>
                                                                     <span className="text-danger">{this.state.errMsgTitle}</span>
                                                                 </div>
                                                                 <div className="col-lg-12">
-                                                                    <label>Tags <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Tags are how your audience finds your work. Use 15 relevant tags per upload. Use search terms your audience would look for to find your work, including your name. Make sure to separate tags with commas. Example: panda, bear, black and white.</div></span></label>
+                                                                    <label htmlFor="Tags">Tags <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Tags are how your audience finds your work. Use 15 relevant tags per upload. Use search terms your audience would look for to find your work, including your name. Make sure to separate tags with commas. Example: panda, bear, black and white.</div></span></label>
                                                                     <textarea placeholder="Separate tags with commas." className="" name="tags" id=""
-                                                                    onChange={this.onChangehandler}>{this.state.tags}</textarea>
+                                                                    onChange={this.onChangehandler} value={this.state.tags}></textarea>
                                                                     <span className="text-danger">{this.state.errMsgTags}</span>
                                                                 </div>
                                                                 <div className="col-lg-12">
-                                                                    <label>Description <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Share the story or meaning behind your work. You don’t have to give away any secrets, but your audience will appreciate a little insight into what you created.</div></span></label>
-                                                                    <textarea placeholder="Describe your work to get your audience excited" className="" name="description" id="" onChange={this.onChangehandler}>{this.state.description}</textarea>
+                                                                    <label htmlFor="Description">Description <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Share the story or meaning behind your work. You don’t have to give away any secrets, but your audience will appreciate a little insight into what you created.</div></span></label>
+                                                                    <textarea placeholder="Describe your work to get your audience excited" className="" name="description" id="" onChange={this.onChangehandler} value={this.state.description}></textarea>
                                                                     <span className="text-danger">{this.state.errMsgDescription}</span>
                                                                 </div>
                                                             </div>
@@ -367,15 +367,15 @@ onFormSubmit = (e) => {
                                                         <form>
                                                             <div className="row">
                                                                 <div className="col-lg-12">
-                                                                    <label>Title (required) <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Use a descriptive title that explains your artwork. This makes it easier for people to find your design based on their searches.</div></span></label>
+                                                                    <label htmlFor="Title">Title (required) <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Use a descriptive title that explains your artwork. This makes it easier for people to find your design based on their searches.</div></span></label>
                                                                     <input required="" type="text" name="" placeholder="Use 4 to 8 words to describe your work " className=""/>
                                                                 </div>
                                                                 <div className="col-lg-12">
-                                                                    <label>Tags <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Tags are how your audience finds your work. Use 15 relevant tags per upload. Use search terms your audience would look for to find your work, including your name. Make sure to separate tags with commas. Example: panda, bear, black and white.</div></span></label>
+                                                                    <label htmlFor="Tags">Tags <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Tags are how your audience finds your work. Use 15 relevant tags per upload. Use search terms your audience would look for to find your work, including your name. Make sure to separate tags with commas. Example: panda, bear, black and white.</div></span></label>
                                                                     <textarea placeholder="Separate tags with commas." className="" name="" id="" ></textarea>
                                                                 </div>
                                                                 <div className="col-lg-12">
-                                                                    <label>Description <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Share the story or meaning behind your work. You don’t have to give away any secrets, but your audience will appreciate a little insight into what you created.</div></span></label>
+                                                                    <label htmlFor="Description">Description <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Share the story or meaning behind your work. You don’t have to give away any secrets, but your audience will appreciate a little insight into what you created.</div></span></label>
                                                                     <textarea placeholder="Describe your work to get your audience excited" className="" name="" id="" ></textarea>
                                                                 </div>
                                                             </div>
@@ -409,11 +409,11 @@ onFormSubmit = (e) => {
                                                         <div className="who_can_work">
                                                             <h3>Who can view this work?</h3>
                                                             <div className="custom_check_work">
-                                                                <label className="check_work">Anybody (public)
+                                                                <label htmlFor="public" className="check_work">Anybody (public)
                                                                     <input type="radio" name="is_public" value="1" onChange={this.onChangehandler}/>
                                                                     <span className="radiobtn"></span>
                                                                 </label>
-                                                                <label className="check_work">Only You (private)
+                                                                <label htmlFor="private" className="check_work">Only You (private)
                                                                     <input type="radio" name="is_public" value="0" onChange={this.onChangehandler}/>
                                                                     <span className="radiobtn"></span>
                                                                 </label>
@@ -424,13 +424,13 @@ onFormSubmit = (e) => {
                                                     <div className="col-lg-6">
                                                         <div className="mature_content">
                                                             <h3>Is this mature content?</h3>
-                                                            <p>Nudity or lingerie, adult language, alcohol or drugs, blood, guns or violence. <a href="#">Not sure? See guidelines</a>.</p>
+                                                            <p>Nudity or lingerie, adult language, alcohol or drugs, blood, guns or violence. <Link to="#">Not sure? See guidelines</Link>.</p>
                                                             <div className="custom_check_work">
-                                                                <label className="check_work">Yes
+                                                                <label htmlFor="check_work" className="check_work">Yes
                                                                     <input type="radio" name="is_mature_content" value="1" onChange={this.onChangehandler}/>
                                                                     <span className="radiobtn"></span>
                                                                 </label>
-                                                                <label className="check_work">No
+                                                                <label htmlFor="is_mature_content" className="check_work">No
                                                                     <input type="radio" name="is_mature_content" value="0" onChange={this.onChangehandler}/>
                                                                     <span className="radiobtn"></span>
                                                                 </label>
@@ -447,7 +447,7 @@ onFormSubmit = (e) => {
                                                 <div className="row">
                                                     <div className="col-lg-12">
                                                         <div className="rights_declaration">
-                                                            <label className="declaration_checkbox">I have the right to sell products containing this artwork, including (1) any featured company’s name or logo, (2) any featured person’s name or face, and (3) any featured words or images created by someone else.
+                                                            <label htmlFor="declaration" className="declaration_checkbox">I have the right to sell products containing this artwork, including (1) any featured company’s name or logo, (2) any featured person’s name or face, and (3) any featured words or images created by someone else.
                                                                 <input type="checkbox" />
                                                                 <span className="checkmark"></span>
                                                             </label>

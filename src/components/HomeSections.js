@@ -1,5 +1,7 @@
 import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
+import { getAllCategories } from "src/components/ApiStore"
+
 export const Banner = () => {
     return (
         <div className="hero_banner_sec">
@@ -71,4 +73,43 @@ export const ProductRange = () => {
             </div>
         </div>
     )
+}
+
+
+export const ProductSection = () => {
+
+const [product, setProducts] = React.useState([]);
+
+React.useEffect(() => {
+
+    getAllCategories()
+    .then(result => {
+        setProducts(result.data);
+    })
+    .catch(error => {
+        // Handle/report error
+    })
+
+  }, []);
+
+  const products = product?.map((item) =>
+    <div key={item.id} className="col-lg-4 col-md-6">
+        <div className="our_product_item">
+            <img src={item.image} alt="" />
+            <div className="our_product_btn">
+                <a href="wall-art.html">{item.name}</a>
+            </div>
+        </div>
+    </div>
+  )
+
+  return (
+    <div className="our_product_sec">
+    <div className="container">
+        <div className="row">
+            {products}
+        </div>
+    </div>
+</div>
+  )
 }

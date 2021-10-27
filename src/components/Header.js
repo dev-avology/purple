@@ -7,9 +7,7 @@ import SearchIcon from 'src/images/search_icon.png'
 import AccountMenu from "src/components/AccountMenu"
 import { isAuthenticated } from "src/hooks/UserAuth"
 
-
 const Header = () => {
-
     return (
     <header>
         <div className="header_top_section">
@@ -63,4 +61,4 @@ const Header = () => {
     );
 }
  
-export default Header;
+export default Header

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Helmet } from 'react-helmet';
 import Layout from "src/components/Layout"
-import {Banner,ProductRange} from "src/components/HomeSections"
+import {Banner,ProductRange, ProductSection} from "src/components/HomeSections"
 // markup
 const IndexPage = () => {
   return (
@@ -11,6 +11,7 @@ const IndexPage = () => {
           </Helmet>
           <Banner />
           <ProductRange />
+          <ProductSection />
       </Layout>
   )
 }
