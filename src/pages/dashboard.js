@@ -80,7 +80,7 @@ export default class Dashboard extends Component {
                             <div className="col-lg-12">
                                 <div className="dashboard_text">
                                     <h3>Dashboard</h3>
-                                    <Link to="#">
+                                    <Link to="/add-new-work">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
                                             <g fill="none" fillRule="evenodd" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" transform="translate(1 1)">
                                                 <path

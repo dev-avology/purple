@@ -291,7 +291,7 @@ onFormSubmit = (e) => {
         return(
             <Layout>
                 <Helmet>
-                    <title>Account Details | Splashen</title>
+                    <title>Add New Work | Splashen</title>
                 </Helmet>
                 <div className="dashboard_sec add_new_work_sec">
                     <div className="container">
