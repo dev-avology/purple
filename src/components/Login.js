@@ -27,26 +27,26 @@ constructor(props) {
   };
 }
 onChangehandler = (e) => {
-  let name = e.target.name;
-  let value = e.target.value;
-  let data = {};
-  data[name] = value;
-  this.setState(data);
+  let name = e.target.name
+  let value = e.target.value
+  let data = {}
+  data[name] = value
+  this.setState(data)
 };
 
 onSignInHandler = () => {
   if (this.validateForm()) {
-  this.setState({ isLoading: true });
+  this.setState({ isLoading: true })
   axios
     .post(process.env.GATSBY_API_URL+"/api/login", {
       email: this.state.email,
       password: this.state.password,
     })
     .then((response) => {
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: false })
       if (response.status === 200) {
-          localStorage.setItem("isLoggedIn", true);
-          localStorage.setItem("userData", JSON.stringify(response.data));
+          localStorage.setItem("isLoggedIn", true)
+          localStorage.setItem("userData", JSON.stringify(response.data))
         this.setState({
           msg: response.data.message,
           redirect: true,
