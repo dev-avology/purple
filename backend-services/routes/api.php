@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Auth\PassportAuthController;
 use App\Http\Controllers\Api\User\UserProfileController;
 use App\Http\Controllers\Api\User\ArtWorkController;
 use App\Http\Controllers\Api\User\ArtWorkMediaController;
+use App\Http\Controllers\Api\User\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,9 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
     Route::get('get-designs-count', [ArtWorkMediaController::class, 'returnCountOfTotalArts']);
+
+    Route::post('save-cart', [CartController::class, 'saveCart']);
+    Route::get('get-cart', [CartController::class, 'getCart']);
 
     Route::get('logout', [PassportAuthController::class, 'logout']);
 
