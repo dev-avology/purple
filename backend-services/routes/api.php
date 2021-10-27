@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\User\UserProfileController;
 use App\Http\Controllers\Api\User\ArtWorkController;
 use App\Http\Controllers\Api\User\ArtWorkMediaController;
 use App\Http\Controllers\Api\User\CartController;
+use App\Http\Controllers\Api\User\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,6 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('get-cart', [CartController::class, 'getCart']);
 
     Route::get('logout', [PassportAuthController::class, 'logout']);
-
 });
+
+Route::get('get-all-categories', [CategoryController::class, 'getAllCategories']);
