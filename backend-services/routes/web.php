@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdminArtWorkController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminArtWorkController;
+use App\Http\Controllers\Admin\ApprovalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('analytics', [AdminController::class, 'analytics'])->name('analytics');
     Route::get('discounts', [AdminController::class, 'discounts'])->name('discounts');
     Route::get('preferences', [AdminController::class, 'preferences'])->name('preferences');
+
+    Route::post('update-approval-of-artwork', [ApprovalController::class, 'approveAndDisApproveArtWork'])->name('update-approval-of-artwork');
 
  });

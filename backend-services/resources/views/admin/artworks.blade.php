@@ -45,6 +45,7 @@
                     <th>Product</th>
                     <th>Status</th>
                     <th>Sold (last 90days)</th>
+                    <th>Approval Status</th>
                   </tr>
                 </thead>
                 <tbody id="artwork-table-body">
@@ -62,6 +63,7 @@
                       @endif
                     </td>
                     <td>7</td>
+                    <td><input class="approval-checkbox" type="checkbox" name="approal-status" data-attr="{{$art->id}}" @if($art->is_approved) checked @endif /></td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -86,11 +88,31 @@
 @section('pagescripts')
 
 <script>
-  $('.open-artwork').click(function() {
-    let currentRowID = $(this).data('id');
-    window.location = "artwork/" + currentRowID;
-  });
+  $(document).ready(function() {
 
+    $('input[name="approal-status"]').click(function(event) {
+
+      var id = $(this).data('attr');
+
+      $.ajax({
+        type: "POST",
+        url: "{{route('update-approval-of-artwork')}}",
+        data: {id, _token: "{{ csrf_token() }}"},
+        dataType: "json",
+        success: function(response) {
+          toastr.success(response.message);
+        }
+      });
+      event.stopPropagation();
+    });
+
+    $('.open-artwork').click(function() {
+      let currentRowID = $(this).data('id');
+      window.location = "artwork/" + currentRowID;
+    });
+
+
+  });
 </script>
 
 @endsection
