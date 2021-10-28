@@ -52,9 +52,11 @@ if (!function_exists('filterArtistProfile')) {
             'email'         => $artist['email'],
         ];
 
-        $filteredArtistProfile = array_merge($filteredArtistProfile,  $artistProfile);
-        $filteredArtistProfile['user_avatar'] = asset(config('file-upload-paths.profile') . '/' . $filteredArtistProfile['user_avatar']);
-        $filteredArtistProfile['cover_image'] = asset(config('file-upload-paths.profile-cover') . '/' . $filteredArtistProfile['cover_image']);
+        if (isset($artistProfile)) {
+            $filteredArtistProfile = array_merge($filteredArtistProfile,  $artistProfile);
+            $filteredArtistProfile['user_avatar'] = asset(config('file-upload-paths.profile') . '/' . $filteredArtistProfile['user_avatar']);
+            $filteredArtistProfile['cover_image'] = asset(config('file-upload-paths.profile-cover') . '/' . $filteredArtistProfile['cover_image']);
+        }
         return $filteredArtistProfile;
     }
 }
