@@ -18,6 +18,7 @@ class CategoryController extends Controller
         foreach ($allCategories as $category) {
             $dataArray['id'] = $category['id'];
             $dataArray['name'] = $category['name'];
+            $dataArray['slug'] = $category['slug'];
             $dataArray['image'] = asset(config('file-upload-paths.category-images').'/'.$category['image']);
             array_push($filteredData, $dataArray);
         }

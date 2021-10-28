@@ -50,7 +50,10 @@ class ArtWorkController extends Controller
             $dataArray['user_id'] = $product['user_id'];
             $dataArray['title'] = $product['title'];
             $dataArray['slug'] = $product['slug'];
+            $dataArray['art_id'] = $product['art_id'];
+            $dataArray['category_id'] = $product['category_id'];
             $dataArray['tags'] = $product['tags'];
+            $dataArray['price'] = $product['price'];
             $dataArray['description'] = $product['description'];
             $dataArray['art_photo'] = asset(config('file-upload-paths.artwork').''.$product['art_photo_path']);
             $dataArray['is_mature_content'] = $product['is_mature_content'];

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\User\ArtWorkController;
 use App\Http\Controllers\Api\User\ArtWorkMediaController;
 use App\Http\Controllers\Api\User\CartController;
 use App\Http\Controllers\Api\User\CategoryController;
+use App\Http\Controllers\Api\SingleProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,4 @@ Route::get('get-all-categories', [CategoryController::class, 'getAllCategories']
 
 Route::get('get-featured-products', [ArtWorkController::class, 'getFeaturedProducts']);
 
-
+Route::get('get-single-product', [SingleProductController::class, 'getProductBySlugAndID']);
