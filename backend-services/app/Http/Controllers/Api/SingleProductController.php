@@ -11,7 +11,11 @@ class SingleProductController extends Controller
     public function getProductBySlugAndID(Request $request)
     {
         if (isset($request['slug']) && isset($request['art_id'])) {
-            $singleProduct = Product::with(['artist', 'artist_profile'])->where(['art_id' => $request['art_id']])->first()->toArray();
+            $singleProduct = Product::with(['artist', 'artist_profile'])->where(['art_id' => $request['art_id']])->first();
+            if (!$singleProduct) {
+                return response()->json(['message' => 'Product Not Found.'], 200);
+            }
+            $singleProduct->toArray();
             $singleProduct['artist'] = filterArtistProfile($singleProduct['artist'], $singleProduct['artist_profile']);
             unset($singleProduct['artist_profile']);
             return $singleProduct;
