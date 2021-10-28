@@ -1,20 +1,32 @@
 import React from "react"
 import { Link } from "gatsby"
+import { getAllCategories } from "src/components/ApiStore"
 const PrimaryMenu = () => {
+
+const [menuItem, setMenu] = React.useState([]);
+
+React.useEffect(() => {
+
+    getAllCategories()
+    .then(result => {
+        setMenu(result.data);
+    })
+    .catch(error => {
+        // Handle/report error
+    })
+
+  }, []);
+
+  const listItems = menuItem?.map((item) =>
+    <li key={item.id}><Link to="#">{item.name}</Link></li>
+  );
+
     return (
         <>
             <div className="nav-main">
                 <Link to="#" className="closebtn">×</Link>
                 <ul className="menu1 text-center">
-                    <li className="active"><Link to="#">Wall Art</Link></li>
-                    <li><Link to="#">Art Board Prints </Link></li>
-                    <li><Link to="#">Art Prints</Link></li>
-                    <li><Link to="#">Canvas Prints</Link></li>
-                    <li><Link to="#">Framed Prints</Link></li>
-                    <li><Link to="#">Metal Prints</Link></li>
-                    <li><Link to="#">Mounted Prints</Link></li>
-                    <li><Link to="#">Photographic Prints</Link></li>
-                    <li><Link to="#">Posters</Link></li>
+                    {listItems}
                 </ul>
             </div>
         </>

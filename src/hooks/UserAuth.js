@@ -35,7 +35,6 @@ export const login = () => {
     return
   }
   navigate("/login")
-  //auth.authorize()
 
 }
 
@@ -44,7 +43,6 @@ export const account = () => {
       return
     }
     navigate("/dashboard")
-    //auth.authorize()
   
   }
 
@@ -96,8 +94,6 @@ const setSession = (cb = () => {}) => (err, authResult) => {
   export const logout = () => {
     let token = CurrentUserToken()
     token = JSON.parse(token)
-    //console.log('Bearer '+token.token);
-    
     axios.get(process.env.GATSBY_API_URL+"/api/logout", {
       headers: {
           Accept: 'application/json',
@@ -105,8 +101,6 @@ const setSession = (cb = () => {}) => (err, authResult) => {
         }
       })
       .then(function (response) {
-        //console.log(response)
-
         localStorage.setItem("isLoggedIn", false)
         localStorage.setItem("userData", false)
         window.location.href = "/login"
