@@ -39,6 +39,26 @@ class ArtWorkController extends Controller
         return response()->json(['message' => 'Something went wrong while saving Artwork on server.'], 500);
     }
 
+    public function getFeaturedProducts()
+    {  
+        $featuredProducts = ArtistArt::where(['is_featured' => 1, 'is_public' => 1])->get();
+
+        $filteredData = [];
+        $dataArray= [];
+        foreach ($featuredProducts as $product) {
+            $dataArray['id'] = $product['id'];
+            $dataArray['user_id'] = $product['user_id'];
+            $dataArray['title'] = $product['title'];
+            $dataArray['slug'] = $product['slug'];
+            $dataArray['tags'] = $product['tags'];
+            $dataArray['description'] = $product['description'];
+            $dataArray['art_photo'] = asset(config('file-upload-paths.artwork').''.$product['art_photo_path']);
+            $dataArray['is_mature_content'] = $product['is_mature_content'];
+            array_push($filteredData, $dataArray);
+        }
+        return $filteredData;
+    }
+
     private function artWorkDataArray($validatedArtWorkData, $artworkUploadResponse)
     {
         $artWorkID = generateStringID();

@@ -42,3 +42,7 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 });
 
 Route::get('get-all-categories', [CategoryController::class, 'getAllCategories']);
+
+Route::get('get-featured-products', [ArtWorkController::class, 'getFeaturedProducts']);
+
+
