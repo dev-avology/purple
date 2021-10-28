@@ -15,7 +15,7 @@ class SingleProductController extends Controller
             if (!$singleProduct) {
                 return response()->json(['message' => 'Product Not Found.'], 200);
             }
-            $singleProduct->toArray();
+            $singleProduct = $singleProduct->toArray();
             $singleProduct['artist'] = filterArtistProfile($singleProduct['artist'], $singleProduct['artist_profile']);
             unset($singleProduct['artist_profile']);
             return $singleProduct;
