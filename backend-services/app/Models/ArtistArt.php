@@ -21,4 +21,9 @@ class ArtistArt extends Model
         'is_mature_content',
         'is_public',
     ];
+
+    public function artist()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
