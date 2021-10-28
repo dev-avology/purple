@@ -40,42 +40,15 @@ class ArtWorkController extends Controller
 
     public function getFeaturedProducts()
     {
-        $featuredProducts = ArtistArt::where(['is_featured' => 1, 'is_public' => 1])->get();
-        return $this->featuredArtistDataArray($featuredProducts);
-    }
-
-    private function featuredArtistDataArray($featuredProducts)
-    {
-        $filteredData = [];
-        $dataArray = [];
-        foreach ($featuredProducts as $product) {
-            
-            if (isset($product->artist)) {
-                $dataArray['id'] = $product['id'];
-                $dataArray['user_id'] = $product['user_id'];
-                $dataArray['title'] = $product['title'];
-                $dataArray['slug'] = $product['slug'];
-                $dataArray['art_id'] = $product['art_id'];
-                $dataArray['category_id'] = $product['category_id'];
-                $dataArray['tags'] = $product['tags'];
-                $dataArray['price'] = $product['price'];
-                $dataArray['description'] = $product['description'];
-                $dataArray['art_photo'] = asset(config('file-upload-paths.artwork') . '' . $product['art_photo_path']);
-                $dataArray['is_mature_content'] = $product['is_mature_content'];
-
-                $dataArray['artist'] = [
-                    'username'    => $product->artist->name,
-                    'email'       => $product->artist->email,
-                    'created_at'  => $product->artist->created_at,
-                    'user_avatar' => asset(config('file-upload-paths.profile').''.$product->artist->profile->user_avatar),
-                    'first_name'  => $product->artist->profile->first_name,
-                    'last_name'   => $product->artist->profile->last_name,
-                    'display_name'=> $product->artist->profile->display_name,
-                ];
-                array_push($filteredData, $dataArray);
+        $featuredProducts = ArtistArt::with(['artist', 'artist_profile'])->where(['is_featured' => 1, 'is_public' => 1])->get()->toArray();
+        foreach ($featuredProducts as $key => $product) {
+            if (isset($product['artist'])) {
+                $featuredProducts[$key]['art_photo_path'] = asset(config('file-upload-paths.artwork') . '/' . $product['art_photo_path']);
+                $featuredProducts[$key]['artist'] = filterArtistProfile($featuredProducts[$key]['artist'], $featuredProducts[$key]['artist_profile']);
+                unset($featuredProducts[$key]['artist_profile']);
             }
         }
-        return $filteredData;
+        return $featuredProducts;
     }
 
     private function artWorkDataArray($validatedArtWorkData, $artworkUploadResponse)

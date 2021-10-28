@@ -42,3 +42,19 @@ if (!function_exists('generateSlug')) {
         return $text;
     }
 }
+
+if (!function_exists('filterArtistProfile')) {
+    function filterArtistProfile($artist, $artistProfile)
+    {
+        $filteredArtistProfile = [
+            'id'            => $artist['id'],
+            'username'      => $artist['name'],
+            'email'         => $artist['email'],
+        ];
+
+        $filteredArtistProfile = array_merge($filteredArtistProfile,  $artistProfile);
+        $filteredArtistProfile['user_avatar'] = asset(config('file-upload-paths.profile') . '/' . $filteredArtistProfile['user_avatar']);
+        $filteredArtistProfile['cover_image'] = asset(config('file-upload-paths.profile-cover') . '/' . $filteredArtistProfile['cover_image']);
+        return $filteredArtistProfile;
+    }
+}

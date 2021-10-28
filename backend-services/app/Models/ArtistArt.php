@@ -26,4 +26,9 @@ class ArtistArt extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function artist_profile()
+    {
+        return $this->belongsTo(Profile::class, 'user_id', 'user_id');
+    }
 }
