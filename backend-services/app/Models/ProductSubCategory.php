@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSubCategory extends Model
 {
     use HasFactory;
+
+    public function products()
+    {
+        return $this->hasMany(ArtistArt::class, 'category_id');
+    }
 }
