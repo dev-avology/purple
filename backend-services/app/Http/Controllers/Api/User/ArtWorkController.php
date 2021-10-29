@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveArtWorkRequest;
 use App\Models\ArtistArt;
-
 use App\Services\UploadService;
 
 class ArtWorkController extends Controller
@@ -57,16 +56,16 @@ class ArtWorkController extends Controller
         $slug = generateSlug($validatedArtWorkData['title']);
 
         return [
-            'user_id' => $validatedArtWorkData['user_id'],
-            'title' => $validatedArtWorkData['title'],
-            'slug' => $slug,
-            'art_id' => $artWorkID,
-            'tags' => $validatedArtWorkData['tags'],
-            'description' => $validatedArtWorkData['description'],
-            'art_photo_path' => $artworkUploadResponse,
-            'artwork_media_id' => $validatedArtWorkData['artwork_media_id'],
+            'user_id'           => $validatedArtWorkData['user_id'],
+            'title'             => $validatedArtWorkData['title'],
+            'slug'              => $slug,
+            'art_id'            => $artWorkID,
+            'tags'              => $validatedArtWorkData['tags'],
+            'description'       => $validatedArtWorkData['description'],
+            'art_photo_path'    => $artworkUploadResponse,
+            'artwork_media_id'  => $validatedArtWorkData['artwork_media_id'],
             'is_mature_content' => $validatedArtWorkData['is_mature_content'],
-            'is_public' => $validatedArtWorkData['is_public'],
+            'is_public'         => $validatedArtWorkData['is_public'],
         ];
     }
 }

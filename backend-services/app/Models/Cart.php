@@ -18,16 +18,16 @@ class Cart extends Model
 
     public function buyer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'buyer_id');
     }
 
     public function seller()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'seller_id');
     }
 
     public function product()
     {
-        return $this->belongsTo(ArtistArt::class);
+        return $this->belongsTo(ArtistArt::class, 'product_id');
     }
 }

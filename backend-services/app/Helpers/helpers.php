@@ -60,3 +60,10 @@ if (!function_exists('filterArtistProfile')) {
         return $filteredArtistProfile;
     }
 }
+
+if (!function_exists('addFullPathToUploadedImage')) {
+    function addFullPathToUploadedImage($imagePath, $imageName)
+    {
+        return asset(config($imagePath).'/'.$imageName);
+    }
+}
