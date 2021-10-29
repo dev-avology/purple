@@ -4,9 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SaveProductRequest;
+use App\Services\UploadService;
 
 class ProductsController extends Controller
 {
+    private $availableExtensions;
+    private $uploadService;
+
+    public function __construct()
+    {
+        $this->availableExtensions = config('file-upload-extensions.image');
+        $this->artworkUploadPath = config('file-upload-paths.products');
+        $this->uploadService = new uploadService();
+    }
+
     public function getProducts()
     {
         return view('admin.products.list-products');
@@ -21,8 +32,10 @@ class ProductsController extends Controller
     {
         $validateProductData = $request->validated();
 
-        echo "<pre>";
-        print_r($validateProductData);
-        die;
+        $productImage = $this->uploadService->handleUploadedImages($validateProductData['product_image'], $this->artworkUploadPath, $this->availableExtensions);
+
+        if (!$productImage) {
+            return response()->json(['message' => 'You have upload incorrect file type.'], 400);
+        }
     }
 }

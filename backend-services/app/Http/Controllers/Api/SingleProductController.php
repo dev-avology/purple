@@ -8,7 +8,7 @@ use App\Models\ArtistArt as Product;
 
 class SingleProductController extends Controller
 {
-    private $productIsApproved = 1; // Product Must be approved in order to fetch and join with category Data;
+    private $productIsApproved = 1; 
 
     public function getProductBySlugAndID(Request $request)
     {
@@ -24,7 +24,7 @@ class SingleProductController extends Controller
             if (!$singleProduct) {
                 return response()->json(['message' => 'Product Not Found.'], 200);
             }
-            
+
             $singleProduct = $singleProduct->toArray();
             $singleProduct['artist'] = filterArtistProfile($singleProduct['artist'], $singleProduct['artist_profile']);
             unset($singleProduct['artist_profile']);
