@@ -29,21 +29,21 @@
                 @csrf
                 <div class="form-group">
                     <label for="title">Product Title</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Add product title">
+                    <input type="text" name="title" value="{{optional($product)->title}}" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Add product title">
                     @error('title')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="price">Product Price</label>
-                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Add product price without currency sign">
+                    <input type="number" name="price" value="{{optional($product)->price}}" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Add product price without currency sign">
                     @error('price')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="sku">Product SKU</label>
-                    <input type="text" name="sku" class="form-control @error('sku') is-invalid @enderror" id="sku" placeholder="Add product sku">
+                    <input type="text" name="sku" value="{{optional($product)->sku}}" class="form-control @error('sku') is-invalid @enderror" id="sku" placeholder="Add product sku">
                     @error('sku')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -51,9 +51,9 @@
                 <div class="form-group">
                     <label for="status">Product Status</label>
                     <select class="form-control" id="status" name="status">
-                        <option value="in_stock">In Stock</option>
-                        <option value="out_of_stock">Out Of Stock</option>
-                        <option value="discontinued">Discontinued</option>
+                        <option value="in_stock"  @if(optional($product)->status == 'in_stock') selected @endif>In Stock</option>
+                        <option value="out_of_stock" @if(optional($product)->status == 'out_of_stock') selected @endif>Out Of Stock</option>
+                        <option value="discontinued" @if(optional($product)->status == 'discontinued') selected @endif>Discontinued</option>
                     </select>
                     @error('status')
                         <div class="text-danger">{{ $message }}</div>
@@ -61,22 +61,34 @@
                 </div>
                 <div class="form-group">
                     <label for="product-image">Product Image</label>
-                    <input type="file" name="product_image" class="form-control-file @error('product_image') is-invalid @enderror" id="product-image">
+                    <input type="file" name="product_image"  class="form-control-file @error('product_image') is-invalid @enderror" id="product-image">
                     @error('product_image')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
+                    @if (optional($product)->product_image)
+                    <span>
+                        <a href="{{ asset(config('file-upload-paths.products').'/'.$product->product_image) }}" target="_blank">
+                            <img class="product-listing-thumb" src="{{ asset(config('file-upload-paths.products').'/'.$product->product_image) }}" />
+                        </a>
+                    </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="category">Product Category</label>
                     <select class="form-control" id="category" name="sub_category">
-                        <option value="1">Wall Art</option>
-                        <option value="2">Art prints</option>
-                        <option value="3">Others</option>
+                        @foreach($categories as $category)
+                            <option 
+                                value="{{$category['id']}}" 
+                                @if(optional($product)->sub_category == $category['id']) selected @endif >
+                                {{$category['name']}}
+                            </option>
+                        @endforeach
                     </select>
                     @error('category')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <input type="hidden" name="product_id" value="{{optional($product)->id}}" />
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Save Product" />
                 </div>

@@ -17,4 +17,9 @@ class Product extends Model
         'product_image',
         'sub_category',
     ];
+
+    public function categoryData()
+    {
+        return $this->hasOne(ProductSubCategory::class, 'id', 'sub_category');
+    }
 }
