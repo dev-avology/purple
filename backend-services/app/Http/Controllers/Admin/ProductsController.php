@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SaveProductRequest;
 use App\Services\UploadService;
+use App\Models\Product;
 
 class ProductsController extends Controller
 {
@@ -35,7 +36,14 @@ class ProductsController extends Controller
         $productImage = $this->uploadService->handleUploadedImages($validateProductData['product_image'], $this->artworkUploadPath, $this->availableExtensions);
 
         if (!$productImage) {
-            return response()->json(['message' => 'You have upload incorrect file type.'], 400);
+            return back()->with('error', 'You have upload incorrect file type for product image.');
         }
+
+        $validateProductData['product_image'] = $productImage;
+
+        if (Product::create($validateProductData)) {
+            return back()->with('success', 'Product has been successfully saved.');
+        }
+        return back()->with('error', 'Something went wrong while saving product.');
     }
 }

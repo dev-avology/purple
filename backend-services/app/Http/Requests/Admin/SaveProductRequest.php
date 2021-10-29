@@ -32,7 +32,7 @@ class SaveProductRequest extends FormRequest
             'sku'           => 'required',
             'status'        => 'required',
             'product_image' => 'required|file|max:5000',
-            'category'      => 'required',
+            'sub_category'      => 'required',
         ];
     }
 
@@ -44,7 +44,7 @@ class SaveProductRequest extends FormRequest
             'sku.required'    => 'Sku is required',
             'status.required' => 'Status is required',
             'product_image.required' => 'Product Image is required',
-            'category.required' => 'Category is Required'
+            'sub_category.required' => 'Category is Required'
         ];
     }
 }

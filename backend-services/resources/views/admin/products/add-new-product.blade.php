@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                     <label for="category">Product Category</label>
-                    <select class="form-control" id="category" name="category">
+                    <select class="form-control" id="category" name="sub_category">
                         <option value="1">Wall Art</option>
                         <option value="2">Art prints</option>
                         <option value="3">Others</option>

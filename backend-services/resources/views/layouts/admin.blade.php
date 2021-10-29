@@ -18,7 +18,7 @@
     <div class="wrapper">
 
         @include('includes.navbar')
-
+    
         @include('includes.sidebar')
 
         @yield('content')
@@ -30,6 +30,7 @@
 
     @include('includes.scripts')
     @yield('pagescripts')
+    @include('flash-message')
     @yield('modal')
 </body>
 
