@@ -32,3 +32,11 @@ export const getAllCategories = () => {
     })
 }
 
+
+export const FeaturedProducts = () => {
+    return axios.get(process.env.GATSBY_API_URL+'/api/get-featured-products', {
+        headers: {
+            Accept: 'application/json',
+        }
+    })
+}

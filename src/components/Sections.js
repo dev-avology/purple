@@ -1,6 +1,8 @@
 import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
-import { getAllCategories } from "src/components/ApiStore"
+import { getAllCategories, FeaturedProducts } from "src/components/ApiStore"
+import { Link } from "gatsby"
+import OwlCarousel from "react-owl-carousel2"
 
 export const Banner = () => {
     return (
@@ -97,7 +99,7 @@ React.useEffect(() => {
         <div className="our_product_item">
             <img src={item.image} alt="" />
             <div className="our_product_btn">
-                <a href="wall-art.html">{item.name}</a>
+                <Link to={`/product-category/${item.slug}`}>{item.name}</Link>
             </div>
         </div>
     </div>
@@ -113,3 +115,105 @@ React.useEffect(() => {
 </div>
   )
 }
+
+
+export const FeaturedProduct = () => {
+
+    const [product, setProducts] = React.useState([]);
+    
+    React.useEffect(() => {
+    
+        FeaturedProducts()
+        .then(result => {
+            setProducts(result.data);
+        })
+        .catch(error => {
+            // Handle/report error
+        })
+    
+      }, []);
+    
+      const products = product?.map((item) =>
+        <li key={item.id}>
+            <div className="featured_products_item">
+                <img src={item.art_photo_path} alt="" />
+                <h4>{item.name}</h4>
+                <p>by {item.artist.first_name ? ( `${item.artist.first_name}${item.artist.last_name ? (` ${item.artist.last_name}`) : null}` ) : (item.artist.username)}</p>
+                <span>From $ {item.price}</span>
+            </div>
+        </li>
+      )
+    
+      return (
+        <div className="featured_products_sec">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="featured_products">
+                            <h2>Featured Products</h2>
+                            <ul>
+                                {products}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      )
+    }
+
+    export const CategoryRangeSlider = () => {
+        const ref = React.useRef('car')
+        const options = {
+                    loop: true,
+                    margin: 15,
+                    nav: true,
+                    responsive: {
+                        0: {
+                            items: 2,
+                            nav: false,
+                        },
+                        600: {
+                            items: 3,
+                            nav: false,
+                        },
+                        1000: {
+                            items: 5,
+                        },
+                    },
+                }
+
+        const [category, setCategories] = React.useState([])
+
+        React.useEffect(() => {
+        
+            getAllCategories()
+            .then(result => {
+                setCategories(result.data);
+            })
+            .catch(error => {
+                // Handle/report error
+            })
+        
+          }, []);
+        
+          return (
+            <>{category.length > 0  ? (
+                <div className="our_range">
+                    <h2>Our range</h2>
+                    <OwlCarousel id="range_slider" ref={ref} options={options}>
+                        {category?.map((item) =>
+                            <div key={item.id} className="item">
+                                <div className="our_range_item">
+                                    <Link to={`/product-category/${item.slug}`}>
+                                        <img src={item.image} alt="" />
+                                        <p>{item.name}</p>
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
+                    </OwlCarousel>
+                </div>) : (false)}
+            </>
+          )
+        }

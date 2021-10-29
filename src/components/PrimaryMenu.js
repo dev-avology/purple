@@ -18,7 +18,7 @@ React.useEffect(() => {
   }, []);
 
   const listItems = menuItem?.map((item) =>
-    <li key={item.id}><Link to="#">{item.name}</Link></li>
+    <li key={item.id}><Link to={`/product-category/${item.slug}`}>{item.name}</Link></li>
   );
 
     return (

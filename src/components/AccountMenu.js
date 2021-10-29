@@ -26,7 +26,7 @@ React.useEffect(() => {
                     <Search />
                 </li>
                 <li>
-                    <div className="profile">
+                    <div key={userData.id} className="profile">
                         <Link className="account_profile" to="#" onClick={(e) => { e.preventDefault(); toggle === '0' ? setToggle('1') : setToggle('0')}}>
                         {userData.user_avatar ? (<img src={userData.user_avatar} alt="" />): (<StaticImage src="../images/rb-default-avatar.png" alt="" />)}
                         </Link>
