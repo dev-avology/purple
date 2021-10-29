@@ -11,6 +11,7 @@ class CategoryController extends Controller
     private $prodcuts_limit;
     private $categoryImagesPath;
     private $artworkImagesPath;
+    private $productIsApproved = 1; // Product Must be approved in order to fetch and join with category Data;
 
     public function __construct()
     {
@@ -20,8 +21,15 @@ class CategoryController extends Controller
     }
 
     public function getAllCategories()
-    {
-        $allCategories = Category::with('products')->get()->map(function ($category) {
+    {  
+        $allCategories = Category::with([
+            'products' => 
+                function($product) {
+                    $product->where('is_approved',  $this->productIsApproved);
+                }
+            ])
+        ->get()
+        ->map(function ($category) {
             if (isset($category->products)) {
                 $category->setRelation('products', $category->products->take($this->prodcuts_limit));
             }
@@ -29,7 +37,7 @@ class CategoryController extends Controller
         });
 
         foreach ($allCategories as $key => $category) {
-            $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $allCategories[$key]['image']);
+            $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $category['image']);
             unset($allCategories[$key]['category_id']);
             $this->filterProductsOfCategory($allCategories[$key]['products']);
         }
@@ -40,7 +48,7 @@ class CategoryController extends Controller
     {
         if ($products) {
             foreach ($products as $key => $product) {
-                $products[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $products[$key]['art_photo_path']);
+                $products[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
             }
             return $products;
         }

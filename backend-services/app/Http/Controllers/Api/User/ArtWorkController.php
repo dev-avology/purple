@@ -12,6 +12,9 @@ class ArtWorkController extends Controller
     private $availableExtensions;
     private $uploadService;
     private $artworkUploadPath;
+    private $isProductFeatured = 1; 
+    private $isProductPublic = 1; 
+    private $isProductApproved = 1; 
 
     public function __construct()
     {
@@ -39,7 +42,12 @@ class ArtWorkController extends Controller
 
     public function getFeaturedProducts()
     {
-        $featuredProducts = ArtistArt::with(['artist', 'artist_profile'])->where(['is_featured' => 1, 'is_public' => 1])->get()->toArray();
+        $featuredProducts = ArtistArt::with(['artist', 'artist_profile'])->where([
+            'is_featured' => $this->isProductFeatured, 
+            'is_public' => $this->isProductPublic, 
+            'is_approved' => $this->isProductApproved,
+        ])->get()->toArray();
+
         foreach ($featuredProducts as $key => $product) {
             if (isset($product['artist'])) {
                 $featuredProducts[$key]['art_photo_path'] = asset(config('file-upload-paths.artwork') . '/' . $product['art_photo_path']);
