@@ -33,6 +33,7 @@
     "react-bootstrap": "^2.0.0-rc.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-owl-carousel2": "^0.3.0",
     "reactstrap": "^8.10.0",
     "sweetalert": "^2.1.2"
   },
