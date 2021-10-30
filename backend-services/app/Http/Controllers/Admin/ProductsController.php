@@ -40,7 +40,7 @@ class ProductsController extends Controller
             $productImage = $this->uploadService->handleUploadedImages($request->product_image, $this->artworkUploadPath, $this->availableExtensions);
 
             if (!$productImage) {
-                return back()->with('error', 'You have upload incorrect file type for product image.');
+                return back()->with('error', 'You have uploaded incorrect file type for product image.');
             }
             $validateProductData['product_image'] = $productImage;
         }

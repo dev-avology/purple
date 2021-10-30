@@ -5,19 +5,39 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CartRequest;
+use App\Services\UploadService;
 use App\Models\Cart;
 
 class CartController extends Controller
 {
+    private $availableExtensions;
     private $artworkImagesPath;
+    private $uploadService;
+    private $finalProductUploadPath;
     
     public function __construct()
     {
-        $this->artworkImagesPath = 'file-upload-paths.artwork';    
+        $this->availableExtensions = config('file-upload-extensions.image');
+        $this->artworkImagesPath = 'file-upload-paths.artwork';  
+        $this->finalProductUploadPath = config('file-upload-paths.final-product-image');
+        $this->uploadService = new uploadService();  
     }
     
     public function saveCart(CartRequest $request) {
+
         $validateCartData = $request->validated();
+        
+        if ($request->final_product_image) {
+            $productImage = $this->uploadService->handleUploadedImages($request->final_product_image, $this->finalProductUploadPath, $this->availableExtensions);
+
+            if (!$productImage) {
+                return response()->json(['message' => 'You have uploaded incorrect file type for product image.'], 200);
+            }
+            $validateCartData['final_product_image'] = $productImage;
+        } else {
+            return response()->json(['message' => 'Final Product Image is required'], 200);
+        }
+
         if (Cart::create($validateCartData)) {
             return response()->json(['status' => 200, 'message' => 'Successfully Added']);
         }
