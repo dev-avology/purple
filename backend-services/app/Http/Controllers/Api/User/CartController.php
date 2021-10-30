@@ -43,9 +43,6 @@ class CartController extends Controller
             }
         }
         
-        echo "Working on Wishlist modification";
-        die;
-
         if (Cart::create($validateCartData)) {
             return response()->json(['status' => 200, 'message' => 'Successfully Added']);
         }

@@ -43,33 +43,33 @@ class CategoryController extends Controller
             $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $category['image']);
             unset($allCategories[$key]['category_id']);
             
-            $this->filterDesignsOfCategory($allCategories[$key]['designs'], 'test');
+            $this->filterDesignsOfCategory($allCategories[$key]['designs']);
+            //$this->filterProductImages($allCategories[$key]['designs']['productByOrientation']);
+
         }
         return $allCategories;
     }
 
-    private function filterProductsOfCategory($productsArray)
+    private function filterDesignsOfCategory($designs)
+    {
+        if ($designs->count()) {
+
+            foreach ($designs as $key => $product) {
+                $designs[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
+               // $designs[$key]['productByOrientation']['product_image'] = addFullPathToUploadedImage($this->productImagesPath,  $product['productByOrientation']['product_image']);
+              echo $product['productByOrientation']['product_image'];
+              echo "<br/>";
+            }
+            return $designs;
+        }
+        return $designs;
+    }
+
+    private function filterProductImages($productsArray)
     {
         foreach ($productsArray as $key => $product) {
             $productsArray[$key]['product_image'] = addFullPathToUploadedImage($this->productImagesPath, $product['product_image']);
         }
         return $productsArray;
-    }
-
-    private function filterDesignsOfCategory($designs, $products)
-    {
-        if ($designs) {
-            foreach ($designs as $key => $product) {
-                $designs[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
-
-                if ($product->productByOrientation) {
-                    $designs[$key][$product->productByOrientation->orientation] =  $product->productByOrientation;
-                    $designs[$key][$product->productByOrientation->orientation]['product_image'] =  addFullPathToUploadedImage($this->productImagesPath, $product->productByOrientation['product_image']);
-                }
-                unset($designs[$key]['productByOrientation']);
-            }
-            return $designs;
-        }
-        return $designs;
     }
 }
