@@ -12,6 +12,7 @@ class ArtistArt extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'orientation',
         'art_id',
         'slug',
         'tags',
@@ -35,5 +36,10 @@ class ArtistArt extends Model
     public function product()
     {
         return $this->hasMany(Product::class, 'sub_category', 'category_id');
+    }
+
+    public function productByOrientation()
+    {
+        return $this->hasOne(Product::class, 'orientation', 'orientation');
     }
 }

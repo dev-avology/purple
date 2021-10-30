@@ -34,6 +34,8 @@ class ArtWorkController extends Controller
 
         $dataArray = $this->artWorkDataArray($validatedArtWorkData, $artworkUploadResponse);
 
+        $dataArray['orientation'] = 'landscape'; // need to impplement logic to get image orientation
+
         if (ArtistArt::create($dataArray)) {
             return response()->json(['message' => 'Artwork has been created successfully.'], 200);
         }

@@ -37,6 +37,7 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('get-designs-count', [ArtWorkMediaController::class, 'returnCountOfTotalArts']);
 
     Route::post('save-cart', [CartController::class, 'saveCart']);
+    Route::post('save-wishlist', [CartController::class, 'saveCart']);
     Route::get('get-cart', [CartController::class, 'getCart']);
 
     Route::get('logout', [PassportAuthController::class, 'logout']);

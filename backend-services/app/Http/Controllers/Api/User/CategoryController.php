@@ -29,9 +29,7 @@ class CategoryController extends Controller
             function ($design) {
                 $design->where('is_approved',  $this->productIsApproved);
             },
-            'products' => function ($product) {
-                $product->take($this->prodcuts_limit);
-            }
+            'designs.productByOrientation',
         ])
             ->get()
             ->map(function ($category) {
@@ -44,8 +42,8 @@ class CategoryController extends Controller
         foreach ($allCategories as $key => $category) {
             $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $category['image']);
             unset($allCategories[$key]['category_id']);
-            $this->filterDesignsOfCategory($allCategories[$key]['designs']);
-            $this->filterProductsOfCategory($allCategories[$key]['products']);
+            
+            $this->filterDesignsOfCategory($allCategories[$key]['designs'], 'test');
         }
         return $allCategories;
     }
@@ -58,14 +56,20 @@ class CategoryController extends Controller
         return $productsArray;
     }
 
-    private function filterDesignsOfCategory($products)
+    private function filterDesignsOfCategory($designs, $products)
     {
-        if ($products) {
-            foreach ($products as $key => $product) {
-                $products[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
+        if ($designs) {
+            foreach ($designs as $key => $product) {
+                $designs[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
+
+                if ($product->productByOrientation) {
+                    $designs[$key][$product->productByOrientation->orientation] =  $product->productByOrientation;
+                    $designs[$key][$product->productByOrientation->orientation]['product_image'] =  addFullPathToUploadedImage($this->productImagesPath, $product->productByOrientation['product_image']);
+                }
+                unset($designs[$key]['productByOrientation']);
             }
-            return $products;
+            return $designs;
         }
-        return $products;
+        return $designs;
     }
 }
