@@ -1,12 +1,4 @@
 const axios = require("axios")
-const get = endpoint => axios.get(`https://pokeapi.co/api/v2${endpoint}`)
-const getPokemonData = names =>
-  Promise.all(
-    names.map(async name => {
-      const { data: pokemon } = await get(`/pokemon/${name}`)
-      return { ...pokemon }
-    })
-  )
 exports.createPages = async ({ actions: { createPage } }) => {
     await axios.get(`https://poojas.sg-host.com/purple/backend-services/api/get-all-categories`, {
         headers: {
@@ -21,7 +13,6 @@ exports.createPages = async ({ actions: { createPage } }) => {
         })
 
         ProductCategory.forEach(category => {
-            console.log(category)
             createPage({
               path: `/product-category/${category.slug}/`,
               component: require.resolve("./src/templates/archive.js"),
@@ -30,6 +21,12 @@ exports.createPages = async ({ actions: { createPage } }) => {
           })
     }).catch(error => {
 
+    })
+
+    createPage({
+      path: `/design/`,
+      matchPath: "/design/:art_id/:slug",
+      component: require.resolve("./src/templates/single-design.js"),
     })
 
 }

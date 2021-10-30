@@ -40,3 +40,15 @@ export const FeaturedProducts = () => {
         }
     })
 }
+
+export const SingleDesign = ({art_id, slug}) => {
+    return axios.get(process.env.GATSBY_API_URL+'/api/get-single-product', {
+        params: {
+            art_id: art_id,
+            slug: slug,
+        },
+        headers: {
+            Accept: 'application/json',
+        }
+    })
+}
