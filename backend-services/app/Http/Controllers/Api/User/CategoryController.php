@@ -56,9 +56,6 @@ class CategoryController extends Controller
 
             foreach ($designs as $key => $product) {
                 $designs[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
-            //    // $designs[$key]['productByOrientation']['product_image'] = addFullPathToUploadedImage($this->productImagesPath,  $product['productByOrientation']['product_image']);
-            //   echo $product['productByOrientation']['product_image'];
-            //   echo "<br/>";
             }
             return $designs;
         }
