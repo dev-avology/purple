@@ -50,6 +50,12 @@ class ProductsController extends Controller
         if ($prevURL === '/add-new-product' && !$request->product_image) {
             return back()->with('error', 'Product Image is required');
         }
+        
+        if ($prevURL === '/add-new-product') {
+            $uniqueID = generateStringID();
+            $slug = generateSlug($validateProductData['title']);
+            $validateProductData['slug'] = $slug.'-'.$uniqueID;
+        }
 
         if (Product::updateOrCreate(['id' => $request->product_id], $validateProductData)) {
             return back()->with('success', 'Product has been successfully saved.');
