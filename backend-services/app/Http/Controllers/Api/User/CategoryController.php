@@ -45,7 +45,7 @@ class CategoryController extends Controller
             $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $category['image']);
             unset($allCategories[$key]['category_id']);
             $this->filterDesignsOfCategory($allCategories[$key]['designs']);
-            $this->filterProductsOfCategory($category['products']);
+            $this->filterProductsOfCategory($allCategories[$key]['products']);
         }
         return $allCategories;
     }
@@ -53,7 +53,7 @@ class CategoryController extends Controller
     private function filterProductsOfCategory($productsArray)
     {
         foreach ($productsArray as $key => $product) {
-            return $productsArray[$key]['product_image'] = addFullPathToUploadedImage($this->productImagesPath, $product['product_image']);
+            $productsArray[$key]['product_image'] = addFullPathToUploadedImage($this->productImagesPath, $product['product_image']);
         }
         return $productsArray;
     }
