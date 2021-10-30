@@ -9,8 +9,13 @@ class ProductSubCategory extends Model
 {
     use HasFactory;
 
-    public function products()
+    public function designs()
     {
         return $this->hasMany(ArtistArt::class, 'category_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'sub_category', 'id');
     }
 }

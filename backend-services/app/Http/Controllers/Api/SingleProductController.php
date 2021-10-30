@@ -9,13 +9,12 @@ use App\Models\ArtistArt as Design;
 class SingleProductController extends Controller
 {
     private $productIsApproved = 1;
-    private $prodcuts_limit;
-    private $productImagesPath;
+    private $artworkImagesPath;
     
     public function __construct()
     {
         $this->prodcuts_limit = config('pagination-limit.products-limit');
-        $this->productImagesPath = 'file-upload-paths.products';
+        $this->artworkImagesPath = 'file-upload-paths.artwork';
     }
 
     public function getProductBySlugAndID(Request $request)
@@ -23,11 +22,10 @@ class SingleProductController extends Controller
         if (isset($request['slug']) && isset($request['art_id'])) {
             
             $singleProduct = Design::with([
-                'artist', 'artist_profile', 'products' => function($product) {
-                    $product->take($this->prodcuts_limit);
-                }
+                'artist', 'artist_profile'
             ])->where([
                 'art_id' => $request['art_id'], 
+                'slug' => $request['slug'],
                 'is_approved' => $this->productIsApproved
             ])->first();
 
@@ -37,11 +35,8 @@ class SingleProductController extends Controller
 
             $singleProduct = $singleProduct->toArray();
             $singleProduct['artist'] = filterArtistProfile($singleProduct['artist'], $singleProduct['artist_profile']);
+            $singleProduct['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $singleProduct['art_photo_path']);
             unset($singleProduct['artist_profile']);
-
-            foreach ($singleProduct['products'] as $key => $product) {
-                $singleProduct['products'][$key]['product_image'] = addFullPathToUploadedImage($this->productImagesPath, $product['product_image']);
-            }
 
             return $singleProduct;
         }
