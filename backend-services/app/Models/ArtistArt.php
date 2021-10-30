@@ -32,7 +32,7 @@ class ArtistArt extends Model
         return $this->belongsTo(Profile::class, 'user_id', 'user_id');
     }
 
-    public function products()
+    public function product()
     {
         return $this->hasMany(Product::class, 'sub_category', 'category_id');
     }
