@@ -42,31 +42,38 @@ class CategoryController extends Controller
         foreach ($allCategories as $key => $category) {
             $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $category['image']);
             unset($allCategories[$key]['category_id']);
-            
-            $this->filterDesignsOfCategory($allCategories[$key]['designs']);
-            //$this->filterProductImages($allCategories[$key]['designs']['productByOrientation']);
 
+            $this->filterDesignsOfCategory($allCategories[$key]['designs']);
+
+            // echo "<pre>";
+            // print_r($allCategories[$key]['desings']);
+            // $this->filterProductImages($allCategories[$key]['designs']);
         }
         return $allCategories;
     }
 
     private function filterDesignsOfCategory($designs)
     {
-        if ($designs->count()) {
+        if ($designs->count()) {   
 
             foreach ($designs as $key => $product) {
+
                 $designs[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
+
+                if ($designs[$key]['productByOrientation']) {
+                    $designs[$key]['productByOrientation']['product_image_full_path'] = asset(config($this->productImagesPath)).'/'.$designs[$key]['productByOrientation']['product_image'];
+                } 
             }
             return $designs;
         }
         return $designs;
     }
 
-    private function filterProductImages($productsArray)
-    {
-        foreach ($productsArray as $key => $product) {
-            $productsArray[$key]['product_image'] = addFullPathToUploadedImage($this->productImagesPath, $product['product_image']);
-        }
-        return $productsArray;
-    }
+    // private function filterProductImages($productsArray)
+    // {
+    //     foreach ($productsArray as $key => $product) {
+    //         $productsArray[$key]['product_image'] = addFullPathToUploadedImage($this->productImagesPath, $product['product_image']);
+    //     }
+    //     return $productsArray;
+    // }
 }
