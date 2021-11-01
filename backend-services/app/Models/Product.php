@@ -17,6 +17,7 @@ class Product extends Model
         'status',
         'product_image',
         'sub_category',
+        'orientation'
     ];
 
     public function categoryData()

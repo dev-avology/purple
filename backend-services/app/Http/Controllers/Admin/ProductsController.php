@@ -12,12 +12,19 @@ class ProductsController extends Controller
 {
     private $availableExtensions;
     private $uploadService;
+    private $orientationType;
 
     public function __construct()
     {
         $this->availableExtensions = config('file-upload-extensions.image');
         $this->artworkUploadPath = config('file-upload-paths.products');
         $this->uploadService = new uploadService();
+
+        $this->orientationType = [
+            ['name' => 'Landscape', 'value' => 'landscape'],
+            ['name' => 'Portrait', 'value' => 'portrait'],
+            ['name' => 'Square', 'value' => 'square'],
+        ];
     }
 
     public function getProducts()
@@ -29,12 +36,22 @@ class ProductsController extends Controller
     public function addNewProduct()
     {
         $categories = Category::get(['id', 'name'])->toArray();
-        return view('admin.products.edit-or-add-product', ['categories' => $categories, 'product' => null]);
+        return view('admin.products.edit-or-add-product', [
+            'categories' => $categories, 
+            'product' => null, 
+            'orientationType' => $this->orientationType
+        ]);
     }
 
     public function saveProduct(SaveProductRequest $request)
     {
         $validateProductData = $request->validated();
+        $response = $this->checkOrientation($validateProductData['sub_category'], $validateProductData['orientation']);
+        if ($response) {
+            return back()->withErrors([
+                'orientation' => $validateProductData['orientation'].' Orientation is already existing for this Category. Please Change Orientation or Category.'
+            ]);
+        }
 
         if ($request->product_image) {
             $productImage = $this->uploadService->handleUploadedImages($request->product_image, $this->artworkUploadPath, $this->availableExtensions);
@@ -67,7 +84,11 @@ class ProductsController extends Controller
     {
         $product = Product::find($product_id);
         $categories = Category::get(['id', 'name'])->toArray();
-        return view('admin.products.edit-or-add-product', ['categories' => $categories, 'product' => $product]);
+        return view('admin.products.edit-or-add-product', [
+            'categories' => $categories, 
+            'product' => $product, 
+            'orientationType' => $this->orientationType
+        ]);
     }
 
     public function deleteProduct($product_id)
@@ -76,5 +97,13 @@ class ProductsController extends Controller
             return back()->with('success', 'Successfully Deleted the product.');
         }
         return back()->with('error', 'Something went wrong while deleting the product.');
+    }
+
+    private function checkOrientation($category , $productOrientation)
+    {
+        if(Product::where(['sub_category' => $category, 'orientation' => $productOrientation])->first()) {
+            return true;
+        }          
+        return false;
     }
 }

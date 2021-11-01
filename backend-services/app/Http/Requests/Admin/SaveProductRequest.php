@@ -31,7 +31,8 @@ class SaveProductRequest extends FormRequest
             'price'         => 'required',
             'sku'           => 'required',
             'status'        => 'required',
-            'sub_category'      => 'required',
+            'sub_category'  => 'required',
+            'orientation'   => 'required',
         ];
     }
 
@@ -42,7 +43,8 @@ class SaveProductRequest extends FormRequest
             'price.required'  => 'Price is requred',
             'sku.required'    => 'Sku is required',
             'status.required' => 'Status is required',
-            'sub_category.required' => 'Category is Required'
+            'sub_category.required' => 'Category is required',
+            'orientation.required' => 'Orientation is required',
         ];
     }
 }

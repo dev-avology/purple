@@ -12,9 +12,9 @@ class ArtWorkController extends Controller
     private $availableExtensions;
     private $uploadService;
     private $artworkUploadPath;
-    private $isProductFeatured = 1; 
-    private $isProductPublic = 1; 
-    private $isProductApproved = 1; 
+    private $isProductFeatured = 1;
+    private $isProductPublic = 1;
+    private $isProductApproved = 1;
 
     public function __construct()
     {
@@ -34,6 +34,15 @@ class ArtWorkController extends Controller
 
         $dataArray = $this->artWorkDataArray($validatedArtWorkData, $artworkUploadResponse);
 
+
+        // list($width, $height) = getimagesize('image.jpg');
+        // if ($width > $height) {
+        //     // Landscape
+        // } else {
+        //     // Portrait or Square
+        // }
+
+
         $dataArray['orientation'] = 'landscape'; // need to impplement logic to get image orientation
 
         if (ArtistArt::create($dataArray)) {
@@ -45,8 +54,8 @@ class ArtWorkController extends Controller
     public function getFeaturedProducts()
     {
         $featuredProducts = ArtistArt::with(['artist', 'artist_profile'])->where([
-            'is_featured' => $this->isProductFeatured, 
-            'is_public' => $this->isProductPublic, 
+            'is_featured' => $this->isProductFeatured,
+            'is_public' => $this->isProductPublic,
             'is_approved' => $this->isProductApproved,
         ])->get()->toArray();
 

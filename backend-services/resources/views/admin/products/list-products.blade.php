@@ -48,6 +48,7 @@
                                         <th>SKU</th>
                                         <th>Status</th>
                                         <th>Product Image</th>
+                                        <th>Product Orientation</th>
                                         <th>Category</th>
                                         <th>Created At</th>
                                         <th>Action</th>
@@ -66,6 +67,7 @@
                                                 <img class="product-listing-thumb" src="{{ asset(config('file-upload-paths.products').'/'.$product->product_image) }}" />
                                             </a>
                                         </td>
+                                        <td>{{ $product->orientation }}</td>
                                         <td>{{ optional($product->categoryData)->name }}</td>
                                         <td>{{ $product->created_at }}</td>
                                         <td>
