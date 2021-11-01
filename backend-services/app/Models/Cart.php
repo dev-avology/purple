@@ -15,6 +15,7 @@ class Cart extends Model
         'product_id',
         'quantity',
         'final_product_image',
+        'is_wishlist_product',
     ];
 
     public function buyer()

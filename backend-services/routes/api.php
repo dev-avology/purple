@@ -35,9 +35,11 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
     Route::get('get-designs-count', [ArtWorkMediaController::class, 'returnCountOfTotalArts']);
-
     Route::post('save-cart', [CartController::class, 'saveCart']);
     Route::post('save-wishlist', [CartController::class, 'saveCart']);
+    Route::get('remove-from-cart', [CartController::class, 'removeItem']);
+    Route::get('remove-from-wishlist', [CartController::class, 'removeItem']);
+    Route::get('decrement-cart', [CartController::class, 'decrementCart']);
     Route::get('get-cart', [CartController::class, 'getCart']);
 
     Route::get('logout', [PassportAuthController::class, 'logout']);

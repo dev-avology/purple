@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Models\ProductSubCategory as Category;
 
-
 class CategoryController extends Controller
 {
     private $prodcuts_limit;
@@ -42,12 +41,7 @@ class CategoryController extends Controller
         foreach ($allCategories as $key => $category) {
             $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $category['image']);
             unset($allCategories[$key]['category_id']);
-
             $this->filterDesignsOfCategory($allCategories[$key]['designs']);
-
-            // echo "<pre>";
-            // print_r($allCategories[$key]['desings']);
-            // $this->filterProductImages($allCategories[$key]['designs']);
         }
         return $allCategories;
     }
@@ -68,12 +62,4 @@ class CategoryController extends Controller
         }
         return $designs;
     }
-
-    // private function filterProductImages($productsArray)
-    // {
-    //     foreach ($productsArray as $key => $product) {
-    //         $productsArray[$key]['product_image'] = addFullPathToUploadedImage($this->productImagesPath, $product['product_image']);
-    //     }
-    //     return $productsArray;
-    // }
 }
