@@ -14,7 +14,7 @@ class PasswordHandlerController extends Controller
         if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
             // The passwords matches
             return response()->json([
-                'status' => 200, 
+                'status' => 'error', 
                 'message' => 'Your current password does not matches with the password.'
             ], 200);
         }
@@ -22,7 +22,7 @@ class PasswordHandlerController extends Controller
         if(strcmp($request->get('current_password'), $request->get('new_password')) == 0){
             // Current password and new password same
             return response()->json([
-                'status' => 200, 
+                'status' => 'error', 
                 'message' => 'New Password cannot be same as your current password.'
             ], 200);
         }
@@ -38,7 +38,7 @@ class PasswordHandlerController extends Controller
         $user->save();
 
         return response()->json([
-            'stauts' => 200, 
+            'status' => 'success', 
             'message' => 'Password successfully changed!'
         ], 200);
     }
