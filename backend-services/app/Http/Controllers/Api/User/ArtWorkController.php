@@ -34,15 +34,6 @@ class ArtWorkController extends Controller
 
         $dataArray = $this->artWorkDataArray($validatedArtWorkData, $artworkUploadResponse);
 
-
-        // list($width, $height) = getimagesize('image.jpg');
-        // if ($width > $height) {
-        //     // Landscape
-        // } else {
-        //     // Portrait or Square
-        // }
-
-
         $dataArray['orientation'] = 'landscape'; // need to impplement logic to get image orientation
 
         if (ArtistArt::create($dataArray)) {

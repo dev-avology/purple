@@ -29,6 +29,7 @@ class CategoryController extends Controller
                 $design->where('is_approved',  $this->productIsApproved);
             },
             'designs.productByOrientation',
+            'designs.artist'
         ])
             ->get()
             ->map(function ($category) {
@@ -53,6 +54,10 @@ class CategoryController extends Controller
             foreach ($designs as $key => $product) {
 
                 $designs[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $product['art_photo_path']);
+                
+                if ($designs[$key]['artist']) {
+                    $designs[$key]['artist_name'] = $designs[$key]['artist']['name'];
+                }
 
                 if ($designs[$key]['productByOrientation']) {
                     $designs[$key]['productByOrientation']['product_image_full_path'] = asset(config($this->productImagesPath)).'/'.$designs[$key]['productByOrientation']['product_image'];
