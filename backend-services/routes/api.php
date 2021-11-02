@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\User\ArtWorkMediaController;
 use App\Http\Controllers\Api\User\CartController;
 use App\Http\Controllers\Api\User\CategoryController;
 use App\Http\Controllers\Api\SingleProductController;
+use App\Http\Controllers\Api\User\PasswordHandlerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,8 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('remove-from-wishlist', [CartController::class, 'removeItem']);
     Route::get('decrement-cart', [CartController::class, 'decrementCart']);
     Route::get('get-cart', [CartController::class, 'getCart']);
+
+    Route::post('change-password', [PasswordHandlerController::class, 'changePassword']);
 
     Route::get('logout', [PassportAuthController::class, 'logout']);
 });
