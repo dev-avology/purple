@@ -35,7 +35,7 @@ export default class Signup extends Component {
     let data = {};
     data[name] = value;
     this.setState(data);
-  };
+  }
   onSubmitHandler = (e) => {
     e.preventDefault();
     console.log(this.state.role);

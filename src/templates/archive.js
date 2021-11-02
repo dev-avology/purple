@@ -5,51 +5,19 @@ import { toPng } from 'html-to-image'
 import {CategoryRangeSlider} from "src/components/Sections"
 import { Link } from "gatsby"
 export default function Archive({ pageContext: { category } }) {
-  const category1 = {
-    "id": 9,
-    "name": "Wall Art",
-    "slug": "wall-art",
-    "content": "Test Test Test Test Test Test Test Test Test Test",
-    "created_at": "2021-10-27T13:09:10.000000Z",
-    "updated_at": "2021-10-27T13:09:10.000000Z",
-    "image": "https://poojas.sg-host.com/purple/backend-services/uploads/category-images/our_product1.png",
-    "designs": [
-        {
-            "id": 1,
-            "user_id": 1,
-            "art_id": "3zPD6qouwC",
-            "category_id": 9,
-            "title": "this is test title",
-            "slug": "this-is-test-title",
-            "tags": "test,iphone,phone",
-            "description": "Test Product",
-            "art_photo_path": "https://poojas.sg-host.com/purple/backend-services/uploads/artwork-images/1929417363profile-dummy.png",
-            "price": "10.00",
-            "artwork_media_id": "1",
-            "is_mature_content": 1,
-            "is_public": 1,
-            "is_approved": 1,
-            "is_featured": 1,
-            "created_at": "2021-10-08T06:15:43.000000Z",
-            "updated_at": "2021-10-08T06:15:43.000000Z",
-            "product": {
-              "id": 1,
-              "title": "Frame",
-              "slug": "frame-IIz9opAL2b",
-              "sku": "PFBJSHYY2021H",
-              "status": "in_stock",
-              "product_image": "https://poojas.sg-host.com/purple/backend-services/uploads/products/1408182471stock-photo-bamboo-blank-frame-as-an-exotic-de.jpg",
-              "category": "0",
-              "sub_category": "9",
-              "price": 34,
-              "created_at": "2021-10-30T06:25:25.000000Z",
-              "updated_at": "2021-10-30T06:25:25.000000Z"
-          }
-        }
-      ]
-    }
+  const HtmlToImage = () => {
+    console.log('aaaa')
+    let data = document.getElementsByClassName('htmlToImageVis');
+    setTimeout( function(){
+      for (var i = 0; i < data.length; ++i){
+        toPng(data[i]).then((dataUrl) => {
+          console.log(dataUrl)
+          //saveAs(dataUrl, 'my-node.png');
+        })
+      }
+    }, 2000)
+  }
   return (
-     
     <Layout>
       <Helmet>
         <title>{category.name} | Splashen</title>
@@ -69,7 +37,7 @@ export default function Archive({ pageContext: { category } }) {
                   <CategoryRangeSlider />
                 <div className="results_main">
                   <div className="results">
-                      <h3>{category.name} <span>{category.products.length > 0 ? (category.products.length + ' Results') : (false)} </span></h3>
+                      <h3>{category.name} <span>{category.designs.length > 0 ? (category.designs.length + ' Results') : (false)} </span></h3>
                   </div>
                   <div className="results_select_form">
                       <select className="form-control border-0" id="exampl-drp">
@@ -83,19 +51,16 @@ export default function Archive({ pageContext: { category } }) {
                 {category.designs.length > 0 ? (
                 <div className="art_category_inner">
                   <div className="row">
-                    {category1.designs?.map((item) => {
-                      return (
-                        <>{item.art_photo_path} {item.product.title}
-                          <div>{item.product.title}</div>
-                        </>
-                      )
-                    })}
+                  {category.designs ? (HtmlToImage() ) : (false)} 
                     {category.designs?.map((item) => {
                           return(
                         <div key={item.id} className="col-lg-4 col-sm-6">
                           <div className="art_category_item">
                             <div className="art_category_item_img">
-                                <Link to="#"><img src={item.art_photo_path} alt="" /></Link>
+                              <img src="" alt=""/>
+                                <div className="htmlToImageVis">
+                                <Link to="#"><img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} /><img src={item.art_photo_path} alt="" /></Link>
+                                </div>
                                 <div className="art_category_item_hover">
                                     <Link className="shop_btn" to="#">View Shop</Link>
                                     <Link className="heart" to="#"><i className="fa fa-heart" aria-hidden="true"></i></Link>
