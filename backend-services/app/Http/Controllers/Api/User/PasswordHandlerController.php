@@ -11,7 +11,7 @@ use Auth;
 class PasswordHandlerController extends Controller
 {
     public function changePassword(Request $request) {
-        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+        if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
             // The passwords matches
             return response()->json([
                 'status' => 200, 
@@ -19,7 +19,7 @@ class PasswordHandlerController extends Controller
             ], 200);
         }
 
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+        if(strcmp($request->get('current_password'), $request->get('new_password')) == 0){
             // Current password and new password same
             return response()->json([
                 'status' => 200, 
@@ -28,13 +28,13 @@ class PasswordHandlerController extends Controller
         }
 
         $request->validate([
-            'current-password' => 'required',
-            'new-password' => 'required|string|min:8',
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8',
         ]);
 
         //Change Password
         $user = Auth::user();
-        $user->password = bcrypt($request->get('new-password'));
+        $user->password = bcrypt($request->get('new_password'));
         $user->save();
 
         return response()->json([
