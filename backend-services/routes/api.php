@@ -55,4 +55,4 @@ Route::get('get-featured-products', [ArtWorkController::class, 'getFeaturedProdu
 
 Route::get('get-single-product', [SingleProductController::class, 'getProductBySlugAndID']);
 
-Route::get('shop/{tag?}', [SearchController::class, 'searchProducts']);
+Route::get('shop/{catSlug?}', [SearchController::class, 'searchProducts']);

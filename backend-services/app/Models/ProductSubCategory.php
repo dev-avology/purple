@@ -18,4 +18,12 @@ class ProductSubCategory extends Model
     {
         return $this->hasMany(Product::class, 'sub_category', 'id');
     }
+
+    public function scopeCategoryFilter($query, $category)
+    {
+        if ($category) {
+           return $query->where(['slug' => $category]);
+        }
+        return $query;
+    }
 }

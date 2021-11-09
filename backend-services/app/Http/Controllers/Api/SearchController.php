@@ -25,16 +25,18 @@ class SearchController extends Controller
         $this->productImagesPath = 'file-upload-paths.products';
     }
 
-    public function searchProducts($tag = null, Request $request)
+    public function searchProducts($catSlug = null, Request $request)
     {
         $allCategories = Category::with([
             'designs' =>
-            function ($design) {
+            function ($design) use($request) {
                 $design->where('is_approved',  $this->productIsApproved);
+                $design->tagFilter($request['tag']);
             },
             'designs.productByOrientation',
             'designs.artist'
         ])
+            ->categoryFilter($catSlug)
             ->get()
             ->map(function ($category) {
                 if (isset($category->designs)) {

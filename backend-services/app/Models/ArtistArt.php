@@ -42,4 +42,12 @@ class ArtistArt extends Model
     {
         return $this->hasOne(Product::class, 'orientation', 'orientation');
     }
+
+    public function scopetagFilter($query, $tag)
+    {
+        if ($tag) {
+            return $query->whereRaw("FIND_IN_SET('".$tag."', tags)");
+        }
+        return $query;
+    }
 }
