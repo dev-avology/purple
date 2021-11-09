@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\ProductSubCategory as Category;
 use App\Traits\FilterCategoryData;
 
-class CategoryController extends Controller
+class SearchController extends Controller
 {
     use FilterCategoryData;
-    
+
     private $prodcuts_limit;
     private $productImagesPath;
     private $categoryImagesPath;
@@ -24,7 +25,7 @@ class CategoryController extends Controller
         $this->productImagesPath = 'file-upload-paths.products';
     }
 
-    public function getAllCategories()
+    public function searchProducts($tag = null, Request $request)
     {
         $allCategories = Category::with([
             'designs' =>

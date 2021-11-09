@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\User\ArtWorkMediaController;
 use App\Http\Controllers\Api\User\CartController;
 use App\Http\Controllers\Api\User\CategoryController;
 use App\Http\Controllers\Api\SingleProductController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\User\PasswordHandlerController;
 
 /*
@@ -53,3 +54,5 @@ Route::get('get-all-categories', [CategoryController::class, 'getAllCategories']
 Route::get('get-featured-products', [ArtWorkController::class, 'getFeaturedProducts']);
 
 Route::get('get-single-product', [SingleProductController::class, 'getProductBySlugAndID']);
+
+Route::get('shop/{tag?}', [SearchController::class, 'searchProducts']);
