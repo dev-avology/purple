@@ -51,7 +51,7 @@ class ArtistArt extends Model
     public function scopetagFilter($query, $tag)
     {
         if ($tag) {
-            return $query->whereRaw("FIND_IN_SET('".$tag."', tags)");
+            return $query->whereRaw("FIND_IN_SET('" . $tag . "', tags)");
         }
         return $query;
     }
@@ -60,6 +60,14 @@ class ArtistArt extends Model
     {
         if ($categoryID) {
             return $query->where(['category_id' => $categoryID]);
+        }
+        return $query;
+    }
+
+    public function scopeArtMediaFilter($query, $artMediaID)
+    {
+        if ($artMediaID) {
+            return $query->where(['artwork_media_id' => $artMediaID]);
         }
         return $query;
     }
