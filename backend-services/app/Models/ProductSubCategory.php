@@ -23,7 +23,7 @@ class ProductSubCategory extends Model
     {
         if ($category) {
            return $query->where(['slug' => $category]);
-        }
+        } 
         return $query;
     }
 }

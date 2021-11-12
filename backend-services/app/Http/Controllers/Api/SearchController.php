@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\ArtistArt;
 use Illuminate\Http\Request;
-use App\Models\ProductSubCategory as Category;
 use App\Traits\FilterCategoryData;
 
 class SearchController extends Controller
@@ -27,29 +27,21 @@ class SearchController extends Controller
 
     public function searchProducts($catSlug = null, Request $request)
     {
-        $allCategories = Category::with([
-            'designs' =>
-            function ($design) use($request) {
-                $design->where('is_approved',  $this->productIsApproved);
-                $design->tagFilter($request['tag']);
-            },
-            'designs.productByOrientation',
-            'designs.artist'
-        ])
-            ->categoryFilter($catSlug)
-            ->get()
-            ->map(function ($category) {
-                if (isset($category->designs)) {
-                    $category->setRelation('designs', $category->designs->take($this->prodcuts_limit));
-                }
-                return $category;
-            });
-
-        foreach ($allCategories as $key => $category) {
-            $allCategories[$key]['image'] = addFullPathToUploadedImage($this->categoryImagesPath, $category['image']);
-            unset($allCategories[$key]['category_id']);
-            $this->filterDesignsOfCategory($allCategories[$key]['designs']);
+        $categoryID = $this->getCategoryIDBySlug($catSlug);
+        $designs = ArtistArt::with([
+            'designsByCategory',
+            'productByOrientation', 
+            'artist'
+            ])->where([
+            'is_approved' => $this->productIsApproved
+            ])
+            ->tagFilter($request['tag'])
+            ->categoryIDFilter($categoryID)
+            ->take($this->prodcuts_limit)
+            ->get();
+        foreach ($designs as $key => $singleDesign) {
+            $designs[$key]['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $singleDesign['art_photo_path']);
         }
-        return $allCategories;
+        return $designs;
     }
 }

@@ -1,7 +1,9 @@
 <?php
   
 namespace App\Traits;
-  
+
+use App\Models\ProductSubCategory;
+
 trait FilterCategoryData {
   
     public function filterDesignsOfCategory($designs)
@@ -23,5 +25,10 @@ trait FilterCategoryData {
             return $designs;
         }
         return $designs;
+    }
+
+    public function getCategoryIDBySlug($slug)
+    {
+        return optional(ProductSubCategory::where(['slug' => $slug])->first('id'))->id;
     }
 }

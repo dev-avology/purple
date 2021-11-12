@@ -43,10 +43,23 @@ class ArtistArt extends Model
         return $this->hasOne(Product::class, 'orientation', 'orientation');
     }
 
+    public function designsByCategory()
+    {
+        return $this->belongsTo(ProductSubCategory::class, 'category_id');
+    }
+
     public function scopetagFilter($query, $tag)
     {
         if ($tag) {
             return $query->whereRaw("FIND_IN_SET('".$tag."', tags)");
+        }
+        return $query;
+    }
+
+    public function scopeCategoryIDFilter($query, $categoryID)
+    {
+        if ($categoryID) {
+            return $query->where(['category_id' => $categoryID]);
         }
         return $query;
     }
