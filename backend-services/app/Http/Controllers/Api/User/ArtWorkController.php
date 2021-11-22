@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveArtWorkRequest;
 use App\Models\ArtistArt;
 use App\Services\UploadService;
+use App\Services\PriceCalculation;
 
 class ArtWorkController extends Controller
 {
     private $availableExtensions;
     private $uploadService;
+    private $priceCalculation;
     private $artworkUploadPath;
     private $isProductFeatured = 1;
     private $isProductPublic = 1;
@@ -21,6 +23,7 @@ class ArtWorkController extends Controller
         $this->availableExtensions = config('file-upload-extensions.image');
         $this->artworkUploadPath = config('file-upload-paths.artwork');
         $this->uploadService = new uploadService();
+        $this->priceCalculation = new priceCalculation();
     }
 
     public function saveArtWork(SaveArtWorkRequest $request)
@@ -33,8 +36,9 @@ class ArtWorkController extends Controller
         }
 
         $dataArray = $this->artWorkDataArray($validatedArtWorkData, $artworkUploadResponse);
-
         $dataArray['orientation'] = 'landscape'; // need to impplement logic to get image orientation
+        $artistShareAmount = $this->priceCalculation->calculateDesignPrice(9);
+        $dataArray['price'] = $artistShareAmount;
 
         if (ArtistArt::create($dataArray)) {
             return response()->json(['message' => 'Artwork has been created successfully.'], 200);

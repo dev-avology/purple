@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ArtistPriceShare extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'artist_id',
+        'price_share',
+        'product_category_id',
+    ];
 }

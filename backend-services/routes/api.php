@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\User\CategoryController;
 use App\Http\Controllers\Api\SingleProductController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\User\PasswordHandlerController;
+use App\Http\Controllers\Api\ProductPricesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('remove-from-wishlist', [CartController::class, 'removeItem']);
     Route::get('decrement-cart', [CartController::class, 'decrementCart']);
     Route::get('get-cart', [CartController::class, 'getCart']);
+
+    Route::get('get-product-categories-and-prices', [ProductPricesController::class, 'index']);
+    Route::post('save-artist-price-share', [ProductPricesController::class, 'saveArtistShareByCategory']);
 
     Route::post('change-password', [PasswordHandlerController::class, 'changePassword']);
 

@@ -21,6 +21,7 @@ class ArtistArt extends Model
         'artwork_media_id',
         'is_mature_content',
         'is_public',
+        'price',
     ];
 
     public function artist()
