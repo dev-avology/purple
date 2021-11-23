@@ -38,6 +38,9 @@ class SearchController extends Controller
             ->tagFilter($request['tag'])
             ->categoryIDFilter($categoryID)
             ->artMediaFilter($request['art-media'])
+            ->lowPriceFilter($request['priceFilterOne'])
+            ->mediumPriceFilter($request['priceFilterTwo'])
+            ->highPriceFilter($request['priceFilterThree'])
             ->take($this->prodcuts_limit)
             ->get();
         foreach ($designs as $key => $singleDesign) {

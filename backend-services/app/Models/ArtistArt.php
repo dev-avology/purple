@@ -9,6 +9,9 @@ class ArtistArt extends Model
 {
     use HasFactory;
 
+    private $lowPrice = 10;
+    private $highPrice = 100; 
+
     protected $fillable = [
         'user_id',
         'title',
@@ -69,6 +72,32 @@ class ArtistArt extends Model
     {
         if ($artMediaID) {
             return $query->where(['artwork_media_id' => $artMediaID]);
+        }
+        return $query;
+    }
+
+    public function scopeLowPriceFilter($query, $priceDigit)
+    {
+        if ($priceDigit) {
+            return $query->where('price', '<', $this->lowPrice);
+        }
+        return $query;
+    }
+
+    public function scopeMediumPriceFilter($query, $priceDigit)
+    {
+        if ($priceDigit) {
+            return $query->where('price', '<', $this->highPrice)
+                ->orWhere('price', '=', $this->lowPrice)
+                ->orWhere('price', '>', $this->lowPrice);
+        }
+        return $query;
+    }
+
+    public function scopeHighPriceFilter($query, $priceDigit)
+    {
+        if ($priceDigit) {
+            return $query->orWhere('price', '=', $this->highPrice)->orWhere('price', '>', $this->highPrice);
         }
         return $query;
     }
