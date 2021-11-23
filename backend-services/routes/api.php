@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\SingleProductController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\User\PasswordHandlerController;
 use App\Http\Controllers\Api\ProductPricesController;
+use App\Http\Controllers\Api\ShopManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,11 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('get-product-categories-and-prices', [ProductPricesController::class, 'index']);
     Route::post('save-artist-price-share', [ProductPricesController::class, 'saveArtistShareByCategory']);
+
+    Route::get('people/{username}', [ShopManagementController::class, 'getDesignsByShop']);
+    Route::delete('delete-design/{designID}', [ShopManagementController::class, 'deleteDesignFromShop']);
+    Route::get('get-design-details/{designID}', [ShopManagementController::class, 'getDesignDetails']);
+    Route::post('update-design-details', [ShopManagementController::class, 'updateDesignDetails']);
 
     Route::post('change-password', [PasswordHandlerController::class, 'changePassword']);
 

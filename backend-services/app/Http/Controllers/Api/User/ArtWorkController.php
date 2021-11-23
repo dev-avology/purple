@@ -64,6 +64,11 @@ class ArtWorkController extends Controller
         return $featuredProducts;
     }
 
+    public function getSimilarDesignsByTags()
+    {
+        $designs = ArtistArt::where()->get();
+    }
+
     private function artWorkDataArray($validatedArtWorkData, $artworkUploadResponse)
     {
         $artWorkID = generateStringID();
