@@ -7,6 +7,7 @@ use App\Http\Requests\SaveArtWorkRequest;
 use App\Models\ArtistArt;
 use App\Services\UploadService;
 use App\Services\PriceCalculation;
+use Illuminate\Http\Request;
 
 class ArtWorkController extends Controller
 {
@@ -64,9 +65,15 @@ class ArtWorkController extends Controller
         return $featuredProducts;
     }
 
-    public function getSimilarDesignsByTags()
+    public function getSimilarDesignsByTags(Request $request)
     {
-        $designs = ArtistArt::where()->get();
+        $categoryID = $request['catID'];
+        $designs = ArtistArt::where('category_id', $categoryID)->take(20)->get()->toArray();
+
+        if (count($designs)) {
+            return $designs;
+        }
+        return response()->json(['message' => 'No similar designs found.'], 200);
     }
 
     private function artWorkDataArray($validatedArtWorkData, $artworkUploadResponse)

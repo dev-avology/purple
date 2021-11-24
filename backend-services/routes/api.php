@@ -35,6 +35,7 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('get-user-profile-status', [UserProfileController::class, 'getProfileStatus']);
 
     Route::post('save-art-work', [ArtWorkController::class, 'saveArtWork']);
+    Route::get('get-similar-designs', [ArtWorkController::class, 'getSimilarDesignsByTags']);
 
     Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
     Route::get('get-designs-count', [ArtWorkMediaController::class, 'returnCountOfTotalArts']);
