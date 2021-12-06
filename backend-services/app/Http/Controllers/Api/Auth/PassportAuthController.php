@@ -26,7 +26,7 @@ class PassportAuthController extends Controller
 
         if ($this->verifyRole($request->role)) {
             $user = User::create([
-                'name' => $request->name,
+                'name' => trim($request->name),
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'role' => $request->role,
@@ -47,9 +47,13 @@ class PassportAuthController extends Controller
         ];
  
         if (auth()->attempt($data)) {
-            $role = auth()->user()->role;
-            $token = auth()->user()->createToken('purpleApp', [$role])->accessToken;
-            return response()->json(['token' => $token], 200);
+
+            if (!auth()->user()->is_deleted) {
+                $role = auth()->user()->role;
+                $token = auth()->user()->createToken('purpleApp', [$role])->accessToken;
+                return response()->json(['token' => $token], 200);
+            }
+            return response()->json(['error' => 'Your account has been suspended. Please contact admin by contact us page.'], 401);            
         } else {
             return response()->json(['error' => 'Email or Password is wrong.'], 401);
         }

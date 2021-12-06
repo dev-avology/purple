@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminArtWorkController;
 use App\Http\Controllers\Admin\ApprovalController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\CustomerManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,7 @@ use App\Http\Controllers\Admin\ProductsController;
 
 Route::get('/', function () {
     return view('auth.login');
-});
-
+})->middleware('guest');
 
 Route::group(['middleware' => ['auth']], function(){
 
@@ -29,7 +29,16 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('abandoned-checkouts', [AdminController::class, 'abandonedCheckouts'])->name('abandoned-checkouts');    
     Route::get('collections', [AdminController::class, 'collections'])->name('collections');
     Route::get('tags', [AdminController::class, 'tags'])->name('tags');
-    Route::get('customers', [AdminController::class, 'customers'])->name('customers');
+    
+    Route::get('suspended-customers', [CustomerManagementController::class, 'getSuspendedUsers'])->name('suspended-customers');
+    Route::get('unsuspend-user/{userID}', [CustomerManagementController::class, 'unsuspendUser'])->name('unsuspend-user');
+    Route::get('customers', [CustomerManagementController::class, 'index'])->name('customers');
+    Route::get('delete-customer/{userID}', [CustomerManagementController::class, 'delete'])->name('delete-customer');
+    Route::get('buyer/{userID}/{userName}', [CustomerManagementController::class, 'viewBuyerCustomer'])->name('view-buyer-customer');
+    Route::get('seller/{userID}/{userName}', [CustomerManagementController::class, 'viewSellerCustomer'])->name('view-seller-customer');
+    Route::get('edit-seller/{userID}/{role}/{userName}', [CustomerManagementController::class, 'edit'])->name('edit-seller');
+    Route::post('update-seller/', [CustomerManagementController::class, 'update'])->name('update-seller');
+    
     Route::get('analytics', [AdminController::class, 'analytics'])->name('analytics');
     Route::get('discounts', [AdminController::class, 'discounts'])->name('discounts');
     Route::get('preferences', [AdminController::class, 'preferences'])->name('preferences');

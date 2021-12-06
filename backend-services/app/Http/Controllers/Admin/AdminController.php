@@ -27,10 +27,6 @@ class AdminController extends Controller
         return view('admin.tags');
     }
 
-    public function customers() {
-        return view('admin.customers');
-    }
-
     public function analytics() {
         return view('admin.analytics');
     }
