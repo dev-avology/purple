@@ -52,6 +52,11 @@ class ArtistArt extends Model
         return $this->belongsTo(ProductSubCategory::class, 'category_id');
     }
 
+    public function getTagsArrayAttribute()
+    {
+        return explode(',', $this->attributes['tags']);
+    }
+
     public function scopetagFilter($query, $tag)
     {
         if ($tag) {

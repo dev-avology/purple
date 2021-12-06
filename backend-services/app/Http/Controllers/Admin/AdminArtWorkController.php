@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ArtistArt;
+use App\Models\ProductSubCategory;
 
 class AdminArtWorkController extends Controller
 {
@@ -18,15 +19,18 @@ class AdminArtWorkController extends Controller
     public function index(Request $request) {
 
         $artistArts = ArtistArt::get();
-
-        // if ($request->ajax()) {
-        //     $artworkData = view('admin.ajax-templates.artistArts', ['artistArts' => $artistArts])->render();
-        //     return response()->json(['html' => $artworkData], 200);
-        // }
         return view('admin.artworks', ['artistArts' => $artistArts]);
     }
 
     public function artWork($artWorkID) {
-        return view('admin.artwork');
+
+        $artwork = ArtistArt::where('art_id', $artWorkID)->first();
+        $collections = $this->getCollections();
+        return view('admin.artwork', compact('artwork', 'collections'));
+    }
+
+    private function getCollections()
+    {
+        return ProductSubCategory::all();
     }
 }
