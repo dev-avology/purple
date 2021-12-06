@@ -9,6 +9,14 @@ class ProductSubCategory extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'content',
+        'image',
+        'category_id',
+        'slug'
+    ];
+
     public function designs()
     {
         return $this->hasMany(ArtistArt::class, 'category_id');

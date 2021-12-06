@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminArtWorkController;
 use App\Http\Controllers\Admin\ApprovalController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CustomerManagementController;
+use App\Http\Controllers\Admin\CollectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,14 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('orders', [AdminController::class, 'orders'])->name('orders');
     Route::get('abandoned-checkouts', [AdminController::class, 'abandonedCheckouts'])->name('abandoned-checkouts');    
-    Route::get('collections', [AdminController::class, 'collections'])->name('collections');
     Route::get('tags', [AdminController::class, 'tags'])->name('tags');
+
+    Route::get('collections', [CollectionController::class, 'index'])->name('collections');
+    Route::get('collections/add', [CollectionController::class, 'add'])->name('collections.add');
+    Route::post('collections/save', [CollectionController::class, 'save'])->name('collections.save');
+    Route::get('collections/edit/{collection_id}', [CollectionController::class, 'edit'])->name('collections.edit');
+    Route::post('collections/update', [CollectionController::class, 'update'])->name('collections.update');
+    Route::get('collections/delete/{collection_id}', [CollectionController::class, 'destroy'])->name('collections.delete');
     
     Route::get('suspended-customers', [CustomerManagementController::class, 'getSuspendedUsers'])->name('suspended-customers');
     Route::get('unsuspend-user/{userID}', [CustomerManagementController::class, 'unsuspendUser'])->name('unsuspend-user');

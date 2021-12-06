@@ -19,10 +19,6 @@ class AdminController extends Controller
         return view('admin.abandoned-checkouts');
     }
 
-    public function collections() {
-        return view('admin.collections');
-    }
-
     public function tags() {
         return view('admin.tags');
     }

@@ -16,7 +16,7 @@
                 <a href="#" class="text-secondary">Export</a>
               </li>
               <li class="list-group-item">
-                <a href="#" class="text-secondary">Add Collection</a>
+                <a href="{{route('collections.add')}}" class="text-secondary">Add Collection</a>
               </li>
             </ul> 
           </div> 
@@ -44,17 +44,26 @@
                       <tr>
                         <th>Image</th>
                         <th>Title</th>
-                        <th>Status</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr onclick="window.location='collection.php';">
+                      @foreach($collections as $collection)
+                      <tr>
                         <td>
-                          <img src="{{asset('public/admin/dist/img/blank.jpeg')}}" width="45px">
+                        <a href="{{ asset(config('file-upload-paths.category-images').'/'.$collection->image) }}" target="_blank">
+                          <img class="product-listing-thumb" src="{{ asset(config('file-upload-paths.category-images').'/'.$collection->image) }}" />
+                        </a>
                         </td>
-                        <td>Art Board Prints</td>
-                        <td><span class="badge bg-success">Active</span></td>
+                        <td>{{$collection->name}}</td>
+                        <td>
+                            <a href="{{ url('collections/edit', ['collection_id' => $collection->id]) }}" ><i class="far fa-edit"></i></a>
+                            <a href="{{ url('collections/delete', ['collection_id' => $collection->id]) }}" onclick="return confirm('Are you sure.')" >
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
                       </tr>
+                      @endforeach
                     </tbody>
                   </table>
               </div>
