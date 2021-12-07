@@ -283,7 +283,7 @@ onFormSubmit = (e) => {
           for (let x of this.state.getArtwork) {
             getArtworkCheckbox.push(
                 <label htmlFor={x.media_type} key={x.id} className="select_checkbox">{x.media_type}
-                    <input type="checkbox" value={x.id}  onChange={this.selectData.bind(this, x.id)} />
+                    <input type="checkbox" value={x.id} name={x.media_type} onChange={this.selectData.bind(this, x.id)} />
                     <span className="checkmark"></span>
                 </label>)
             }
@@ -302,8 +302,8 @@ onFormSubmit = (e) => {
                                     <form encType="multipart/form-data" onSubmit={this.onFormSubmit}>
                                     <div className="step1" style={this.state.step === 1 ? ( null ) :( { display: "none" } )}>
                                     <div className="uplaod-fils">
-                                        <label htmlFor="image" className="custom-file-upload">
-                                            <input type="file" onChange={this.handleChange}/>
+                                        <label htmlFor="step1image" className="custom-file-upload">
+                                            <input type="file" name="step1image" onChange={this.handleChange}/>
                                             <img src={this.state.file} alt=""/>
                                             {this.state.file ? ( 
                                             <span></span> ):( <span><StaticImage className="black_img" src="../images/new-upload-02c611d3b1eeb6ad555ff842020b9c23990ec9833a7605a66ad6504ba8a480e8.svg" alt="" /><StaticImage className="white_img" src="../images/white-new-upload-02c611d3b1eeb6ad555ff842020b9c23990ec9833a7605a66ad6504ba8a480e8.svg" alt="" /> <span>Upload new work</span></span> )}
@@ -322,8 +322,8 @@ onFormSubmit = (e) => {
                                                     <img src={this.state.file} alt=""/>
                                                     <div className="uplaod_images_hover">
                                                         <div className="uplaod-fils">
-                                                            <label htmlFor="image" className="custom-file-upload">
-                                                                <input type="file" onChange={this.handleChange}/>
+                                                            <label htmlFor="step2image" className="custom-file-upload">
+                                                                <input type="file" name="step2image" onChange={this.handleChange}/>
                                                                 <span><span>Replace Image</span></span>
                                                             </label>
                                                         </div>
@@ -342,20 +342,20 @@ onFormSubmit = (e) => {
                                                         <form>
                                                             <div className="row">
                                                                 <div className="col-lg-12">
-                                                                    <label htmlFor="Title">Title (required) <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Use a descriptive title that explains your artwork. This makes it easier for people to find your design based on their searches.</div></span></label>
+                                                                    <label htmlFor="title">Title (required) <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Use a descriptive title that explains your artwork. This makes it easier for people to find your design based on their searches.</div></span></label>
                                                                     <input required="" type="text" name="title" placeholder="Use 4 to 8 words to describe your work" className="" 
                                                                     value={this.state.title}
                                                                     onChange={this.onChangehandler}/>
                                                                     <span className="text-danger">{this.state.errMsgTitle}</span>
                                                                 </div>
                                                                 <div className="col-lg-12">
-                                                                    <label htmlFor="Tags">Tags <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Tags are how your audience finds your work. Use 15 relevant tags per upload. Use search terms your audience would look for to find your work, including your name. Make sure to separate tags with commas. Example: panda, bear, black and white.</div></span></label>
+                                                                    <label htmlFor="tags">Tags <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Tags are how your audience finds your work. Use 15 relevant tags per upload. Use search terms your audience would look for to find your work, including your name. Make sure to separate tags with commas. Example: panda, bear, black and white.</div></span></label>
                                                                     <textarea placeholder="Separate tags with commas." className="" name="tags" id=""
                                                                     onChange={this.onChangehandler} value={this.state.tags}></textarea>
                                                                     <span className="text-danger">{this.state.errMsgTags}</span>
                                                                 </div>
                                                                 <div className="col-lg-12">
-                                                                    <label htmlFor="Description">Description <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Share the story or meaning behind your work. You don’t have to give away any secrets, but your audience will appreciate a little insight into what you created.</div></span></label>
+                                                                    <label htmlFor="description">Description <span className="i_icon"><img src="images/i_icon.png" alt=""/><div className="hover-tooltip-title">Share the story or meaning behind your work. You don’t have to give away any secrets, but your audience will appreciate a little insight into what you created.</div></span></label>
                                                                     <textarea placeholder="Describe your work to get your audience excited" className="" name="description" id="" onChange={this.onChangehandler} value={this.state.description}></textarea>
                                                                     <span className="text-danger">{this.state.errMsgDescription}</span>
                                                                 </div>

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { toPng } from 'html-to-image'
 import { SingleDesign } from "src/components/ApiStore"
 import Layout from "src/components/Layout"
 
@@ -8,13 +7,13 @@ export default function PageTemplate({art_id, slug}) {
   const ref = React.useRef(null)
 
 
-  toPng(ref.current, { cacheBust: true, })
+  /*toPng(ref.current, { cacheBust: true, })
     .then((dataUrl) => {
     })
     .catch((err) => {
       console.log(err)
     })
-
+*/
 
   const [product, setProducts] = React.useState([]);
     

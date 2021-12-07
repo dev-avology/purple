@@ -201,7 +201,7 @@ export const FeaturedProduct = () => {
             <>{category.length > 0  ? (
                 <div className="our_range">
                     <h2>Our range</h2>
-                    {/*<OwlCarousel id="range_slider" ref={ref} options={options}>
+                    {<OwlCarousel id="range_slider" ref={ref} options={options}>
                         {category?.map((item) =>
                             <div key={item.id} className="item">
                                 <div className="our_range_item">
@@ -212,7 +212,7 @@ export const FeaturedProduct = () => {
                                 </div>
                             </div>
                         )}
-                        </OwlCarousel>*/}
+                        </OwlCarousel>}
                 </div>) : (false)}
             </>
           )

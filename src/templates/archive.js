@@ -1,22 +1,10 @@
 import React from "react"
 import { Helmet } from 'react-helmet'
 import Layout from "src/components/Layout"
-import { toPng } from 'html-to-image'
 import {CategoryRangeSlider} from "src/components/Sections"
 import { Link } from "gatsby"
 export default function Archive({ pageContext: { category } }) {
-  const HtmlToImage = () => {
-    console.log('aaaa')
-    let data = document.getElementsByClassName('htmlToImageVis');
-    setTimeout( function(){
-      for (var i = 0; i < data.length; ++i){
-        toPng(data[i]).then((dataUrl) => {
-          console.log(dataUrl)
-          //saveAs(dataUrl, 'my-node.png');
-        })
-      }
-    }, 2000)
-  }
+
   return (
     <Layout>
       <Helmet>
@@ -51,14 +39,14 @@ export default function Archive({ pageContext: { category } }) {
                 {category.designs.length > 0 ? (
                 <div className="art_category_inner">
                   <div className="row">
-                  {category.designs ? (HtmlToImage() ) : (false)} 
+                  {/*HtmlToImage('htmlToImageVis')*/}
                     {category.designs?.map((item) => {
+                     { /*HtmlToImage('htmlToImageVis_'+item.id)*/}
                           return(
                         <div key={item.id} className="col-lg-4 col-sm-6">
                           <div className="art_category_item">
                             <div className="art_category_item_img">
-                              <img src="" alt=""/>
-                                <div className="htmlToImageVis">
+                                <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation}`}>
                                 <Link to="#"><img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} /><img src={item.art_photo_path} alt="" /></Link>
                                 </div>
                                 <div className="art_category_item_hover">
