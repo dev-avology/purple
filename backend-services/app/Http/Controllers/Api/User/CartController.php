@@ -21,6 +21,7 @@ class CartController extends Controller
     {
         $this->availableExtensions = config('file-upload-extensions.image');
         $this->artworkImagesPath = 'file-upload-paths.artwork';
+        $this->FinalImagesPath = 'file-upload-paths.final-product-image';
         $this->finalProductUploadPath = config('file-upload-paths.final-product-image');
         $this->uploadService = new uploadService();
         $this->cartTypeItem = 0;
@@ -66,6 +67,7 @@ class CartController extends Controller
         $cartArray = $cartCollection->toArray();
         foreach ($cartArray as $key => $cart) {
             $cartArray[$key]['product']['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $cartArray[$key]['product']['art_photo_path']);
+			$cartArray[$key]['final_product_image'] = addFullPathToUploadedImage($this->FinalImagesPath, $cartArray[$key]['final_product_image']);
         }
         return $cartArray;
     }
