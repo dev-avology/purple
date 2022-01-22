@@ -47,6 +47,19 @@ class ArtWorkController extends Controller
         return response()->json(['message' => 'Something went wrong while saving Artwork on server.'], 500);
     }
 
+    public function deleteArtWork(Request $request)
+    {
+        $is_deleted = ArtistArt::where([
+            'art_id' => $request['art_id'], 
+            'user_id' => $request['user_id']
+        ])->delete();
+        
+        if ($is_deleted) {
+            return response()->json(['message' => 'Artwork has been deleted successfully.'], 200);
+        }
+        return response()->json(['message' => 'Something went wrong while deleting Artwork.'], 200);
+    }
+
     public function getFeaturedProducts()
     {
         $featuredProducts = ArtistArt::with(['artist', 'artist_profile'])->where([

@@ -35,6 +35,7 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('get-user-profile-status', [UserProfileController::class, 'getProfileStatus']);
 
     Route::post('save-art-work', [ArtWorkController::class, 'saveArtWork']);
+    Route::get('delete-art-work/', [ArtWorkController::class, 'deleteArtWork']);
     Route::get('get-similar-designs', [ArtWorkController::class, 'getSimilarDesignsByTags']);
 
     Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
@@ -44,6 +45,7 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('remove-from-cart', [CartController::class, 'removeItem']);
     Route::get('remove-from-wishlist', [CartController::class, 'removeItem']);
     Route::get('decrement-cart', [CartController::class, 'decrementCart']);
+    Route::get('increment-cart', [CartController::class, 'incrementCart']);
     Route::get('get-cart', [CartController::class, 'getCart']);
 
     Route::get('get-product-categories-and-prices', [ProductPricesController::class, 'index']);

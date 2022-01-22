@@ -91,6 +91,23 @@ class CartController extends Controller
         return response()->json(['status' => 200, 'message' => 'Cart is Empty.']);
     }
 
+    public function incrementCart(Request $request)
+    {
+        $cartItem = $this->checkIfItemExists([
+            'buyer_id' => $request['buyer_id'],
+            'product_id' => $request['product_id'],
+        ], $this->cartTypeItem);
+
+        if ($cartItem) {
+            $cartItem->quantity += 1;
+            if ($cartItem->quantity) {
+                $cartItem->save();
+                return response()->json(['status' => 200, 'message' => 'Quantity increased successfully.'], 200);
+            } 
+        }
+        return response()->json(['status' => 200, 'message' => 'Cart is Empty.']);
+    }
+
     public function removeItem(Request $request)
     {
         $dataArray = [
