@@ -28,6 +28,12 @@ class AdminArtWorkController extends Controller
         $collections = $this->getCollections();
         return view('admin.artwork', compact('artwork', 'collections'));
     }
+    public function updateArtWork(Request $request)
+    {
+        echo"<pre>";
+        print_r(request()->all());
+        
+    }
 
     private function getCollections()
     {

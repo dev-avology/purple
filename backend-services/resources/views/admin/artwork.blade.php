@@ -39,7 +39,8 @@
 					</a>
 				  </li>
 				  <li class="nav-item" role="presentation">
-				    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">		French
+				    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+              French
 				    </a>
 				  </li>
 				</ul>

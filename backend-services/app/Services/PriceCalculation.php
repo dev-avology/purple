@@ -27,6 +27,8 @@ class PriceCalculation
             'artist_id' => auth()->user()->id, 
             'product_category_id' => $id
         ])->first();
-        return $rawData->price_share;
+        if($rawData) return $rawData->price_share;
+        else return 0;
+        
    }
 }

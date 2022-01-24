@@ -29,6 +29,7 @@ class ArtWorkController extends Controller
 
     public function saveArtWork(SaveArtWorkRequest $request)
     {
+       
         $validatedArtWorkData = $request->validated();
         $artworkUploadResponse = $this->uploadService->handleUploadedImages($validatedArtWorkData['art_photo'], $this->artworkUploadPath, $this->availableExtensions);
 
@@ -38,6 +39,7 @@ class ArtWorkController extends Controller
 
         $dataArray = $this->artWorkDataArray($validatedArtWorkData, $artworkUploadResponse);
         $dataArray['orientation'] = 'landscape'; // need to impplement logic to get image orientation
+       
         $artistShareAmount = $this->priceCalculation->calculateDesignPrice(9);
         $dataArray['price'] = $artistShareAmount;
 
