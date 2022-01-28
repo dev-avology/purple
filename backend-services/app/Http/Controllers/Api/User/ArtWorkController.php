@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveArtWorkRequest;
 use App\Models\ArtistArt;
+use App\Models\User;
 use App\Services\UploadService;
 use App\Services\PriceCalculation;
 use Illuminate\Http\Request;
@@ -109,4 +110,36 @@ class ArtWorkController extends Controller
             'is_public'         => $validatedArtWorkData['is_public'],
         ];
     }
+
+    public function getExploreDesign()
+    {
+        $exploreDesign = ArtistArt::with(['artist'])->where([
+            //'is_featured' => $this->isProductFeatured,
+            'is_public' => $this->isProductPublic,
+            'is_approved' => $this->isProductApproved,
+        ])->inRandomOrder()->limit(5)->get()->toArray();//exploreDesign
+
+        foreach ($exploreDesign as $key => $product) {
+            if (isset($product['artist'])) {
+                $exploreDesign[$key]['art_photo_path'] = asset(config('file-upload-paths.artwork') . '/' . $product['art_photo_path']);
+
+                $exploreDesign[$key]['design_count'] = $this->artistDesignCount($product['user_id']);               
+            }
+        }
+        return $exploreDesign;
+
+    }
+    protected function artistDesignCount($id){
+        if($id):
+            $design_count = ArtistArt::where('user_id', $id)->count();
+            return $design_count;
+        endif;
+    }
+    public function getFanArtMadeByArtist()
+    {
+        $response = User::with('design')->where('role', 'seller')->inRandomOrder()->limit(5)->get();
+        return $response;
+    }
+
+
 }

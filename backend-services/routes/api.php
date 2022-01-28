@@ -65,6 +65,12 @@ Route::get('get-all-categories', [CategoryController::class, 'getAllCategories']
 
 Route::get('get-featured-products', [ArtWorkController::class, 'getFeaturedProducts']);
 
+Route::get('get-explore-design', [ArtWorkController::class, 'getExploreDesign']);
+
+Route::get('fanart-madeby-artist', [ArtWorkController::class, 'getFanArtMadeByArtist']);
+
 Route::get('get-single-product', [SingleProductController::class, 'getProductBySlugAndID']);
+
+Route::get('get-product', [SingleProductController::class, 'getProduct']);
 
 Route::get('shop/{catSlug?}', [SearchController::class, 'searchProducts']);

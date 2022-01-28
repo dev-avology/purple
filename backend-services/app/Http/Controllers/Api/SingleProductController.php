@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ArtistArt as Design;
+use App\Models\Product;
 
 class SingleProductController extends Controller
 {
@@ -50,5 +51,10 @@ class SingleProductController extends Controller
             return $singleProduct;
         }
         return response()->json(['message' => 'Add Slug and Art ID.'], 200);
+    }
+    public function getProduct()
+    {
+        $result = Product::get();
+        return $result;
     }
 }
