@@ -66,7 +66,7 @@ const Login = (props) => {
       dispatch(login(Email, password))
         .then(() => {
           //props.history.push("/dashboard")
-          window.location.href = "/dashboard";
+          window.location.href = "/";
         })
         .catch(() => {
           setLoading(false);
