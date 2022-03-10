@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/dev/static/css/main.fbbc6459.css",
+    "main.js": "/dev/static/js/main.1d2bdfd0.js",
+    "static/js/377.d3d96297.chunk.js": "/dev/static/js/377.d3d96297.chunk.js",
+    "static/media/hero_banner.jpg": "/dev/static/media/hero_banner.f8ea23867dc1fce935d5.jpg",
+    "static/media/product_range2.png": "/dev/static/media/product_range2.9454846a7ed648cd7f4a.png",
+    "static/media/product_range1.png": "/dev/static/media/product_range1.60499d511ac5ad6453c2.png",
+    "static/media/product_range3.png": "/dev/static/media/product_range3.03d3b2b11272f00ed99d.png",
+    "service-worker.js": "/dev/service-worker.js",
+    "static/media/purple_artist1.png": "/dev/static/media/purple_artist1.37e1b4f151a5a16d1291.png",
+    "static/media/purple_artist4.png": "/dev/static/media/purple_artist4.76511354c72c856a03ec.png",
+    "static/media/purple_artist2.png": "/dev/static/media/purple_artist2.4691e777a3efc1ac28c3.png",
+    "static/media/purple_artist3.png": "/dev/static/media/purple_artist3.b93ce69fc81b05c49d8f.png",
+    "static/media/visa.png": "/dev/static/media/visa.7cdbca92cc20f3f3227d.png",
+    "static/media/new-upload-svg": "/dev/static/media/new-upload-02c611d3b1eeb6ad555ff842020b9c23990ec9833a7605a66ad6504ba8a480e8.f20d25e29e529a9ad92d73cdd7e8454b.svg",
+    "static/media/white-new-upload-svg": "/dev/static/media/white-new-upload-02c611d3b1eeb6ad555ff842020b9c23990ec9833a7605a66ad6504ba8a480e8.77db077fc067ab51bfa7849a0390fa6e.svg",
+    "static/media/svg": "/dev/static/media/a2d6efe99675cfe8ee95482c330c7b3a.e0e8799210bd4ffb62e63bede1c0c542.svg",
+    "index.html": "/dev/index.html",
+    "main.fbbc6459.css.map": "/dev/static/css/main.fbbc6459.css.map",
+    "main.1d2bdfd0.js.map": "/dev/static/js/main.1d2bdfd0.js.map",
+    "377.d3d96297.chunk.js.map": "/dev/static/js/377.d3d96297.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbbc6459.css",
+    "static/js/main.1d2bdfd0.js"
+  ]
+}
