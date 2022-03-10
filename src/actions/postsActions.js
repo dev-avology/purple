@@ -12,7 +12,7 @@ export function fetchCats() {
     dispatch(getCat())
 
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL+'/api/get-all-categories', {headers:{Accept: 'application/json'}})
+      const response = await fetch('https://poojas.sg-host.com/purple/backend-services/api/get-all-categories', {headers:{Accept: 'application/json'}})
       const data = await response.json()
       dispatch(getCatSuccess(data))
     } catch (error) {
