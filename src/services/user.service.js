@@ -15,7 +15,7 @@ const getFeaturedProducts = () => {
 };
 
 const getAllCategories = () => {
-  return axios.get(process.env.REACT_APP_API_URL + "/api/get-all-categories");
+  return axios.get("https://poojas.sg-host.com/purple/backend-services/api/get-all-categories");
 };
 
 const UpdateProfileData = (data) => {

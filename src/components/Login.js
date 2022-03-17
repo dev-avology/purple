@@ -66,7 +66,7 @@ const Login = (props) => {
       dispatch(login(Email, password))
         .then(() => {
           //props.history.push("/dashboard")
-          window.location.href = "/dashboard";
+          window.location.href = "https://dev-purple.herokuapp.com";
         })
         .catch(() => {
           setLoading(false);
@@ -77,7 +77,7 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to={`${process.env.PUBLIC_URL}/dashboard`} />;
+    return <Navigate to={`${process.env.PUBLIC_URL}/`} />;
   }
 
   return (
