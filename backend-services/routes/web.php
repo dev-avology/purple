@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CustomerManagementController;
 use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\ProductDetailController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,13 @@ Route::get('/', function () {
     return view('auth.login');
 })->middleware('guest');
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::get('product-detail', [ProductDetailController::class, 'index'])->name('product-detail');
-});
+// Route::group(['middleware' => ['auth']], function() {
+//     Route::get('product-detail', [ProductDetailController::class, 'index'])->name('product-detail');
+// });
 
+Route::get('product-detail/{art_id}/{userId}/{slug}', [ProductDetailController::class, 'index'])->name('product-detail');
+Route::get('cart', [CartController::class, 'index'])->name('cart');
+Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 
 Route::group(['middleware' => ['auth']], function(){
 

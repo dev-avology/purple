@@ -9,17 +9,34 @@ import UserService from "../services/user.service";
 import swal from "sweetalert";
 import Loader from "./Loader";
 import mergeImages from 'merge-images';
+import authToken from "../services/auth-token";
 
-function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
-    useEffect(() => {
-        dispatch(fetchCats())
-        dispatch(getProfileFetch())
-      }, [dispatch])
-                                                                                                                                                                                                                                                                          
+function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {                                                                                                                                                                                                                                                                          
 
     const {slug} = useParams()
     const ProductsData = cats.find(prod => prod.slug === slug)
     const [Loading, setLoading] = useState(false);
+    const [token, setToken] = useState();
+    const [userId, setUserId] = useState();
+
+
+    useEffect(() => {
+      dispatch(fetchCats());
+      dispatch(getProfileFetch());
+      setToken(authToken());
+
+
+    
+      UserService.getUserData()
+      .then((response) => {
+          setUserId(response.data.id);
+      })
+      .catch((error) => {
+        console.log('Error: '+error);
+      });
+
+
+    }, [dispatch])
 
     const onSaveWishlist = (seller_id, product_id) => {
         setLoading(true);
@@ -120,7 +137,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                 </div>
                                 <div className="art_category_item_hover">
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
-                                    <a className="shop_btn" href="https://localhost/purple/backend-services/product-detail">View Shop</a>
+                                    <a className="shop_btn" href={`https://poojas.sg-host.com/purple/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>View Shop</a>
                                     <Link className="heart" to="#" onClick={() => onSaveWishlist(item.user_id, item.id)}><i className="fa fa-heart" aria-hidden="true"></i></Link>
                                 </div>
                             </div>
