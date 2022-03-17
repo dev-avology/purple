@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ApprovalController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CustomerManagementController;
 use App\Http\Controllers\Admin\CollectionController;
+use App\Http\Controllers\ProductDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,11 @@ use App\Http\Controllers\Admin\CollectionController;
 Route::get('/', function () {
     return view('auth.login');
 })->middleware('guest');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('product-detail', [ProductDetailController::class, 'index'])->name('product-detail');
+});
+
 
 Route::group(['middleware' => ['auth']], function(){
 

@@ -43,6 +43,7 @@ class ArtWorkController extends Controller
        
         $artistShareAmount = $this->priceCalculation->calculateDesignPrice(9);
         $dataArray['price'] = $artistShareAmount;
+        $dataArray['user_id'] = auth()->user()->id;
 
         if (ArtistArt::create($dataArray)) {
             return response()->json(['message' => 'Artwork has been created successfully.'], 200);

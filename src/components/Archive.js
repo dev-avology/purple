@@ -113,10 +113,14 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                           <div className="art_category_item">
                             <div className="art_category_item_img">
                                 <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation}`}>
-                                <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}><img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} /><img src={item.art_photo_path} alt="" /></Link>
+                                <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>
+                                  <img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} />
+                                  <img src={item.art_photo_path} alt="" />
+                                </Link>
                                 </div>
                                 <div className="art_category_item_hover">
-                                    <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link>
+                                    {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
+                                    <a className="shop_btn" href="https://localhost/purple/backend-services/product-detail">View Shop</a>
                                     <Link className="heart" to="#" onClick={() => onSaveWishlist(item.user_id, item.id)}><i className="fa fa-heart" aria-hidden="true"></i></Link>
                                 </div>
                             </div>

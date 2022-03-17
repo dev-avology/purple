@@ -48,6 +48,9 @@ class PassportAuthController extends Controller
  
         if (auth()->attempt($data)) {
 
+            $user = User::find(auth()->user()->id);
+            auth()->login($user);
+
             if (!auth()->user()->is_deleted) {
                 $role = auth()->user()->role;
                 $token = auth()->user()->createToken('purpleApp', [$role])->accessToken;

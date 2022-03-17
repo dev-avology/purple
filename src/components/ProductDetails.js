@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Helmet from "react-helmet";
 import { Layout } from "./Layout";
-import { useDispatch, useSelector,connect } from "react-redux";
+import { useDispatch,connect } from "react-redux";
 import {getProfileFetch} from "../actions/auth"
 import {getProductDetailsFetch} from "../actions/userActions"
 import UserService from "../services/user.service";
@@ -25,14 +25,11 @@ function ProductDetails ({currentUser, productDetail, loading }) {
     dispatch(getProductDetailsFetch())
   }, [dispatch])
   
-console.log(productDetail)
   useEffect(() => {
-    let data = {
-      slug,
-      art_id,
-    };
+    console.log(productDetail);
+    console.log('Printing product Details');
    
-  }, []);
+  });
 
   const Increment = () => {
     let _quantity = quantity + 1;
@@ -125,7 +122,9 @@ console.log(productDetail)
                       >
                         <div ref={ref} id={`htmlToImageVis_${productData.id}`} className={`htmlToImageVis ${productData.orientation}`}>
                           {/*<Link to="#"><img className="product_frame" src={productData.product_by_orientation ? (productData.product_by_orientation.product_image_full_path) : ("")} /><img src={productData.art_photo_path} alt="" /></Link>*/}
-                          <Link to="#"><img className="product_frame" src="https://poojas.sg-host.com/purple/backend-services/uploads/products/landscape.jpg" /><img src={productData.art_photo_path} alt="" /></Link>
+                          <Link to="#">
+                            <img className="product_frame" src="https://poojas.sg-host.com/purple/backend-services/uploads/products/landscape.jpg" /><img src={productData.art_photo_path} alt="" />
+                          </Link>
                         </div>
                       </Link>
                     </li>
