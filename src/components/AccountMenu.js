@@ -57,7 +57,7 @@ function AccountMenu ({currentUser}) {
                     <Link to="/wishlist"> <img alt="" src={HeartIcon} /></Link>
                 </li>
                 <li>
-                    <Link to="/cart"><img alt="" src={CartIcon} /></Link>
+                    <a href="https://poojas.sg-host.com/purple/backend-services/cart"><img alt="" src={CartIcon} /></a>
                 </li>
             </ul>
         </>
