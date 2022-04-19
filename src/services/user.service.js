@@ -3,11 +3,11 @@ import authHeader from "./auth-header";
 
 // Wiil be removed
 const getUserData = () => {
-  return axios.get(process.env.REACT_APP_API_URL+"/api/get-user-data", { headers: authHeader() });
+  return axios.get(process.env.REACT_APP_API_URL+"/api/get-user-data", { mode: 'no-cors', headers: authHeader() });
 };
 
 const getDesignCount = () => {
-  return axios.get(process.env.REACT_APP_API_URL+"/api/get-designs-count", { headers: authHeader() });
+  return axios.get(process.env.REACT_APP_API_URL+"/api/get-designs-count", { mode: 'no-cors', headers: authHeader() });
 };
 
 const getFeaturedProducts = () => {
@@ -15,7 +15,7 @@ const getFeaturedProducts = () => {
 };
 
 const getAllCategories = () => {
-  return axios.get("https://poojas.sg-host.com/purple/backend-services/api/get-all-categories");
+  return axios.get("https://poojas.sg-host.com/purple/backend-services/api/get-all-categories", {mode: 'no-cors' });
 };
 
 const UpdateProfileData = (data) => {
