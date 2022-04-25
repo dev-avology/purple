@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\CustomerManagementController;
 use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,21 @@ Route::get('/', function () {
 
 Route::get('product-detail/{art_id}/{userId}/{slug}', [ProductDetailController::class, 'index'])->name('product-detail');
 Route::get('cart', [CartController::class, 'index'])->name('cart');
-Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('cart/remove', [CartController::class, 'removeItem'])->name('remove-from-cart');
+
+Route::get('decrement-cart', [CartController::class, 'decrementCart'])->name('decrement-cart');
+Route::get('increment-cart', [CartController::class, 'incrementCart'])->name('increment-cart');
+
+Route::post('shipping/address/save', [ShippingController::class, 'save'])->name('save-shipping-address');
+
+
+Route::get('stripe', [StripeController::class, 'stripe']);
+Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post');
+Route::get('payment/success', [StripeController::class, 'paymentSuccess'])->name('payment-success');
+
+Route::get('connect-stripe-account', [StripeController::class, 'stripeConnect'])->name('connect-stripe-account');
+Route::get('stripe-account-response', [StripeController::class, 'stripeConnectResponse'])->name('stripe-account-response');
 
 Route::group(['middleware' => ['auth']], function(){
 

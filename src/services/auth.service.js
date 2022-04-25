@@ -1,6 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-const apiURL = "http://146.190.226.38/backend-services";
+const apiURL = "https://poojas.sg-host.com/purple/backend-services";
 const register = (name, email, password, role) => {
     return axios.post(apiURL+'/api/register', {
       name,
@@ -11,6 +11,7 @@ const register = (name, email, password, role) => {
   };
   
 const login = (email, password) => {
+  console.log(apiURL);
 return axios
     .post(apiURL+'/api/login', {
     email,

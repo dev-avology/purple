@@ -96,7 +96,6 @@ $(document).ready(function () {
         $("body").addClass("show");
     });
     $(document).on("click", "body", function (e) {
-        console.log(e.target);
         if ($(e.target).is(".searching_result_sec") || $(e.target).is(".header_top_section")) $("body").removeClass("show");
     });
 });
@@ -111,7 +110,6 @@ $(document).ready(function () {
         $("body").addClass("show");
     });
     $(document).on("click", "body", function (e) {
-        console.log(e.target);
         if ($(e.target).is(".searching_result_sec") || $(e.target).is(".header_top_section")) $("body").removeClass("show");
     });
 });

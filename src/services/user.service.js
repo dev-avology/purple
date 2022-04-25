@@ -1,13 +1,13 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-const apiURL = "http://146.190.226.38/backend-services";
+const apiURL = "https://poojas.sg-host.com/purple/backend-services";
 // Wiil be removed
 const getUserData = () => {
-  return axios.get(apiURL+"/api/get-user-data", { headers: authHeader() });
+  return axios.get(apiURL+"/api/get-user-data", { mode: 'no-cors', headers: authHeader() });
 };
 
 const getDesignCount = () => {
-  return axios.get(apiURL+"/api/get-designs-count", { headers: authHeader() });
+  return axios.get(apiURL+"/api/get-designs-count", { mode: 'no-cors', headers: authHeader() });
 };
 
 const getFeaturedProducts = () => {
@@ -15,7 +15,7 @@ const getFeaturedProducts = () => {
 };
 
 const getAllCategories = () => {
-  return axios.get(apiURL + "/api/get-all-categories");
+  return axios.get("https://poojas.sg-host.com/purple/backend-services/api/get-all-categories", {mode: 'no-cors' });
 };
 
 const UpdateProfileData = (data) => {
