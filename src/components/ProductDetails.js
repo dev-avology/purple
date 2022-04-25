@@ -104,7 +104,7 @@ console.log(productDetail)
                         className="image"
                         title=""
                       >
-                        <img className="product_frame" src="https://poojas.sg-host.com/purple/backend-services/uploads/products/landscape.jpg" />
+                        <img className="product_frame" src="http://146.190.226.38/backend-services/uploads/products/landscape.jpg" />
                       </Link>
                       <Link
                         to="./images/retro3.png"
@@ -125,7 +125,7 @@ console.log(productDetail)
                       >
                         <div ref={ref} id={`htmlToImageVis_${productData.id}`} className={`htmlToImageVis ${productData.orientation}`}>
                           {/*<Link to="#"><img className="product_frame" src={productData.product_by_orientation ? (productData.product_by_orientation.product_image_full_path) : ("")} /><img src={productData.art_photo_path} alt="" /></Link>*/}
-                          <Link to="#"><img className="product_frame" src="https://poojas.sg-host.com/purple/backend-services/uploads/products/landscape.jpg" /><img src={productData.art_photo_path} alt="" /></Link>
+                          <Link to="#"><img className="product_frame" src="http://146.190.226.38/backend-services/uploads/products/landscape.jpg" /><img src={productData.art_photo_path} alt="" /></Link>
                         </div>
                       </Link>
                     </li>
