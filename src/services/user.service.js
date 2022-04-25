@@ -1,6 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-const apiURL = "https://poojas.sg-host.com/purple/backend-services";
+const apiURL = "http://146.190.226.38/backend-services";
 // Wiil be removed
 const getUserData = () => {
   return axios.get(apiURL+"/api/get-user-data", { mode: 'no-cors', headers: authHeader() });
@@ -15,7 +15,7 @@ const getFeaturedProducts = () => {
 };
 
 const getAllCategories = () => {
-  return axios.get("https://poojas.sg-host.com/purple/backend-services/api/get-all-categories", {mode: 'no-cors' });
+  return axios.get("http://146.190.226.38/backend-services/api/get-all-categories", {mode: 'no-cors' });
 };
 
 const UpdateProfileData = (data) => {
