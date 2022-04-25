@@ -58,19 +58,19 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
               });
             });
       };
-      // if(ProductsData?.designs){
-      //   for(let aa of ProductsData?.designs){
-      //     console.log(aa.art_photo_path)
-      //     if(aa.art_photo_path){
-      //   mergeImages([
-      //       { src:aa.art_photo_path, x: 0, y: 0 },
-      //       { src:aa.art_photo_path, x: 12, y: 0 }
-      //       ], {crossOrigin:'Anonymous'})
-      //       .then(b64 => console.log(b64)
-      //         );
-      //       }
-      //   }
-      // }
+       if(ProductsData?.designs){
+         for(let aa of ProductsData?.designs){
+           console.log(aa.art_photo_path)
+           if(aa.art_photo_path){
+        mergeImages([
+             { src:aa.art_photo_path, x: 0, y: 0 },
+             { src:aa.art_photo_path, x: 12, y: 0 }
+             ], {crossOrigin:'Anonymous'})
+             .then(b64 => console.log(b64)
+               );
+             }
+         }
+     }
     return (
         <Layout>
       {ProductsData ? (
