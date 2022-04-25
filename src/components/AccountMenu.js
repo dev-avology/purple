@@ -57,7 +57,7 @@ function AccountMenu ({currentUser}) {
                     <Link to="/wishlist"> <img alt="" src={HeartIcon} /></Link>
                 </li>
                 <li>
-                    <a href={`${process.env.REACT_APP_API_URL}/cart`}><img alt="" src={CartIcon} /></a>
+                    <a href='http://146.190.226.38/backend-services/cart'><img alt="" src={CartIcon} /></a>
                 </li>
             </ul>
         </>
