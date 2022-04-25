@@ -145,7 +145,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                             </>
                                           ) : (
                                               <>
-                                              <Link to={`${process.env.PUBLIC_URL}/login`}>View Shop</Link>
+                                              <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/login`}>View Shop</Link>
                                               </>
                                           )
                                       }
