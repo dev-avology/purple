@@ -117,7 +117,7 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<div class="site-logo">
-								<a href="https://dev-purple.herokuapp.com/"><img src="{{asset('public/frontend/images/logo.png')}}" alt="site-logo" /></a>
+								<a href="http://146.190.226.38/"><img src="{{asset('public/frontend/images/logo.png')}}" alt="site-logo" /></a>
 								<div class="mobile_header_icon">
 									<a class="mobile_serch_icon" href="javascript:void(0)"><img src="{{asset('public/frontend/images/search_icon.png')}}" alt="" /></a>
 									<h1 class="mobile-menu" onclick="openNav()">
@@ -179,15 +179,15 @@
 									<div class="nav-main">
 										<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 										<ul class="menu1 text-center">
-											<li class="active"><a href="https://dev-purple.herokuapp.com/product-category/wall-art">Wall Art</a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/art-board-prints">Art Board Prints </a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/art-prints">Art Prints</a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/canvas-prints">Canvas Prints</a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/framed-prints">Framed Prints</a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/metal-prints">Metal Prints</a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/mounted-prints">Mounted Prints</a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/photographic-prints">Photographic Prints</a></li>
-											<li><a href="https://dev-purple.herokuapp.com/product-category/posters">Posters</a></li>
+											<li class="active"><a href="http://146.190.226.38/product-category/wall-art">Wall Art</a></li>
+											<li><a href="http://146.190.226.38/product-category/art-board-prints">Art Board Prints </a></li>
+											<li><a href="http://146.190.226.38/product-category/art-prints">Art Prints</a></li>
+											<li><a href="http://146.190.226.38/product-category/canvas-prints">Canvas Prints</a></li>
+											<li><a href="http://146.190.226.38/product-category/framed-prints">Framed Prints</a></li>
+											<li><a href="http://146.190.226.38/product-category/metal-prints">Metal Prints</a></li>
+											<li><a href="http://146.190.226.38/product-category/mounted-prints">Mounted Prints</a></li>
+											<li><a href="http://146.190.226.38/product-category/photographic-prints">Photographic Prints</a></li>
+											<li><a href="http://146.190.226.38/product-category/posters">Posters</a></li>
 										</ul>
 									</div>
 								</div>
@@ -222,7 +222,7 @@
             <div class="footer">
                 <div class="container">
                     <div class="mobile_footer_logo text-center">
-                        <a href="https://dev-purple.herokuapp.com/"><img src="{{asset('public/frontend/images/footer_logo.png')}}" alt="" /></a>
+                        <a href="http://146.190.226.38/"><img src="{{asset('public/frontend/images/footer_logo.png')}}" alt="" /></a>
                     </div>
 					<div class="footer_language mobile_footer_language text-center">
 						<ul>
@@ -307,7 +307,7 @@
 					<div class="row footer_logo">
 						<div class="col-lg-6">
 							<div class="desktop_footer_logo text-left">
-								<a href="https://dev-purple.herokuapp.com/"><img src="{{asset('public/frontend/images/footer_logo.png')}}" alt="" /></a>
+								<a href="http://146.190.226.38/"><img src="{{asset('public/frontend/images/footer_logo.png')}}" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-lg-6">
