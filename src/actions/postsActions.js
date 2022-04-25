@@ -1,5 +1,5 @@
 import {GET_CATEGORIES, GET_CATEGORIES_SUCCESS, GET_CATEGORIES_FAILURE} from "./types.js";
-
+const apiURL = "https://poojas.sg-host.com/purple/backend-services";
 export const getCat = () => ({ type: GET_CATEGORIES })
 export const getCatSuccess = cats => ({
   type: GET_CATEGORIES_SUCCESS,
@@ -12,7 +12,7 @@ export function fetchCats() {
     dispatch(getCat())
 
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL+'/api/get-all-categories', {headers:{Accept: 'application/json'}})
+      const response = await fetch(apiURL+'/api/get-all-categories', {headers:{Accept: 'application/json'}})
       const data = await response.json()
       dispatch(getCatSuccess(data))
     } catch (error) {
