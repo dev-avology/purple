@@ -137,7 +137,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                 </div>
                                 <div className="art_category_item_hover">
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
-                                    <a className="shop_btn" href={`https://poojas.sg-host.com/purple/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>View Shop</a>
+                                    <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>View Shop</a>
                                     <Link className="heart" to="#" onClick={() => onSaveWishlist(item.user_id, item.id)}><i className="fa fa-heart" aria-hidden="true"></i></Link>
                                 </div>
                             </div>

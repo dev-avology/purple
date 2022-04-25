@@ -37,7 +37,7 @@ export default class Signin extends Component {
     if (this.validateForm()) {
     this.setState({ isLoading: true });
     axios
-      .post(process.env.REACT_APP_API_URL+"/api/login", {
+      .post("http://146.190.226.38/backend-services/api/login", {
         email: this.state.email,
         password: this.state.password,
       })
