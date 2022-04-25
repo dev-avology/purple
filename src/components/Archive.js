@@ -9,17 +9,34 @@ import UserService from "../services/user.service";
 import swal from "sweetalert";
 import Loader from "./Loader";
 import mergeImages from 'merge-images';
+import authToken from "../services/auth-token";
 
-function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
-    useEffect(() => {
-        dispatch(fetchCats())
-        dispatch(getProfileFetch())
-      }, [dispatch])
-                                                                                                                                                                                                                                                                          
+function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {                                                                                                                                                                                                                                                                          
 
     const {slug} = useParams()
     const ProductsData = cats.find(prod => prod.slug === slug)
     const [Loading, setLoading] = useState(false);
+    const [token, setToken] = useState();
+    const [userId, setUserId] = useState();
+
+
+    useEffect(() => {
+      dispatch(fetchCats());
+      dispatch(getProfileFetch());
+      setToken(authToken());
+
+
+    
+      UserService.getUserData()
+      .then((response) => {
+          setUserId(response.data.id);
+      })
+      .catch((error) => {
+        console.log('Error: '+error);
+      });
+
+
+    }, [dispatch])
 
     const onSaveWishlist = (seller_id, product_id) => {
         setLoading(true);
@@ -58,19 +75,19 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
               });
             });
       };
-       if(ProductsData?.designs){
-         for(let aa of ProductsData?.designs){
-           console.log(aa.art_photo_path)
-           if(aa.art_photo_path){
-        mergeImages([
-             { src:aa.art_photo_path, x: 0, y: 0 },
-             { src:aa.art_photo_path, x: 12, y: 0 }
-             ], {crossOrigin:'Anonymous'})
-             .then(b64 => console.log(b64)
-               );
-             }
-         }
-     }
+      // if(ProductsData?.designs){
+      //   for(let aa of ProductsData?.designs){
+      //     console.log(aa.art_photo_path)
+      //     if(aa.art_photo_path){
+      //   mergeImages([
+      //       { src:aa.art_photo_path, x: 0, y: 0 },
+      //       { src:aa.art_photo_path, x: 12, y: 0 }
+      //       ], {crossOrigin:'Anonymous'})
+      //       .then(b64 => console.log(b64)
+      //         );
+      //       }
+      //   }
+      // }
     return (
         <Layout>
       {ProductsData ? (
@@ -113,10 +130,14 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                           <div className="art_category_item">
                             <div className="art_category_item_img">
                                 <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation}`}>
-                                <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}><img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} /><img src={item.art_photo_path} alt="" /></Link>
+                                <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>
+                                  <img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} />
+                                  <img src={item.art_photo_path} alt="" />
+                                </Link>
                                 </div>
                                 <div className="art_category_item_hover">
-                                    <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link>
+                                    {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
+                                    <a className="shop_btn" href={`https://poojas.sg-host.com/purple/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>View Shop</a>
                                     <Link className="heart" to="#" onClick={() => onSaveWishlist(item.user_id, item.id)}><i className="fa fa-heart" aria-hidden="true"></i></Link>
                                 </div>
                             </div>
