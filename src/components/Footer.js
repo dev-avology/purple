@@ -1,10 +1,11 @@
 import React, { Component } from "react"
+import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import VisaImg from "../assets/images/visa.png"
 import FooterLogo from "../assets/images/footer_logo.png"
 
-export default class Footer extends Component {
-    render(){
+export const Footer = () => {
+        const { isLoggedIn } = useSelector(state => state.auth);
         return(
             <div className="footer_sec">
             <div className="footer">
@@ -38,8 +39,15 @@ export default class Footer extends Component {
                                 <ul>
                                     <li><a href="#">Fan Art</a></li>
                                     <li><a href="#">New Works</a></li>
-                                    <li><Link to={`${process.env.PUBLIC_URL}/login`}>Login</Link></li>
-                                    <li><Link to={`${process.env.PUBLIC_URL}/signup`}>Signup</Link></li>
+                                    
+                                    {isLoggedIn ? (
+                                        null
+                                    ): <li><Link to={`${process.env.PUBLIC_URL}/login`}>Login</Link> </li> }
+                             
+                                    {isLoggedIn ? (
+                                        null
+                                    ): <li><Link to={`${process.env.PUBLIC_URL}/signup`}>Signup</Link></li> }
+                                    
                                     <li><a href="#">Bulk orders</a></li>
                                 </ul>
                             </div>
@@ -74,19 +82,19 @@ export default class Footer extends Component {
                                 <h3>Social</h3>
                                 <ul>
                                     <li>
-                                        <a href="https://www.instagram.com/"><i className="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
+                                        <a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
                                     </li>
                                     <li>
-                                        <a href="https://www.facebook.com/"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+                                        <a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
                                     </li>
                                     <li>
-                                        <a href="https://www.twitter.com/"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+                                        <a href="https://www.twitter.com/" target="_blank"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
                                     </li>
                                     <li>
-                                        <a href="https://www.tumblr.com/"><i className="fa fa-tumblr" aria-hidden="true"></i> Tumblr</a>
+                                        <a href="https://www.tumblr.com/" target="_blank"><i className="fa fa-tumblr" aria-hidden="true"></i> Tumblr</a>
                                     </li>
                                     <li>
-                                        <a href="https://www.pinterest.com/"><i className="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a>
+                                        <a href="https://www.pinterest.com/" target="_blank"><i className="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a>
                                     </li>
                                 </ul>
                             </div>
@@ -155,5 +163,5 @@ export default class Footer extends Component {
             </div>
         </div>
         )
-    }
 }
+export default Footer;
