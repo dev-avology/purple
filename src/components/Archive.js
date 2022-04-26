@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import {useParams, Link} from "react-router-dom"
 import { fetchCats } from '../actions/postsActions'
 import { getProfileFetch } from '../actions/auth'
@@ -11,7 +11,9 @@ import Loader from "./Loader";
 import mergeImages from 'merge-images';
 import authToken from "../services/auth-token";
 
-function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {                                                                                                                                                                                                                                                                          
+function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {    
+  
+    const { isLoggedIn } = useSelector(state => state.auth);
 
     const {slug} = useParams()
     const ProductsData = cats.find(prod => prod.slug === slug)
@@ -137,7 +139,17 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                 </div>
                                 <div className="art_category_item_hover">
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
-                                    <a className="shop_btn" href={`https://poojas.sg-host.com/purple/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>View Shop</a>
+                                    {isLoggedIn ? (
+                                            <>
+                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>View Shop</a>
+                                            </>
+                                          ) : (
+                                              <>
+                                              <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/login`}>View Shop</Link>
+                                              </>
+                                          )
+                                      }
+    
                                     <Link className="heart" to="#" onClick={() => onSaveWishlist(item.user_id, item.id)}><i className="fa fa-heart" aria-hidden="true"></i></Link>
                                 </div>
                             </div>

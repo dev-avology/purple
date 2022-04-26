@@ -66,7 +66,7 @@ const Login = (props) => {
       dispatch(login(Email, password))
         .then(() => {
           //props.history.push("/dashboard")
-          window.location.href = "https://dev-purple.herokuapp.com";
+          window.location.href = "http://146.190.226.38/";
         })
         .catch(() => {
           setLoading(false);
