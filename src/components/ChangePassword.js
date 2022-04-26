@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Layout } from "./Layout";
-import { Newsletter } from "./NewsletterForm";
 import Loader from "./Loader";
 import UserService from "../services/user.service";
 import Form from "react-validation/build/form";
@@ -160,7 +159,6 @@ const ChangePassword = () => {
           </div>
         </div>
       </div>
-      <Newsletter />
     </Layout>
   );
 };

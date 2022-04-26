@@ -5,7 +5,6 @@ import Helmet from "react-helmet";
 import { Layout } from "./Layout";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { getProfileFetch } from "../actions/auth";
-import { Newsletter } from "./NewsletterForm";
 import Image1 from "../assets/images/12d6792e0ad2ffcbebb389c583dcd2e8.svg";
 import Image2 from "../assets/images/8fcf5e1a92ba5a97656f93d25149fb0f.svg";
 import Image3 from "../assets/images/cec787649b385c78ce2c36a8704f077d.svg";
@@ -160,7 +159,6 @@ function Dashboard(currentUser, designCount) {
           </div>
         </div>
       </div>
-      <Newsletter />
     </Layout>
   );
 }

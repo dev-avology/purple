@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Layout } from "./Layout";
-import { Newsletter } from "./NewsletterForm";
 import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector,connect } from "react-redux";
 import {getProfileFetch} from "../actions/auth"
@@ -573,7 +572,6 @@ function AddNewWok (currentUser) {
           </div>
         </div>
       </div>
-      <Newsletter />
     </Layout>
   );
 };

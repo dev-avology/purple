@@ -702,6 +702,8 @@ header .row {
 }
 .featured_products_item img, .explore_designs_item img, .artists_item img {
     width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 .featured_products_item h4, .explore_designs_item h4, .artists_item h4 {
     font-size: 19px;

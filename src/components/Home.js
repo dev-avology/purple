@@ -1,8 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Layout } from "./Layout"
-import {Banner, ProductRange, ProductSection, FeaturedProduct, PurpleArtist, ExploreDesign, FanArt} from "./HomepageSections"
-import { Newsletter } from "./NewsletterForm"
+import {Banner, ProductRange, ProductSection, FeaturedProduct, PurpleArtist, ExploreDesign} from "./HomepageSections"
 export const Home = () => (
     <Layout>
         <Helmet>
@@ -13,8 +12,6 @@ export const Home = () => (
         <ProductSection />
         <FeaturedProduct />
         <ExploreDesign />
-        <FanArt />
         <PurpleArtist />
-        <Newsletter />
     </Layout>
 )

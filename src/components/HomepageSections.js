@@ -139,6 +139,8 @@ export const ProductSection = ({ cats }) => {
 };
 
 export const FeaturedProduct = () => {
+  const { isLoggedIn } = useSelector(state => state.auth);
+  const [userId, setUserId] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getFeaturedProducts())
@@ -147,19 +149,40 @@ export const FeaturedProduct = () => {
   
   const FeaturedProducts = featuredProducts.data?.map((item) => (
     <li key={item.id}>
-      <div className="featured_products_item">
-        <img src={item.art_photo_path} alt="" />
-        <h4>{item.title}</h4>
-        <p>
-          by{" "}
-          {item.artist.first_name
-            ? `${item.artist.first_name}${
-                item.artist.last_name ? ` ${item.artist.last_name}` : null
-              }`
-            : item.artist.username}
-        </p>
-        <span>From $ {item.price}</span>
-      </div>
+      {isLoggedIn ? (
+        <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>
+        <div className="featured_products_item">
+          <img src={item.art_photo_path} alt="" />
+          <h4>{item.title}</h4>
+          <p>
+            by{" "}
+            {item.artist.first_name
+              ? `${item.artist.first_name}${
+                  item.artist.last_name ? ` ${item.artist.last_name}` : null
+                }`
+              : item.artist.username}
+          </p>
+          <span>From $ {item.price}</span>
+        </div>
+        </a>
+      ):
+      (
+        <Link to={`${process.env.PUBLIC_URL}/login`}>
+          <div className="featured_products_item">
+            <img src={item.art_photo_path} alt="" />
+            <h4>{item.title}</h4>
+            <p>
+              by{" "}
+              {item.artist.first_name
+                ? `${item.artist.first_name}${
+                    item.artist.last_name ? ` ${item.artist.last_name}` : null
+                  }`
+                : item.artist.username}
+            </p>
+            <span>From $ {item.price}</span>
+          </div>
+        </Link>
+      )}
     </li>
   ));
 
@@ -229,6 +252,8 @@ export const PurpleArtist = () => {
 };
 
 export const ExploreDesign = () => {
+   const { isLoggedIn } = useSelector(state => state.auth);
+   const [userId, setUserId] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getExploreDesign())
@@ -254,19 +279,39 @@ export const ExploreDesign = () => {
 
   const ExploreDesignProducts = exploreDesign.data?.map((item) => (
     <li key={item.id}>
+      {isLoggedIn ? (
+      <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>
       <div className="explore_designs_item">
-        <img src={item.art_photo_path} alt="" />
-        <h4>{item.title}</h4>
-        <p>
-          by{" "}
-          {item.artist.first_name
-            ? `${item.artist.first_name}${
-                item.artist.last_name ? ` ${item.artist.last_name}` : null
-              }`
-            : item.artist.name}
-        </p>
-        <span>{item.design_count} Products</span>
-      </div>
+      <img src={item.art_photo_path} alt="" />
+      <h4>{item.title}</h4>
+      <p>
+        by{" "}
+        {item.artist.first_name
+          ? `${item.artist.first_name}${
+              item.artist.last_name ? ` ${item.artist.last_name}` : null
+            }`
+          : item.artist.name}
+      </p>
+      <span>{item.design_count} Products</span>
+    </div>
+    </a>
+       ) : (
+        <Link to={`${process.env.PUBLIC_URL}/login`}>
+          <div className="explore_designs_item">
+          <img src={item.art_photo_path} alt="" />
+          <h4>{item.title}</h4>
+          <p>
+            by{" "}
+            {item.artist.first_name
+              ? `${item.artist.first_name}${
+                  item.artist.last_name ? ` ${item.artist.last_name}` : null
+                }`
+              : item.artist.name}
+          </p>
+          <span>{item.design_count} Products</span>
+        </div>
+        </Link>
+      )}
     </li>
   ));
 
