@@ -1,1 +1,0 @@
-Payment has been done successfully.
