@@ -31,7 +31,6 @@ import { fetchCats } from '../actions/postsActions';
 import { getFeaturedProducts, getExploreDesign, getFanArt } from '../actions/userActions';
 import { connect } from 'react-redux';
 import { useDispatch } from "react-redux";
-
 export const Banner = () => {  
   return (
     <div className="hero_banner_sec">
@@ -142,6 +141,13 @@ export const FeaturedProduct = () => {
   const { isLoggedIn } = useSelector(state => state.auth);
   const [userId, setUserId] = useState();
   const dispatch = useDispatch();
+  UserService.getUserData()
+      .then((response) => {
+          setUserId(response.data.id);
+      })
+      .catch((error) => {
+        console.log('Error: '+error);
+      });
   useEffect(() => {
     dispatch(getFeaturedProducts())
   }, [dispatch])
@@ -255,6 +261,13 @@ export const ExploreDesign = () => {
    const { isLoggedIn } = useSelector(state => state.auth);
    const [userId, setUserId] = useState();
   const dispatch = useDispatch();
+  UserService.getUserData()
+      .then((response) => {
+          setUserId(response.data.id);
+      })
+      .catch((error) => {
+        console.log('Error: '+error);
+      });
   useEffect(() => {
     dispatch(getExploreDesign())
   }, [dispatch])
