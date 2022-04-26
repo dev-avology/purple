@@ -12,7 +12,6 @@ import swal from "sweetalert";
 
 function ProductDetails ({currentUser, productDetail, loading }) {
   const navigate = useNavigate();
-  const { slug, art_id } = useParams();
   const [productData, setProductData] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [finalImage, setFinalImage] = useState();

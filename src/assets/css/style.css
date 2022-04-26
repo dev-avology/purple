@@ -565,7 +565,7 @@ header .row {
     color: #212121;
     display: inline-block;
 }
-.navigation ul li a:hover {
+.navigation ul li a:hover, .navigation ul li.active a {
     color: #865cd0;
 }
 

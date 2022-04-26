@@ -120,7 +120,7 @@ const Register = (props) => {
                 <div className="col-lg-6 offset-lg-3">
                     <div className="signup">
                         <h2>Join Redbubble</h2>
-                        <p>Already have an account? <Link to="/signin">Login</Link></p>
+                        <p>Already have an account? <Link to="/signup">Login</Link></p>
                         <div className="signup_form_tab">
                         <nav>
                         <Nav tabs id="nav-tab">

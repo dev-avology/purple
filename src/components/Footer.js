@@ -36,11 +36,11 @@ export default class Footer extends Component {
                             <div className="footer_item">
                                 <h3>Shop</h3>
                                 <ul>
-                                    <li><Link to="#">Fan Art</Link></li>
-                                    <li><Link to="#">New Works</Link></li>
-                                    <li><Link to="#">Login</Link></li>
-                                    <li><Link to="#">Signup</Link></li>
-                                    <li><Link to="#">Bulk orders</Link></li>
+                                    <li><a href="#">Fan Art</a></li>
+                                    <li><a href="#">New Works</a></li>
+                                    <li><Link to={`${process.env.PUBLIC_URL}/login`}>Login</Link></li>
+                                    <li><Link to={`${process.env.PUBLIC_URL}/signup`}>Signup</Link></li>
+                                    <li><a href="#">Bulk orders</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -48,11 +48,11 @@ export default class Footer extends Component {
                             <div className="footer_item">
                                 <h3>About</h3>
                                 <ul>
-                                    <li><Link to="#">About Us</Link></li>
-                                    <li><Link to="#">Social Responsibility</Link></li>
-                                    <li><Link to="#">Sell your art</Link></li>
-                                    <li><Link to="#">Jobs</Link></li>
-                                    <li><Link to="#">Artist Blog</Link></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Social Responsibility</a></li>
+                                    <li><a href="#">Sell your art</a></li>
+                                    <li><a href="#">Jobs</a></li>
+                                    <li><a href="#">Artist Blog</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -60,12 +60,12 @@ export default class Footer extends Component {
                             <div className="footer_item">
                                 <h3>Help</h3>
                                 <ul>
-                                    <li><Link to="#">Delivery</Link></li>
-                                    <li><Link to="#">Returns</Link></li>
-                                    <li><Link to="#">Guidelines</Link></li>
-                                    <li><Link to="#">Copyright</Link></li>
-                                    <li><Link to="#">Investor Center</Link></li>
-                                    <li><Link to="#">Contact Us</Link></li>
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Guidelines</a></li>
+                                    <li><a href="#">Copyright</a></li>
+                                    <li><a href="#">Investor Center</a></li>
+                                    <li><a href="#">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -74,19 +74,19 @@ export default class Footer extends Component {
                                 <h3>Social</h3>
                                 <ul>
                                     <li>
-                                        <Link to="#"><i className="fa fa-instagram" aria-hidden="true"></i> Instagram</Link>
+                                        <a href="https://www.instagram.com/"><i className="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
                                     </li>
                                     <li>
-                                        <Link to="#"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</Link>
+                                        <a href="https://www.facebook.com/"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
                                     </li>
                                     <li>
-                                        <Link to="#"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</Link>
+                                        <a href="https://www.twitter.com/"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
                                     </li>
                                     <li>
-                                        <Link to="#"><i className="fa fa-tumblr" aria-hidden="true"></i> Tumblr</Link>
+                                        <a href="https://www.tumblr.com/"><i className="fa fa-tumblr" aria-hidden="true"></i> Tumblr</a>
                                     </li>
                                     <li>
-                                        <Link to="#"><i className="fa fa-pinterest" aria-hidden="true"></i> Pinterest</Link>
+                                        <a href="https://www.pinterest.com/"><i className="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a>
                                     </li>
                                 </ul>
                             </div>
@@ -95,7 +95,7 @@ export default class Footer extends Component {
 					<div className="row footer_logo">
 						<div className="col-lg-6">
 							<div className="desktop_footer_logo text-left">
-								<Link to="#"><img src={FooterLogo} alt="" /></Link>
+								<a href="#"><img src={FooterLogo} alt="" /></a>
 							</div>
 						</div>
 						<div className="col-lg-6">
@@ -127,15 +127,15 @@ export default class Footer extends Component {
                     <div className="row">
                         <div className="col-lg-6">
                             <div className="footer_middle_left text-left">
-                                <Link to="#"><img alt="Visa" src={VisaImg} /></Link>
+                                <a href="#"><img alt="Visa" src={VisaImg} /></a>
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div className="footer_middle_right text-right">
                                 <ul>
-                                    <li><Link to="#">User Agreement</Link></li>
-                                    <li><Link to="#">Privacy Policy </Link></li>
-                                    <li><Link to="#">Cookie Policy</Link></li>
+                                    <li><a href="#">User Agreement</a></li>
+                                    <li><a href="#">Privacy Policy </a></li>
+                                    <li><a href="#">Cookie Policy</a></li>
                                 </ul>
                             </div>
                         </div>

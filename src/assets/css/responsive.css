@@ -311,7 +311,7 @@ h1.mobile-menu span {
     align-items: center;
     justify-content: center;
 }
-.navigation {
+.nav-main  {
     height: 100%;
     width: 320px;
     position: fixed;
@@ -326,6 +326,20 @@ h1.mobile-menu span {
     z-index: 9999999;
     overflow-y: scroll;
     margin: 0;
+}
+.navigation.opened {
+    position: fixed;
+    background: rgb(0 0 0 / 50%);
+    width: 100%;
+    display: block;
+    height: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+.navigation.opened .nav-main {
+    left: 0;
 }
 a.closebtn {
     position: absolute;
