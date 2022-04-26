@@ -3,11 +3,11 @@ import authHeader from "./auth-header";
 const apiURL = "http://146.190.226.38/backend-services";
 // Wiil be removed
 const getUserData = () => {
-  return axios.get(apiURL+"/api/get-user-data", { mode: 'no-cors', headers: authHeader() });
+  return axios.get(apiURL+"/api/get-user-data", { headers: authHeader() });
 };
 
 const getDesignCount = () => {
-  return axios.get(apiURL+"/api/get-designs-count", { mode: 'no-cors', headers: authHeader() });
+  return axios.get(apiURL+"/api/get-designs-count", { headers: authHeader() });
 };
 
 const getFeaturedProducts = () => {
@@ -15,7 +15,7 @@ const getFeaturedProducts = () => {
 };
 
 const getAllCategories = () => {
-  return axios.get("http://146.190.226.38/backend-services/api/get-all-categories", {mode: 'no-cors' });
+  return axios.get(apiURL + "/api/get-all-categories");
 };
 
 const UpdateProfileData = (data) => {

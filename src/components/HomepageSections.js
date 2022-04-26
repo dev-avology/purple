@@ -32,7 +32,7 @@ import { getFeaturedProducts, getExploreDesign, getFanArt } from '../actions/use
 import { connect } from 'react-redux';
 import { useDispatch } from "react-redux";
 
-export const Banner = () => {  
+export const Banner = () => {
   return (
     <div className="hero_banner_sec">
       <div className="container">
