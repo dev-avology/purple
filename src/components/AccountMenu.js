@@ -42,17 +42,13 @@ function AccountMenu ({currentUser}) {
                             <span className="new_work"><Link to="/add-new-work">Add New Work</Link></span>
                             <span className="order_history">
                                 <Link to="#">Order History</Link>
-                                <Link to="#">BubbleMail</Link>
                                 <Link to="/account">Account Settings</Link>
                             </span>
                             <Link to="#">RB Blog</Link>
                             <Link to="#login" className="account_logout" onClick={logOut}>Logout</Link>
                         </div>
                     </div>
-                </li>
-
-
-                
+                </li>                
                 <li>
                     <Link to="/wishlist"> <img alt="" src={HeartIcon} /></Link>
                 </li>
