@@ -6,9 +6,6 @@ const LoginMenu = () => {
     return (
         <>
             <ul>
-                <li>
-                   
-                </li>
                 <li><Link to={`${process.env.PUBLIC_URL}/login`}>Login</Link></li>
                 <li><Link to={`${process.env.PUBLIC_URL}/signup`}>Signup</Link></li>
                 <li>
