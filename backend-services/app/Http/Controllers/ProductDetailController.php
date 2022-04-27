@@ -35,15 +35,10 @@ class ProductDetailController extends Controller
         $productImage = base_path(config($this->productImagesPath).'/'.$productData->product_image);
         $designImage = base_path(config($this->artworkImagesPath).'/'.$singleProduct['art_photo_name']);
        
-        $this->mergeImg($productImage, $designImage);
+        //$this->mergeImg($productImage, $designImage);
         //$this->createMergedImage($productImage, $designImage);
         
         return view('frontend.product-detail', ['product' => $singleProduct, 'productImage' => $productImage]);
-    }
-
-    private function createMergedImage($image1, $image2)
-    {
-
     }
 
     private function mergeImg($image1, $image2)

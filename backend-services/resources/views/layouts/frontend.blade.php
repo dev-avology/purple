@@ -372,6 +372,7 @@
         <script src="{{asset('public/frontend/js/magnific-popup.min.js')}}"></script>
 		<script src="{{asset('public/frontend/js/owl.carousel.js')}}" type="text/javascript"></script>
 		<script src="{{asset('public/frontend/js/custom-jquery.js')}}"></script>
+		<script src="{{asset('public/frontend/js/htmltocanvas.min.js')}}"></script>
 		@stack('scripts');
     </body>
 </html>

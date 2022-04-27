@@ -134,9 +134,9 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                             <div className="art_category_item_img">
                                 <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation}`}>
                                 <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>
-                                  {/* <img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} />
-                                  <img src={item.art_photo_path} alt="" /> */}
-                                  <img className="product_frame" src={mergedImage} />
+                                  <img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} />
+                                  <img src={item.art_photo_path} alt="" /> 
+                                  {/* <img className="product_frame" src={mergedImage} /> */}
                                 </Link>
                                 </div>
                                 <div className="art_category_item_hover">
