@@ -20,6 +20,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     const [Loading, setLoading] = useState(false);
     const [token, setToken] = useState();
     const [userId, setUserId] = useState();
+    const [mergedImage, setMergedImage] = useState();
 
 
     useEffect(() => {
@@ -85,7 +86,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
             { src:aa.art_photo_path, x: 0, y: 0 },
             { src:aa.product_by_orientation.product_image_full_path, x: 12, y: 0 }
             ], {crossOrigin:'Anonymous'})
-            .then(b64 => document.querySelector('img.abc').src = b64
+            .then(b64 => setMergedImage(b64)
               );
             }
         }
@@ -136,7 +137,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                   <img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} />
                                   <img src={item.art_photo_path} alt="" />
                                 </Link>
-                                <img class="abc" src='' width={100} height={200} alt="avatar"/>
+                                <img class="abc" src={mergedImage} width={100} height={200} alt="avatar"/>
                                 </div>
                                 <div className="art_category_item_hover">
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
