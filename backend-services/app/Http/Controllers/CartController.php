@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Services\UploadService;
+use Illuminate\Http\UploadedFile;
 
 class CartController extends Controller
 {
     private $cartTypeItem;
+    private $uploadService;
+    private $finalProductImageUploadPath;
+    private $availableExtensions;
 
     public function __construct()
     {
         $this->cartTypeItem = 0;
+        $this->finalProductImageUploadPath = config('file-upload-paths.final-product-image');
+        $this->uploadService = new uploadService();
+        $this->availableExtensions = config('file-upload-extensions.image');
     }
 
     public function index()
@@ -21,22 +29,20 @@ class CartController extends Controller
         return view('frontend.cart', ['cart' => $cart]);
     }
 
-    public function addToCart()
+    public function addToCart(Request $request)
     {
 
-        if (empty(request()->input('buyer_id')) || empty(request()->input('seller_id')) || empty(request()->input('product_id')) || empty(request()->input('quantity')) || empty(request()->input('final_product_image')) ) {
-            return redirect('https://dev-purple.herokuapp.com/');
+        if (empty($request['buyer_id']) || empty($request['seller_id']) || empty($request['product_id']) || empty($request['quantity']) || empty($request['final_product_image']) ) {
+            die('Something went wrong while processing the request');
         }
 
-        if (request()->input('buyer_id') == 'undefined') {
-            return redirect('https://dev-purple.herokuapp.com/login/');
-        }
+        $uploadedImage = $this->handleUploadedImages($request['final_product_image'], $this->finalProductImageUploadPath);
 
-        $buyer_id = request()->input('buyer_id');
-        $seller_id = request()->input('seller_id'); 
-        $product_id = request()->input('product_id');
-        $quantity = request()->input('quantity');
-        $final_product_image = request()->input('final_product_image');
+        $buyer_id = $request['buyer_id'];
+        $seller_id = $request['seller_id']; 
+        $product_id = $request['product_id'];
+        $quantity = $request['quantity'];
+        $final_product_image = $uploadedImage;
 
         $validateCartData = [
             'buyer_id' => $buyer_id,
@@ -57,6 +63,20 @@ class CartController extends Controller
         } else {
             echo "Something went wrong while adding your item to cart.";
         }
+    }
+
+    public function saveProductFinalImage(Request $request)
+    {
+ 
+        $uploadedImage = $this->handleUploadedImages($request['final_product_image'], $this->finalProductImageUploadPath);
+    }
+
+    public function handleUploadedImages(UploadedFile $file, $destinationPath)
+    {
+        $fileName = rand() . '' . $file->getClientOriginalName();
+        $fileName = $fileName.'.png';
+        $file->move($destinationPath, $fileName);
+        return $fileName;
     }
 
     private function createItem($validateCartData)

@@ -16,11 +16,10 @@
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
 										</a>
 									</li>
-									<li>
-										
-										<a href="{{$product['art_photo_path']}}" alt="" class="image" id="final-product-image" title="">
+									<li class="htmlToImageVis" id="final-product-image">
+										<a href="{{$product['art_photo_path']}}" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
-											<img src="{{$productImage}}" alt="Product Image" />
+											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
 										</a>
 									</li>
 								</ul>
@@ -70,7 +69,7 @@
 									<!-- <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 4H3a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V5a1 1 0 00-1-1zm-1 14H4V6h2v5a1 1 0 002 0V6h3v7a1 1 0 002 0V6h3v5a1 1 0 002 0V6h2z"></path></svg> View size guide</a> -->
 									<button type="button" class="styles_button" >
 										<!-- <span class="iconBefore"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="8" cy="20" r="2"></circle><circle cx="18" cy="20" r="2"></circle><path d="M19 17H7a1 1 0 01-1-.78L3.2 4H2a1 1 0 010-2h2a1 1 0 011 .78L7.8 15h10.4L20 6.78a1 1 0 012 .44l-2 9a1 1 0 01-1 .78z"></path><path d="M16 6h-2V4a1 1 0 00-2 0v2h-2a1 1 0 000 2h2v2a1 1 0 002 0V8h2a1 1 0 000-2z"></path></svg></span> -->
-										<a class="children" href='http://146.190.226.38/backend-services/add-to-cart?buyer_id={{session()->get("userId")}}&seller_id={{$product["user_id"]}}&product_id={{$product["id"]}}&quantity=1&final_product_image={{$product["art_photo_path"]}}'>Add to cart</a>
+										<a class="children" href='javascript:void();' id="add-item-to-cart"  data-buyer='{{session()->get("userId")}}' data-seller-id='{{$product["user_id"]}}' data-product-id='{{$product["id"]}}' data-quantity="1">Add to cart</a>
 									</button>
 								</div>
 								<!-- <div class="delivery_main">
@@ -302,26 +301,48 @@
 @push('scripts')
 
 <script>
-	
-	// html2canvas($('#'), {
-	// 	onrendered: function(canvas) {
-	// 		var img = canvas.toDataURL()
-	// 		window.open(img);
-	// 	}
-	// });
 
-	var node = document.getElementById('final-product-image');
+	$(document).ready(function() {
+		$('#add-item-to-cart').click(()=> {
+			var node = document.getElementById('final-product-image');
+			
+			var buyer_id = $('#add-item-to-cart').data('buyer')
+			var seller_id = $('#add-item-to-cart').data('seller-id')
+			var product_id = $('#add-item-to-cart').data('product-id')
+			var quantity = $('#add-item-to-cart').data('quantity')
 
-	domtoimage.toPng(node)
-		.then(function (dataUrl) {
-			var img = new Image();
-			img.src = dataUrl;
-			document.body.appendChild(img);
-		})
-		.catch(function (error) {
-			console.error('oops, something went wrong!', error);
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+
+			domtoimage.toBlob(node)
+			.then(function (blob) {
+
+				var formData = new FormData()
+
+				formData.append('final_product_image', blob)
+				formData.append('buyer_id', buyer_id)
+				formData.append('seller_id', seller_id)
+				formData.append('product_id', product_id)
+				formData.append('quantity', quantity)
+
+				$.ajax({
+					type:'POST',
+					url:"{{ route('add-to-cart') }}",
+					data:formData,
+					processData: false,
+					contentType: false,
+					success:function(data){
+						location.href = "{{url('/cart')}}";
+					}
+				});
+
+			});
 		});
-
+	});
+	
 </script>
 
 @endpush

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ArtistArt as Design;
 use App\Models\Product;
-use Intervention\Image\ImageManager;
+
 
 class ProductDetailController extends Controller
 {
@@ -13,15 +13,14 @@ class ProductDetailController extends Controller
     private $productIsApproved = 1;
     private $productImagesPath;
     private $artworkImagesPath;
-    private $imageManager;
     
-    
-    public function __construct(ImageManager $imageManager)
+
+     
+    public function __construct()
     {
         $this->prodcuts_limit = config('pagination-limit.products-limit');
         $this->artworkImagesPath = 'file-upload-paths.artwork';
         $this->productImagesPath = 'file-upload-paths.products';
-        $this->imageManager = $imageManager;
     }
 
     public function index($art_id, $userId, $slug, $product_id) {
@@ -36,28 +35,6 @@ class ProductDetailController extends Controller
         
         return view('frontend.product-detail', ['product' => $singleProduct, 'productImage' => $productImage]);
     }
-
-    private function mergeImg($image1, $image2)
-    {
-        list($width,$height) = getimagesize($image2);
-
-        // echo "Image Width: ".$width;
-        // echo "<br>";
-        // echo "Image height: ".$height;
-        // die;
-
-        $image1 = imagecreatefromjpeg($image1);
-        $image2 = imagecreatefromjpeg($image2);
-
-        imagecopymerge($image1,$image2,500,260,10,0,600,600,1000);
-        header('Content-Type:image/png');
-        imagepng($image1);
-
-        $masterImg = imagepng($image1,'merged.png');
-
-        dd($masterImg);
-    }
-
 
     private function getProductBySlugAndID($art_id, $slug)
     {

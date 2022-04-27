@@ -29,7 +29,7 @@
 							</td>
 							<td class="product-thumbnail">
 								<a href="#">
-									<img width="300" height="300" src="{{$cart_data->final_product_image}}" class="" alt="" loading="" />
+									<img width="300" height="300" src="{{asset('uploads/final-product-images/'.$cart_data->final_product_image)}}" class="" alt="" loading="" />
 								</a>
 							</td>
 							<td class="product-name" data-title="Product">

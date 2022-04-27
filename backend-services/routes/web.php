@@ -32,9 +32,11 @@ Route::get('/', function () {
 // });
 
 Route::get('product-detail/{art_id}/{userId}/{slug}/{product_id}', [ProductDetailController::class, 'index'])->name('product-detail');
+
 Route::get('cart', [CartController::class, 'index'])->name('cart');
-Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('cart/remove', [CartController::class, 'removeItem'])->name('remove-from-cart');
+Route::post('save-final-product-image', [CartController::class, 'saveProductFinalImage'])->name('save-final-product-image');
 
 Route::get('decrement-cart', [CartController::class, 'decrementCart'])->name('decrement-cart');
 Route::get('increment-cart', [CartController::class, 'incrementCart'])->name('increment-cart');
