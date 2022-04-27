@@ -32,11 +32,7 @@ class ProductDetailController extends Controller
         $productData = Product::where('id', $product_id)->first();
         
         //echo $productData->product_image;
-        $productImage = base_path(config($this->productImagesPath).'/'.$productData->product_image);
-        $designImage = base_path(config($this->artworkImagesPath).'/'.$singleProduct['art_photo_name']);
-       
-        //$this->mergeImg($productImage, $designImage);
-        //$this->createMergedImage($productImage, $designImage);
+        $productImage = addFullPathToUploadedImage($this->productImagesPath, $productData->product_image); 
         
         return view('frontend.product-detail', ['product' => $singleProduct, 'productImage' => $productImage]);
     }

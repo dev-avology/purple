@@ -20,6 +20,7 @@
 										
 										<a href="{{$product['art_photo_path']}}" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+											
 											<img src="{{$productImage}}" alt="Product Image" />
 										</a>
 									</li>
