@@ -83,9 +83,9 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
           if(aa.art_photo_path){
         mergeImages([
             { src:aa.art_photo_path, x: 0, y: 0 },
-            { src:aa.art_photo_path, x: 12, y: 0 }
+            { src:aa.product_by_orientation.product_image_full_path, x: 12, y: 0 }
             ], {crossOrigin:'Anonymous'})
-            .then(b64 => console.log(b64)
+            .then(b64 => document.querySelector('img.abc').src = b64
               );
             }
         }
@@ -136,12 +136,13 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                   <img className="product_frame" src={item.product_by_orientation ? (item.product_by_orientation.product_image_full_path) : ("")} />
                                   <img src={item.art_photo_path} alt="" />
                                 </Link>
+                                <img class="abc" src='' width={100} height={200} alt="avatar"/>
                                 </div>
                                 <div className="art_category_item_hover">
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
                                     {isLoggedIn ? (
                                             <>
-                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>View Shop</a>
+                                            <a className="shop_btn" href={`https://localhost/purple/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>View Shop</a>
                                             </>
                                           ) : (
                                               <>

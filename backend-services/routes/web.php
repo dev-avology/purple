@@ -31,7 +31,7 @@ Route::get('/', function () {
 //     Route::get('product-detail', [ProductDetailController::class, 'index'])->name('product-detail');
 // });
 
-Route::get('product-detail/{art_id}/{userId}/{slug}', [ProductDetailController::class, 'index'])->name('product-detail');
+Route::get('product-detail/{art_id}/{userId}/{slug}/{product_id}', [ProductDetailController::class, 'index'])->name('product-detail');
 Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('cart/remove', [CartController::class, 'removeItem'])->name('remove-from-cart');
