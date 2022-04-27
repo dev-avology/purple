@@ -18,9 +18,8 @@
 									</li>
 									<li>
 										
-										<a href="{{$product['art_photo_path']}}" alt="" class="image" title="">
+										<a href="{{$product['art_photo_path']}}" alt="" class="image" id="final-product-image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
-											
 											<img src="{{$productImage}}" alt="Product Image" />
 										</a>
 									</li>
@@ -299,3 +298,30 @@
 		</div>
 		
 @endsection
+
+@push('scripts')
+
+<script>
+	
+	// html2canvas($('#'), {
+	// 	onrendered: function(canvas) {
+	// 		var img = canvas.toDataURL()
+	// 		window.open(img);
+	// 	}
+	// });
+
+	var node = document.getElementById('final-product-image');
+
+	domtoimage.toPng(node)
+		.then(function (dataUrl) {
+			var img = new Image();
+			img.src = dataUrl;
+			document.body.appendChild(img);
+		})
+		.catch(function (error) {
+			console.error('oops, something went wrong!', error);
+		});
+
+</script>
+
+@endpush

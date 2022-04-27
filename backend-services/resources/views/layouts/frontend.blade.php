@@ -372,6 +372,7 @@
         <script src="{{asset('public/frontend/js/magnific-popup.min.js')}}"></script>
 		<script src="{{asset('public/frontend/js/owl.carousel.js')}}" type="text/javascript"></script>
 		<script src="{{asset('public/frontend/js/custom-jquery.js')}}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="{{asset('public/frontend/js/htmltocanvas.min.js')}}"></script>
 		@stack('scripts');
     </body>
