@@ -875,7 +875,7 @@ rangeSlider();
 
 
 //****************************Singel Product image slider************************************//
-$(".singel_product_image").magnificPopup({
+$(".singel_product_imagess").magnificPopup({
     delegate: "a",
     type: "image",
     gallery: {

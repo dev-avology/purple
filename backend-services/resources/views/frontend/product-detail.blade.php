@@ -6,24 +6,53 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="product_details_main">
-							<div class="singel_product_image">
+							<div class="singel_product_image" data-toggle="modal" data-target="#popupModal">
 								<ul>
 									<li>
-										<a href="{{$product['art_photo_path']}}" alt="" class="image" title="">
+										<a href="javascript:void();" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
 										</a>
-										<a href="{{$product['art_photo_path']}}" alt="" class="image" title="">
+										<a href="javascript:void();" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
 										</a>
 									</li>
 									<li class="htmlToImageVis" id="final-product-image">
-										<a href="{{$product['art_photo_path']}}" alt="" class="image" title="">
+										<a href="javascript:void();" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
 											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
 										</a>
 									</li>
 								</ul>
 							</div>
+
+							<!-- The Modal -->
+							<div class="modal magnify-popup" id="popupModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+
+								<!-- Modal body -->
+								<!-- Modal footer -->
+								<div class="modal-header">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">X</button>
+								</div>
+								<div class="modal-body">
+									<div class="htmlToImageVis" id="final-product-image">
+										<a href="javascript:void();" alt="" class="image" title="">
+											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+										</a>
+									</div>
+								</div>
+
+								</div>
+							</div>
+							</div>
+
+
+
+
+
+
 							<div class="singel_product_details">
 								<h2>{{$product['title']}}</h2>
 								<p>Designed and sold by uellaaa</p>

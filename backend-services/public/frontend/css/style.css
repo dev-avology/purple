@@ -5268,3 +5268,12 @@ img.white_img {
     margin: 30px auto 0;
 }
 }
+
+/* modal css */
+.magnify-popup .modal-dialog {top: 50%;transform: translateY(-50%)!important;margin: 0 auto;max-width: 800px;}
+
+.magnify-popup .modal-header {justify-content: end;}
+
+.magnify-popup .modal-header .btn, .magnify-popup .modal-header .btn:active {background: #865cd0;color: #fff; border-color:#865cd0;}
+
+.magnify-popup .modal-header {border: 0;padding-bottom: 0;}
