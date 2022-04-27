@@ -59,14 +59,14 @@
 							<!-- <h2>Cart totals</h2> -->
 							<table cellspacing="0" class="shop_table">
 								<tbody>
-									<tr>
+									<!-- <tr>
 										<td colspan="2" class="actions">
 											<div class="coupon">
 												<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code" />
 												<button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply coupon</button>
 											</div>
 										</td>
-									</tr>
+									</tr> -->
 									<tr class="cart-subtotal">
 										<th>Items price</th>
 										<td data-title="Subtotal">

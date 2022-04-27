@@ -141,7 +141,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
                                     {isLoggedIn ? (
                                             <>
-                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>View Shop</a>
+                                            <a className="shop_btn" href={`https://localhost/purple/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>View Shop</a>
                                             </>
                                           ) : (
                                               <>

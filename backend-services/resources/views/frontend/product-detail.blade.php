@@ -305,7 +305,7 @@
 	$(document).ready(function() {
 		$('#add-item-to-cart').click(()=> {
 			var node = document.getElementById('final-product-image');
-			
+			$('#add-item-to-cart').text('Processing')
 			var buyer_id = $('#add-item-to-cart').data('buyer')
 			var seller_id = $('#add-item-to-cart').data('seller-id')
 			var product_id = $('#add-item-to-cart').data('product-id')
@@ -332,6 +332,9 @@
 					type:'POST',
 					url:"{{ route('add-to-cart') }}",
 					data:formData,
+					beforeSend: function() {
+						$('#add-item-to-cart').text('Processing')
+					},
 					processData: false,
 					contentType: false,
 					success:function(data){
