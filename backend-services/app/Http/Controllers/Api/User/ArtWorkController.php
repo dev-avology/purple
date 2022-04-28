@@ -133,6 +133,7 @@ class ArtWorkController extends Controller
                 $exploreDesign[$key]['design_count'] = $this->artistDesignCount($product['user_id']);               
             }
         }
+        $exploreDesign = $this->addFeaturedProducts($exploreDesign);
         return $exploreDesign;
 
     }

@@ -5286,3 +5286,19 @@ img.white_img {
  .htmlToImageVis img {
     height: auto!important;
 }
+
+.magnify-popup .htmlToImageVis {
+    position: relative;
+    z-index: 99;
+ }
+ 
+ .magnify-popup .htmlToImageVis:after {
+    content: "";
+    width: 100%;
+    height: 99%;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    background: #cfbeec;
+    z-index: -1;
+ }

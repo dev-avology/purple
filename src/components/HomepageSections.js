@@ -156,7 +156,7 @@ export const FeaturedProduct = () => {
   const FeaturedProducts = featuredProducts.data?.map((item) => (
     <li key={item.id}>
       {isLoggedIn ? (
-        <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>
+        <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}`}>
         <div className="featured_products_item">
           <img src={item.art_photo_path} alt="" />
           <h4>{item.title}</h4>
@@ -293,7 +293,7 @@ export const ExploreDesign = () => {
   const ExploreDesignProducts = exploreDesign.data?.map((item) => (
     <li key={item.id}>
       {isLoggedIn ? (
-      <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}`}>
+      <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}`}>
       <div className="explore_designs_item">
       <img src={item.art_photo_path} alt="" />
       <h4>{item.title}</h4>
