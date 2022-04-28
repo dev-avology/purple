@@ -31,7 +31,6 @@ class CategoryController extends Controller
             function ($design) {
                 $design->where('is_approved',  $this->productIsApproved);
             },
-            'designs.productByOrientation',
             'designs.artist'
         ])
             ->get()

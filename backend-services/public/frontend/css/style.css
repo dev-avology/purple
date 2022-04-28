@@ -5277,3 +5277,8 @@ img.white_img {
 .magnify-popup .modal-header .btn, .magnify-popup .modal-header .btn:active {background: #865cd0;color: #fff; border-color:#865cd0;}
 
 .magnify-popup .modal-header {border: 0;padding-bottom: 0;}
+
+
+.singel_product_image ul li a.image.htmlToImageVis img {
+    width: 44%;
+ }

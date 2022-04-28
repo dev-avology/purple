@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\ProductSubCategory;
+use App\Models\Product;
 
 trait FilterCategoryData {
   
@@ -18,9 +19,13 @@ trait FilterCategoryData {
                     $designs[$key]['artist_name'] = $designs[$key]['artist']['name'];
                 }
 
-                if ($designs[$key]['productByOrientation']) {
-                    $designs[$key]['productByOrientation']['product_image_full_path'] = asset(config($this->productImagesPath)).'/'.$designs[$key]['productByOrientation']['product_image'];
-                } 
+                $product = Product::where([
+                    'sub_category' => $designs[$key]['category_id'], 
+                    'orientation' => $designs[$key]['orientation'],
+                ])->first()->toArray();
+
+                $designs[$key]['product_by_orientation'] = $product;
+                $designs[$key]['product_image_full_path'] = asset(config($this->productImagesPath)).'/'.$product['product_image'];
             }
             return $designs;
         }

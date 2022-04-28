@@ -44,7 +44,7 @@ class ArtistArt extends Model
 
     public function productByOrientation()
     {
-        return $this->hasOne(Product::class, 'orientation', 'orientation');
+        return $this->hasMany(Product::class, 'sub_category', 'category_id');
     }
 
     public function designsByCategory()
