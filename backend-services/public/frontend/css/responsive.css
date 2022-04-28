@@ -78,6 +78,9 @@
 .cart_size_btn a, .cart_size_btn button {
     max-width: 150px;
 }
+
+.htmlToImageVis img {height: auto!important;}
+
 }
 
 @media screen and (max-width:1280px){

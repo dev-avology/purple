@@ -9,8 +9,9 @@
 							<div class="singel_product_image" data-toggle="modal" data-target="#popupModal">
 								<ul>
 									<li>
-										<a href="javascript:void();" alt="" class="image" title="">
+										<a href="javascript:void();" alt="" class="image htmlToImageVis" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
 										</a>
 										<a href="javascript:void();" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />

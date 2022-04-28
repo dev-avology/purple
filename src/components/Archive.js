@@ -21,13 +21,10 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     const [token, setToken] = useState();
     const [userId, setUserId] = useState();
 
-
     useEffect(() => {
       dispatch(fetchCats());
       dispatch(getProfileFetch());
       setToken(authToken());
-
-
     
       UserService.getUserData()
       .then((response) => {
