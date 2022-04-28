@@ -305,7 +305,7 @@ export const ExploreDesign = () => {
             }`
           : item.artist.name}
       </p>
-      <span>{item.design_count} Products</span>
+      {/* <span>{item.design_count} Products</span> */}
     </div>
     </a>
        ) : (
@@ -321,7 +321,7 @@ export const ExploreDesign = () => {
                 }`
               : item.artist.name}
           </p>
-          <span>{item.design_count} Products</span>
+          {/* <span>{item.design_count} Products</span> */}
         </div>
         </Link>
       )}
