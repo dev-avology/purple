@@ -5830,20 +5830,43 @@ body.signup_body .header_navigation {
     font-size: 18px;
 }
 
+
+
 .htmlToImageVis img {
+    left: 50%;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 100%!important;
+    max-width: 212px;
+ }
+ .htmlToImageVis .product_frame {
+    padding: 0!important;
+    position: unset;
+    -webkit-transform: unset;
+    transform: unset;
+    width: 100%!important;
+    max-width: 100%;
+ }
+
+ .htmlToImageVis.posters img {
     position: absolute;
     width: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
     top: 50%;
-    padding: 30px;
+    padding:0;
+    width: 42%!important;
 }
 
-.htmlToImageVis .product_frame {
+.htmlToImageVis.posters .product_frame {
     position: unset;
     width: 100% !important;
     transform: unset;
     padding: 0 !important;
+    max-width:unset;
 }
 
 .htmlToImageVis {

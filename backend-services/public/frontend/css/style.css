@@ -5282,3 +5282,7 @@ img.white_img {
 .singel_product_image ul li a.image.htmlToImageVis img {
     width: 44%;
  }
+
+ .htmlToImageVis img {
+    height: auto!important;
+}

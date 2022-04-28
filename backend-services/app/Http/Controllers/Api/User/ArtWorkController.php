@@ -9,9 +9,12 @@ use App\Models\User;
 use App\Services\UploadService;
 use App\Services\PriceCalculation;
 use Illuminate\Http\Request;
+use App\Traits\AddProductsToFeaturedProducts;
 
 class ArtWorkController extends Controller
 {
+    use AddProductsToFeaturedProducts;
+
     private $availableExtensions;
     private $uploadService;
     private $priceCalculation;
@@ -19,11 +22,13 @@ class ArtWorkController extends Controller
     private $isProductFeatured = 1;
     private $isProductPublic = 1;
     private $isProductApproved = 1;
+    private $artworkImagesPath;
 
     public function __construct()
     {
         $this->availableExtensions = config('file-upload-extensions.image');
         $this->artworkUploadPath = config('file-upload-paths.artwork');
+        $this->productImagesPath = 'file-upload-paths.products';
         $this->uploadService = new uploadService();
         $this->priceCalculation = new priceCalculation();
     }
@@ -79,6 +84,7 @@ class ArtWorkController extends Controller
                 unset($featuredProducts[$key]['artist_profile']);
             }
         }
+        $featuredProducts = $this->addFeaturedProducts($featuredProducts);
         return $featuredProducts;
     }
 

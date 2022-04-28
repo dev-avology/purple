@@ -128,7 +128,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                         <div key={item.id} className="col-lg-4 col-sm-6">
                           <div className="art_category_item">
                             <div className="art_category_item_img">
-                                <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation}`}>
+                                <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation} ${ProductsData.slug}` }>
                                 <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>
                                   <img className="product_frame" src={item.product_image_full_path} />
                                   <img src={item.art_photo_path} alt="" />
@@ -151,8 +151,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                 </div>
                             </div>
                             <div className="art_category_item_text">
-                              <h4><Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>{item.title}</Link></h4>
-                              <p>By Ceci Tattoos</p>
+                              <h4><a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>{item.title}</a></h4>
                               <span className="price">${item.price}</span>
                             </div>
                           </div>
