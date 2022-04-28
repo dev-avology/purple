@@ -17,7 +17,7 @@
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
 										</a>
 									</li>
-									<li class="htmlToImageVis" id="final-product-image" style="background: #cfbeec;" >
+									<li class="htmlToImageVis" id="final-product-image">
 										<a href="javascript:void();" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
 											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
