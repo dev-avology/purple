@@ -137,11 +137,11 @@
 											<button class="submit_btn" type="submit"><img src="{{asset('public/frontend/images/search_icon.png')}}" alt="" /></button>
 										</div>
 									</li>
-									<li><a href="#">Sell your art</a></li>
-									<li><a href="#">Login</a></li>
-									<li><a href="#">Signup</a></li>
+									<li><a href="http://146.190.226.38/login">Sell your art</a></li>
+									<li><a href="http://146.190.226.38/login">Login</a></li>
+									<li><a href="http://146.190.226.38/signup">Signup</a></li>
 									<li>
-										<a href="#"> <img class="color_icon" src="{{asset('public/frontend/images/heart_icon.png')}}" alt="" /></a>
+										<a href="http://146.190.226.38/wishlist"> <img class="color_icon" src="{{asset('public/frontend/images/heart_icon.png')}}" alt="" /></a>
 									</li>
 									<li>
 										<a href="{{route('cart')}}"><img class="color_icon" src="{{asset('public/frontend/images/cart_icon.png')}}" alt="" /></a>
