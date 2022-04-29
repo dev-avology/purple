@@ -1984,7 +1984,7 @@ body.signup_body .header_navigation {
     padding: 0px 35px 0px 0px;
     position: relative;
 }
-.art_category_list .accordion .card .card-head h4 a::before {
+/* .art_category_list .accordion .card .card-head h4 a::before {
     content: "\f106";
     position: absolute;
     right: 0;
@@ -1993,7 +1993,7 @@ body.signup_body .header_navigation {
     font-size: 22px;
     color: #865cd0;
     line-height: 20px;
-}
+} */
 .art_category_list .accordion .card .card-head h4 a.collapsed::before {
     content: "\f107";
 	color: #212121;
@@ -2022,6 +2022,7 @@ body.signup_body .header_navigation {
     color: #212121;
     line-height: normal;
     display: inline-block;
+    cursor: pointer;
 }
 
 
@@ -6037,6 +6038,24 @@ a.account_profile .gatsby-image-wrapper-constrained {
     align-content: center;
     text-align: center;
 }
+.featured_products img.product_frame{
+    height: 280px;
+}
+.featured_products img.product_frame + img {
+    max-width: 199px;
+    height: 200px;
+    top: 38%;
+}
+.explore_designs_sec img.product_frame {
+    height: 300px;
+}
+.explore_designs_sec img.product_frame + img {
+    max-width: 120px;
+    height: 136px;
+    top: 40%;
+}
+
+
 
 
 /*****************account media css**********************/

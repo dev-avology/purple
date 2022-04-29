@@ -157,8 +157,9 @@ export const FeaturedProduct = () => {
     <li key={item.id}>
       {isLoggedIn ? (
         <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}`}>
-        <div className="featured_products_item">
-          <img src={item.art_photo_path} alt="" />
+        <div className="featured_products_item htmlToImageVis">
+            <img className="product_frame" src={item.product.product_image} alt="" />
+            <img src={item.art_photo_path} alt="" />
           <h4>{item.title}</h4>
           <p>
             by{" "}
@@ -272,29 +273,13 @@ export const ExploreDesign = () => {
     dispatch(getExploreDesign())
   }, [dispatch])
   const {exploreDesign} = useSelector(state => state.exploreDesign);
-  // useEffect(() => {
-  //   UserService.getExploreDesign().then(
-  //     (response) => {
-  //       setProducts(response.data);
-  //     },
-  //     (error) => {
-  //       const _Dproducts =
-  //         (error.response &&
-  //           error.response.data &&
-  //           error.response.data.message) ||
-  //         error.message ||
-  //         error.toString();
-
-  //       setProducts(_Dproducts);
-  //     }
-  //   );
-  // }, []);
 
   const ExploreDesignProducts = exploreDesign.data?.map((item) => (
     <li key={item.id}>
       {isLoggedIn ? (
       <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}`}>
-      <div className="explore_designs_item">
+      <div className="explore_designs_item htmlToImageVis">
+      <img className="product_frame" src={item.product.product_image} alt="" />
       <img src={item.art_photo_path} alt="" />
       <h4>{item.title}</h4>
       <p>

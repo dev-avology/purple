@@ -38,7 +38,6 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
     Route::get('delete-art-work/', [ArtWorkController::class, 'deleteArtWork']);
     Route::get('get-similar-designs', [ArtWorkController::class, 'getSimilarDesignsByTags']);
 
-    Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
     Route::get('get-designs-count', [ArtWorkMediaController::class, 'returnCountOfTotalArts']);
     Route::post('save-cart', [CartController::class, 'saveCart']);
     Route::post('save-wishlist', [CartController::class, 'saveCart']);
@@ -60,6 +59,8 @@ Route::middleware(['auth:api', 'scope:buyer,seller'])->group(function() {
 
     Route::get('logout', [PassportAuthController::class, 'logout']);
 });
+
+Route::get('get-artwork-media', [ArtWorkMediaController::class, 'getArtWorkMedia']);
 
 Route::get('get-all-categories', [CategoryController::class, 'getAllCategories']);
 

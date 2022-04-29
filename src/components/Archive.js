@@ -10,6 +10,7 @@ import swal from "sweetalert";
 import Loader from "./Loader";
 import mergeImages from 'merge-images';
 import authToken from "../services/auth-token";
+import Accordion from 'react-bootstrap/Accordion';
 
 function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {    
   
@@ -20,6 +21,9 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     const [Loading, setLoading] = useState(false);
     const [token, setToken] = useState();
     const [userId, setUserId] = useState();
+    
+    const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('1');
+    const [selectedPriceFilter, setSelectedPriceFilter] = useState('low');
 
     useEffect(() => {
       dispatch(fetchCats());
@@ -33,7 +37,6 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
       .catch((error) => {
         console.log('Error: '+error);
       });
-
 
     }, [dispatch])
 
@@ -74,21 +77,17 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
               });
             });
       };
-      // if(ProductsData?.designs){
-      //   for(let aa of ProductsData?.designs){
-      //     console.log(aa.art_photo_path)
-      //     if(aa.art_photo_path){
-      //   mergeImages([
-      //       { src:aa.art_photo_path, x: 0, y: 0 },
-      //       { src:aa.art_photo_path, x: 12, y: 0 }
-      //       ], {crossOrigin:'Anonymous'})
-      //       .then(b64 => console.log(b64)
-      //         );
-      //       }
-      //   }
-      // }
+
+      const onValueChangeCategoryFilter = (event) => {
+        setSelectedCategoryFilter(event.target.value);
+      }
+
+      const onValueChangePriceFilter = (event) => {
+        setSelectedPriceFilter(event.target.value);
+      }
+
     return (
-        <Layout>
+      <Layout>
       {ProductsData ? (
       <Helmet>
         <title>{ProductsData.name} | Splashen</title>
@@ -100,8 +99,144 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
           <div className="row">
             <div className="col-lg-3 col-md-4">
               <div className="art_category_list">
-                <h2>Filters </h2>
-              </div>    
+                <h2>Filters </h2>	
+                <Accordion defaultActiveKey="0">
+                  <div className="card">
+                    <Accordion.Item eventKey="0" >
+                      <Accordion.Header>
+                        <div className="card-head" id="headingOne">
+                          <h4><a className="mb-0">Category</a></h4>
+                        </div>
+                      </Accordion.Header>
+                      <Accordion.Body>
+                        <div className="card-body">
+                          <div className="category_artwork">
+
+                            {
+                              cats.map(cat => 
+                                <label className="category_artwork_check">{cat.name}
+                                  <input 
+                                    type="radio" 
+                                    name="category" 
+                                    value={cat.id}
+                                    checked={selectedCategoryFilter == cat.id}
+                                    onChange={onValueChangeCategoryFilter}
+                                  />
+                                  <span className="radiobtn"></span>
+                                </label> 
+                              )
+                            }
+                            </div>
+                          </div>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </div>
+                  <div className="card">
+                    <Accordion.Item eventKey="1">
+                      <Accordion.Header>
+                        <div className="card-head" id="headingTwo">
+                          <h4><a href="#" className="mb-0">Price</a></h4>
+                        </div>
+                      </Accordion.Header>
+                      <Accordion.Body>
+                      <div className="card-body">
+                        <div className="category_price">
+                          <label className="category_artwork_check">$
+                            <input 
+                              type="radio"
+                              value="low"
+                              name="price_filter"
+                              checked={selectedPriceFilter == 'low'}
+                              onChange={onValueChangePriceFilter}
+                            />
+                            <span className="radiobtn"></span>
+                          </label>
+                          <label className="category_artwork_check">$$
+                            <input 
+                              type="radio"
+                              value="medium"
+                              name="price_filter"
+                              checked={selectedPriceFilter == 'medium'}
+                              onChange={onValueChangePriceFilter}
+                            />
+                            <span className="radiobtn"></span>
+                          </label>
+                          <label className="category_artwork_check">$$$
+                            <input 
+                              type="radio"
+                              value="high"
+                              name="price_filter" 
+                              checked={selectedPriceFilter == 'high'}
+                              onChange={onValueChangePriceFilter}
+                            />
+                            <span className="radiobtn"></span>
+                          </label>
+                        </div>
+                      </div>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </div>
+                  <div className="card">
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header>
+                          <div className="card-head" id="headingThree">
+                            <h4><a href="#" class="mb-0">Artwork Medium</a></h4>
+                          </div>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div className="card-body">
+                            <div className="category_artwork">
+                              <label className="category_artwork_check">All Mediums
+                              <input 
+                                type="radio" 
+                                name="artwork_medium"
+                                value="all_mediums" 
+                              />
+                              <span className="radiobtn"></span>
+                              </label>
+                              <label className="category_artwork_check">Design & Illustration
+                              <input 
+                                type="radio" 
+                                name="artwork_medium" 
+                                value="design_and_illustration"
+                              />
+                              <span className="radiobtn"></span>
+                              </label>
+                              <label className="category_artwork_check">Digital Art
+                              <input 
+                                type="radio" 
+                                name="artwork_medium" 
+                                value="digital_art"
+                              />
+                              <span className="radiobtn"></span>
+                              </label>
+                              <label className="category_artwork_check">Drawing
+                              <input 
+                                type="radio" 
+                                name="artwork_medium" 
+                                value="drawing"
+                              />
+                              <span className="radiobtn"></span>
+                              </label>
+                              <label className="category_artwork_check">Painting & Mixed Media
+                              <input 
+                                type="radio" 
+                                name="artwork_medium" 
+                                value="painting_and_mixed_media"
+                              />
+                              <span className="radiobtn"></span>
+                              </label>
+                              <label className="category_artwork_check">Photography
+                              <input type="radio" name="artwork_medium" value="photography" />
+                              <span className="radiobtn"></span>
+                              </label>
+                            </div>
+                          </div>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                  </div>
+              </Accordion>
+              </div>   
             </div> 
             <div className="col-lg-9 col-md-8">
               <div className="art_category">
