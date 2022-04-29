@@ -5288,3 +5288,45 @@ img.white_img {
 }
 
 .singel_product_image ul li a.image {background: #fff;margin: 5px;}
+.home-demo .owl-carousel .owl-item img {
+    width: 64%;
+}
+.home-demo  .owl-prev, .home-demo  .owl-next {
+    background-color: #865cd0;
+    height: 30px;
+    width: 32px;
+    font-size: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+.home-demo  .owl-next {
+    right: 0;
+    left: auto;
+}
+.home-demo  .owl-next:after {
+    content: "\f061";
+    font-family: 'FontAwesome';
+    font-size: 18px;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-weight: 300;
+}
+.home-demo  .owl-prev:after {
+    content: "\f060";
+    font-family: 'FontAwesome';
+    font-size: 18px;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-weight: 300;
+}
+.visibl-hd {
+    visibility: hidden;
+}

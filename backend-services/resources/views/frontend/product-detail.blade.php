@@ -39,8 +39,25 @@
 								<div class="modal-body">
 									<div class="htmlToImageVis" id="final-product-image">
 										<a href="javascript:void();" alt="" class="image" title="">
-											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
-											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+											<!--img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" /-->
+											<div class="home-demo">
+												
+							
+													<div class="owl-carousel new-cr">
+														<div class="item">
+														<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+										            	<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+														</div>
+														<div class="item">
+														<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+														<img  class="product_frame visibl-hd" src="{{$productImage}}" alt="Product Image" />
+														</div>
+														
+														
+												
+												    </div>
+											</div>
 										</a>
 									</div>
 								</div>
@@ -377,5 +394,23 @@
 	});
 	
 </script>
+<script>
+      var owl = $('.new-cr');
+      owl.owlCarousel({
+        margin: 10,
+        loop: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 1
+          },
+          1000: {
+            items: 1
+          }
+        }
+      })
+    </script>
 
 @endpush
