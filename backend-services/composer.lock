@@ -1578,7 +1578,6 @@
                 },
                 "laravel": {
                     "providers": [
-                        "Intervention\\Image\\ImageServiceProvider"
                     ],
                     "aliases": {
                         "Image": "Intervention\\Image\\Facades\\Image"

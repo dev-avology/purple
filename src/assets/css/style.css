@@ -6332,14 +6332,14 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
 .posters-wrapper:after {
     border-bottom: 30px solid #b1b1b1;
     border-left: 30px solid #f8f8f8;
-    bottom: 0;
+    bottom: -2px;
     box-shadow: -3px -3px 8px rgba(0,0,0,.3);
     content: "";
     height: 0;
     position: absolute;
     right: -8px;
     width: 0;
-   }
+}
    
 .htmlToImageVis.landscape img {
     padding: 0;
@@ -6368,22 +6368,33 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     width: 94%!important;
 }
 .htmlToImageVis .posters-wrapper img {
-    padding: 0;
-    position: static;
-    transform: none;
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    padding: 0;
+    position: static;
+    -webkit-transform: none;
+    transform: none;
+    width: 100%!important;
 }
 
 
 .htmlToImageVis .posters-wrapper img.poster-bg {
-    position: absolute!important;
-    top: -4px!important;
-    left: -5px!important;
     bottom: -4px;
+    height: 107%;
+    left: -5px!important;
+    position: absolute!important;
     right: -11px!important;
-    width: calc(100% + 9px)!important;
-    height: 105%;
+    top: -4px!important;
+    width: calc(100% + 10px)!important;
+    max-height: initial;
+    object-fit: initial;
+    object-position: inherit;
+}
+
+.posters-wrapper img {
+    height: 76px;
+    object-fit: cover;
+    object-position: center;
 }
    

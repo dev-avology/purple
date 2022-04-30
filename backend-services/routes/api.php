@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\User\PasswordHandlerController;
 use App\Http\Controllers\Api\ProductPricesController;
 use App\Http\Controllers\Api\ShopManagementController;
+use App\Http\Controllers\Api\FilterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +76,5 @@ Route::get('get-single-product', [SingleProductController::class, 'getProductByS
 Route::get('get-product', [SingleProductController::class, 'getProduct']);
 
 Route::get('shop/{catSlug?}', [SearchController::class, 'searchProducts']);
+
+Route::get('filter-products', [FilterController::class, 'index']);
