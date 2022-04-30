@@ -39,6 +39,14 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
         console.log('Error: '+error);
       });
 
+      // UserService.getArtworkMedia()
+      // .then(response => {
+      //   setArtWorkMedia(response.data)
+      // })
+      // .catch(error => {
+      //   console.log('Error: '+error);
+      // });
+
     }, [dispatch])
 
     const onSaveWishlist = (seller_id, product_id) => {

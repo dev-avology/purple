@@ -6330,18 +6330,17 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
 
 
 .posters-wrapper:after {
-    content: "";
-    position: absolute;
-    bottom: 0%;
-    right: 0%;
-    width: 0px;
-    height: 0px;
     border-bottom: 30px solid #b1b1b1;
     border-left: 30px solid #f8f8f8;
-    -webkit-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
-    -moz-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
-    box-shadow: -3px -3px 8px rgb(0 0 0 / 30%);
-}
+    bottom: 0;
+    box-shadow: -3px -3px 8px rgba(0,0,0,.3);
+    content: "";
+    height: 0;
+    position: absolute;
+    right: -8px;
+    width: 0;
+   }
+   
 .htmlToImageVis.landscape img {
     padding: 0;
     width: 44%!important;
@@ -6352,10 +6351,10 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     display: block;
 }
 .posters-wrapper {
-    left: 50%;
+    left: 47%;
     padding: 0;
     position: absolute;
-    top: 50%;
+    top: 48%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
     width: 100%;
@@ -6366,7 +6365,7 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     width: 100%!important;
 }
 .htmlToImageVis .posters-wrapper img {
-    width: 100%!important;
+    width: 94%!important;
 }
 .htmlToImageVis .posters-wrapper img {
     padding: 0;
@@ -6376,3 +6375,15 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     margin-right: auto;
     display: block;
 }
+
+
+.htmlToImageVis .posters-wrapper img.poster-bg {
+    position: absolute!important;
+    top: -4px!important;
+    left: -5px!important;
+    bottom: -4px;
+    right: -11px!important;
+    width: calc(100% + 9px)!important;
+    height: 105%;
+}
+   
