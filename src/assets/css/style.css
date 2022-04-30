@@ -5831,18 +5831,16 @@ body.signup_body .header_navigation {
     font-size: 18px;
 }
 
-
-
 .htmlToImageVis img {
     left: 50%;
+    max-width: 212px;
     padding: 0;
     position: absolute;
     top: 50%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    width: 100%!important;
-    max-width: 212px;
- }
+    width: 50%!important;
+}  
  .htmlToImageVis .product_frame {
     padding: 0!important;
     position: unset;
@@ -6327,3 +6325,44 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     max-width: 100%;
 }
 }
+
+
+.htmlToImageVis.posters .posters-wrapper img.poster-bg {
+        display: none;
+   }
+   
+.htmlToImageVis.posters .posters-wrapper img {
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+    transform: none;
+    display: block;
+    width: 100%!important;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%!important;
+}
+.htmlToImageVis.posters .posters-wrapper {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 110px;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    margin-top: 22px;
+}
+.htmlToImageVis.posters .posters-wrapper:after {
+    content: "";
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 0px;
+    height: 0px;
+    border-bottom: 30px solid #efefef;
+    border-left: 30px solid #f8f8f8;
+    -webkit-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
+    box-shadow: -3px -3px 8px rgb(0 0 0 / 30%);
+}
+   

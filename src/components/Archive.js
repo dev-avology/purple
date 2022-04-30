@@ -22,6 +22,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     const [Loading, setLoading] = useState(false);
     const [token, setToken] = useState();
     const [userId, setUserId] = useState();
+    const [artWorkMedia, setArtWorkMedia] = useState();
     
     const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('1');
     const [selectedPriceFilter, setSelectedPriceFilter] = useState('low');
@@ -39,13 +40,13 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
         console.log('Error: '+error);
       });
 
-      // UserService.getArtworkMedia()
-      // .then(response => {
-      //   setArtWorkMedia(response.data)
-      // })
-      // .catch(error => {
-      //   console.log('Error: '+error);
-      // });
+      UserService.getArtworkMedia()
+      .then(response => {
+        setArtWorkMedia(response.data)
+      })
+      .catch(error => {
+        console.log('Error: '+error);
+      });
 
     }, [dispatch])
 

@@ -9,6 +9,6 @@ class FilterController extends Controller
 {
     public function index()
     {
-        return "Filtered Results";
+       
     }
 }
