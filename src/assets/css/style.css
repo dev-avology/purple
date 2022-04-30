@@ -5835,14 +5835,14 @@ body.signup_body .header_navigation {
 
 .htmlToImageVis img {
     left: 50%;
+    max-width: 212px;
     padding: 0;
-    position: absolute;
+    position: absolute!important;
     top: 50%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    width: 100%!important;
-    max-width: 212px;
- }
+    width: 44%!important;
+}
  .htmlToImageVis .product_frame {
     padding: 0!important;
     position: unset;
@@ -5872,11 +5872,6 @@ body.signup_body .header_navigation {
 
 .htmlToImageVis {
     position: relative;
-}
-
-.htmlToImageVis.landscape img {
-    width: 44%;
-    padding: 0;
 }
 
 
@@ -6342,14 +6337,16 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
 }
    
 .htmlToImageVis.landscape img {
-    padding: 0;
-    width: 44%!important;
-    position: static;
-    transform: none;
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    padding: 0;
+    /* position: static; */
+    /* -webkit-transform: none; */
+    /* transform: none; */
+    /* width: 44%!important; */
 }
+
 .posters-wrapper {
     left: 47%;
     padding: 0;
