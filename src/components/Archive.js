@@ -295,7 +295,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
                                     {isLoggedIn ? (
                                             <>
-                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>View Shop</a>
+                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${ProductsData.slug}`}>View Shop</a>
                                             </>
                                           ) : (
                                               <>
@@ -308,7 +308,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                 </div>
                             </div>
                             <div className="art_category_item_text">
-                              <h4><a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>{item.title}</a></h4>
+                              <h4><a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${ProductsData.slug}`}>{item.title}</a></h4>
                               <span className="price">${item.price}</span>
                             </div>
                           </div>

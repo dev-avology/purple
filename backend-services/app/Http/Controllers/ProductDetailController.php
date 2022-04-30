@@ -23,7 +23,7 @@ class ProductDetailController extends Controller
         $this->productImagesPath = 'file-upload-paths.products';
     }
 
-    public function index($art_id, $userId, $slug, $product_id) {
+    public function index($art_id, $userId, $slug, $product_id, $category) {
         session()->put('userId',$userId);
     
         $singleProduct = $this->getProductBySlugAndID($art_id, $slug);
@@ -33,7 +33,11 @@ class ProductDetailController extends Controller
         //echo $productData->product_image;
         $productImage = addFullPathToUploadedImage($this->productImagesPath, $productData->product_image); 
         
-        return view('frontend.product-detail', ['product' => $singleProduct, 'productImage' => $productImage]);
+        return view('frontend.product-detail', [
+            'product' => $singleProduct, 
+            'productImage' => $productImage, 
+            'category' => $category
+        ]);
     }
 
     private function getProductBySlugAndID($art_id, $slug)

@@ -6330,7 +6330,7 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
 .htmlToImageVis.posters .posters-wrapper img.poster-bg {
         display: none;
    }
-   
+
 .htmlToImageVis.posters .posters-wrapper img {
     position: static;
     margin-left: auto;
@@ -6353,16 +6353,14 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     margin-top: 22px;
 }
 .htmlToImageVis.posters .posters-wrapper:after {
-    content: "";
-    position: absolute;
-    bottom: 0%;
-    right: 0%;
-    width: 0px;
-    height: 0px;
-    border-bottom: 30px solid #efefef;
+    border-bottom: 30px solid #fff;
     border-left: 30px solid #f8f8f8;
-    -webkit-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
-    -moz-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
-    box-shadow: -3px -3px 8px rgb(0 0 0 / 30%);
+    bottom: 0;
+    box-shadow: -7px -7px 7px rgb(0 0 0 / 30%);
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 0;
+    width: 0;
 }
    
