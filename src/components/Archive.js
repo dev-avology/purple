@@ -265,15 +265,14 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                             <div className="art_category_item_img">
                                 <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation} ${ProductsData.slug}` }>
                                 <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>
+                                <img className="product_frame" src={item.product_image_full_path} />
                                   {
                                     ProductsData.slug == 'posters' ? (
                                       <div className="posters-wrapper">
-                                        <img className="product_frame" src={item.product_image_full_path} />
                                         <img src={item.art_photo_path} alt="" />
                                       </div>
                                     ) : (
                                       <>
-                                        <img className="product_frame" src={item.product_image_full_path} />
                                         <img src={item.art_photo_path} alt="" />
                                       </>
                                     )
