@@ -11,6 +11,7 @@ import Loader from "./Loader";
 import mergeImages from 'merge-images';
 import authToken from "../services/auth-token";
 import Accordion from 'react-bootstrap/Accordion';
+import posterBg from '../assets/images/posters-img.png';
 
 function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {    
   
@@ -270,6 +271,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                     ProductsData.slug == 'posters' ? (
                                       <div className="posters-wrapper">
                                         <img src={item.art_photo_path} alt="" />
+                                        <img className="poster-bg" src={posterBg} alt="" />
                                       </div>
                                     ) : (
                                       <>
