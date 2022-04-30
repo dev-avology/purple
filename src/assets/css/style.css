@@ -6327,3 +6327,37 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     max-width: 100%;
 }
 }
+
+
+.posters-wrapper:after {
+    content: "";
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 0px;
+    height: 0px;
+    border-bottom: 30px solid #b1b1b1;
+    border-left: 30px solid #f8f8f8;
+    -webkit-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
+    box-shadow: -3px -3px 8px rgb(0 0 0 / 30%);
+}
+.htmlToImageVis.landscape img {
+    padding: 0;
+    width: 44%!important;
+    position: static;
+    transform: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.posters-wrapper {
+    left: 50%;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 100%;
+    width: 42%!important;
+}
