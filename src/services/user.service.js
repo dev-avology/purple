@@ -1,6 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 const apiURL = "http://146.190.226.38/backend-services";
+//const apiURL = "https://localhost/purple/backend-services";
 // Wiil be removed
 const getUserData = () => {
   return axios.get(apiURL+"/api/get-user-data", { headers: authHeader() });
@@ -81,6 +82,10 @@ const getFanartMadeByArtist = () => {
   return axios.get(apiURL + "/api/fanart-madeby-artist");
 };
 
+const getFilterCategoryData = (category_id, price, art_medium) => {
+  return axios.get(`${apiURL}/api/filter-products?category_id=${category_id}&price=${price}&art_medium=${art_medium}`);
+}
+
 const UserService = {
   getUserData,
   getDesignCount,
@@ -101,6 +106,7 @@ const UserService = {
   IncrementCart,
   getExploreDesign,
   getFanartMadeByArtist,
+  getFilterCategoryData,
 };
 
 export default UserService;

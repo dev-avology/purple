@@ -28,7 +28,6 @@ class SaveArtWorkRequest extends FormRequest
             'title'             => 'required|max:255',
             'tags'              => 'required',
             'description'       => 'required',
-            'art_photo'         => 'required|file|max:5000',
             'artwork_media_id'  => 'required',
             'is_mature_content' => 'required',
             'is_public'         => 'required',
@@ -42,7 +41,6 @@ class SaveArtWorkRequest extends FormRequest
             'title.required' => 'Title is required.',
             'tags.required' => 'Please add some tags.',
             'description.required' => 'Description is required.',
-            'art_photo.required' => 'Art Image is requried.',
             'artwork_media_id.required' => 'artwork media id is missing.',
             'is_mature_content.required' => 'Please choose your content is mature or not.',
             'is_public.required' => 'is_public parameter\' is value is missing.'

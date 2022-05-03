@@ -37,10 +37,11 @@ class ArtWorkController extends Controller
     {
        
         $validatedArtWorkData = $request->validated();
-        $artworkUploadResponse = $this->uploadService->handleUploadedImages($validatedArtWorkData['art_photo'], $this->artworkUploadPath, $this->availableExtensions);
+
+        $artworkUploadResponse = $this->uploadService->handleUploadedImages($request['art_photo'], $this->artworkUploadPath, $this->availableExtensions);
 
         if (!$artworkUploadResponse) {
-            return response()->json(['message' => 'You have upload incorrect file type.'], 400);
+            return response()->json(['message' => 'You have upload incorrect file type. Or Art image is missing'], 400);
         }
 
         $dataArray = $this->artWorkDataArray($validatedArtWorkData, $artworkUploadResponse);

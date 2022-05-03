@@ -18,7 +18,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     const { isLoggedIn } = useSelector(state => state.auth);
 
     const {slug} = useParams()
-    const ProductsData = cats.find(prod => prod.slug === slug)
+    const data = cats.find(prod => prod.slug === slug)
     const [Loading, setLoading] = useState(false);
     const [token, setToken] = useState();
     const [userId, setUserId] = useState();
@@ -26,6 +26,27 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     
     const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('1');
     const [selectedPriceFilter, setSelectedPriceFilter] = useState('low');
+    const [selectedMediumFilter, setSelectedMediumFilter] = useState('2');
+    const [productsData, setProductsData] = useState(data);
+    const [fetchFilter, setFetchFilter] = useState(false);
+
+    useEffect(() => {
+
+      UserService.getFilterCategoryData(selectedCategoryFilter, selectedPriceFilter, selectedMediumFilter)
+        .then((response) => {
+          setLoading(false);
+          console.log(response.data[0]);
+          setProductsData(response.data[0]);
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.log('Something went wrong while getting the data: '+error);
+        });
+    }, [selectedCategoryFilter, selectedPriceFilter, selectedMediumFilter]);
+
+    useEffect(() => {
+      setProductsData(data);
+    }, [cats]);
 
     useEffect(() => {
       dispatch(fetchCats());
@@ -47,7 +68,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
       .catch(error => {
         console.log('Error: '+error);
       });
-
+      
     }, [dispatch])
 
     const onSaveWishlist = (seller_id, product_id) => {
@@ -89,21 +110,35 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
       };
 
       const onValueChangeCategoryFilter = (event) => {
+        setLoading(true);
+        setProductsData('');
         setSelectedCategoryFilter(event.target.value);
       }
 
       const onValueChangePriceFilter = (event) => {
+        setLoading(true);
         setSelectedPriceFilter(event.target.value);
+      }
+
+      const onValueChangeMediumFilter = (event) => {
+        setLoading(true);
+        setSelectedMediumFilter(event.target.value);
       }
 
     return (
       <Layout>
-      {ProductsData ? (
+
+      {
+        productsData ? (console.log(console.log('Here Printing Data'+ productsData.id))) : (console.log('Product is going in else part'))
+      }
+
+
+      {productsData ? (
       <Helmet>
-        <title>{ProductsData.name} | Splashen</title>
+        <title>{productsData.name} | Splashen</title>
       </Helmet>
       ) :(null) }
-      {loading ? <Loader /> : null}
+      {loading || Loading ? <Loader /> : null}
       <div className="art_category_sec">
         <div className="container">
           <div className="row">
@@ -190,25 +225,19 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                     <Accordion.Item eventKey="2">
                         <Accordion.Header>
                           <div className="card-head" id="headingThree">
-                            <h4><a href="#" class="mb-0">Artwork Medium</a></h4>
+                            <h4><a href="#" className="mb-0">Artwork Medium</a></h4>
                           </div>
                         </Accordion.Header>
                         <Accordion.Body>
                           <div className="card-body">
                             <div className="category_artwork">
-                              <label className="category_artwork_check">All Mediums
-                              <input 
-                                type="radio" 
-                                name="artwork_medium"
-                                value="all_mediums" 
-                              />
-                              <span className="radiobtn"></span>
-                              </label>
                               <label className="category_artwork_check">Design & Illustration
                               <input 
                                 type="radio" 
                                 name="artwork_medium" 
-                                value="design_and_illustration"
+                                value="2"
+                                checked={selectedMediumFilter == '2'}
+                                onChange={onValueChangeMediumFilter}
                               />
                               <span className="radiobtn"></span>
                               </label>
@@ -216,7 +245,9 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                               <input 
                                 type="radio" 
                                 name="artwork_medium" 
-                                value="digital_art"
+                                value="5"
+                                checked={selectedMediumFilter == '5'}
+                                onChange={onValueChangeMediumFilter}
                               />
                               <span className="radiobtn"></span>
                               </label>
@@ -224,7 +255,9 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                               <input 
                                 type="radio" 
                                 name="artwork_medium" 
-                                value="drawing"
+                                value="4"
+                                checked={selectedMediumFilter == '4'}
+                                onChange={onValueChangeMediumFilter}
                               />
                               <span className="radiobtn"></span>
                               </label>
@@ -232,12 +265,20 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                               <input 
                                 type="radio" 
                                 name="artwork_medium" 
-                                value="painting_and_mixed_media"
+                                value="3"
+                                checked={selectedMediumFilter == '3'}
+                                onChange={onValueChangeMediumFilter}
                               />
                               <span className="radiobtn"></span>
                               </label>
                               <label className="category_artwork_check">Photography
-                              <input type="radio" name="artwork_medium" value="photography" />
+                              <input 
+                                type="radio" 
+                                name="artwork_medium" 
+                                value="1" 
+                                checked={selectedMediumFilter == '1'}
+                                onChange={onValueChangeMediumFilter}
+                              />
                               <span className="radiobtn"></span>
                               </label>
                             </div>
@@ -250,11 +291,11 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
             </div> 
             <div className="col-lg-9 col-md-8">
               <div className="art_category">
-                <h2>{ProductsData?.name}</h2>
-                {ProductsData?.content ? (<p>{ProductsData?.content}</p>) : (false)}
+                <h2>{productsData?.name}</h2>
+                {productsData?.content ? (<p>{productsData?.content}</p>) : (false)}
                 <div className="results_main">
                   <div className="results">
-                      <h3>{ProductsData?.name} <span>{ProductsData?.designs.length > 0 ? (ProductsData?.designs.length + ' Results') : (false)} </span></h3>
+                      <h3>{productsData?.name} <span>{productsData?.designs?.length > 0 ? (productsData?.designs?.length + ' Results') : (false)} </span></h3>
                   </div>
                   <div className="results_select_form">
                       <select className="form-control border-0" id="exampl-drp">
@@ -265,18 +306,18 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                       </select>
                   </div>
                 </div>
-                {ProductsData?.designs.length > 0 ? (
+                {productsData?.designs?.length > 0 ? (
                 <div className="art_category_inner">
                   <div className="row">
-                    {ProductsData?.designs?.map((item) => {
+                    {productsData?.designs?.map((item) => {
                           return(
                         <div key={item.id} className="col-lg-4 col-sm-6">
                           <div className="art_category_item">
                             <div className="art_category_item_img">
-                                <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation} ${ProductsData.slug}` }>
+                                <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation} ${productsData.slug}` }>
                                 <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>
                                   {
-                                    ProductsData.slug == 'posters' ? (
+                                    productsData.slug == 'posters' ? (
                                       <div className="posters-wrapper">
                                         <img src={item.art_photo_path} alt="" />
                                         <img className="poster-bg" src={posterBg} alt="" /> 
@@ -295,7 +336,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
                                     {isLoggedIn ? (
                                             <>
-                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${ProductsData.slug}`}>View Shop</a>
+                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${productsData.slug}`}>View Shop</a>
                                             </>
                                           ) : (
                                               <>
@@ -308,7 +349,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                 </div>
                             </div>
                             <div className="art_category_item_text">
-                              <h4><a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${ProductsData.slug}`}>{item.title}</a></h4>
+                              <h4><a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${productsData.slug}`}>{item.title}</a></h4>
                               <span className="price">${item.price}</span>
                             </div>
                           </div>

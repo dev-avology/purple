@@ -6364,3 +6364,15 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     width: 0;
 }
    
+.accordion-item:first-of-type .accordion-button {
+    background-color: #e7f1ff;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+ }
+ .accordion-item:last-of-type .accordion-collapse {
+ 
+    display: block;
+ }
+
+ .accordion .accordion-collapse {
+    display: block;
+ }
