@@ -11,6 +11,7 @@ import Loader from "./Loader";
 import mergeImages from 'merge-images';
 import authToken from "../services/auth-token";
 import Accordion from 'react-bootstrap/Accordion';
+import posterBg from '../assets/images/posters-img.png';
 
 function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {    
   
@@ -21,6 +22,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     const [Loading, setLoading] = useState(false);
     const [token, setToken] = useState();
     const [userId, setUserId] = useState();
+    const [artWorkMedia, setArtWorkMedia] = useState();
     
     const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('1');
     const [selectedPriceFilter, setSelectedPriceFilter] = useState('low');
@@ -35,6 +37,14 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
           setUserId(response.data.id);
       })
       .catch((error) => {
+        console.log('Error: '+error);
+      });
+
+      UserService.getArtworkMedia()
+      .then(response => {
+        setArtWorkMedia(response.data)
+      })
+      .catch(error => {
         console.log('Error: '+error);
       });
 
@@ -265,15 +275,27 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                             <div className="art_category_item_img">
                                 <div id={`htmlToImageVis_${item.id}`} className={`htmlToImageVis ${item.orientation} ${ProductsData.slug}` }>
                                 <Link to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>
-                                  <img className="product_frame" src={item.product_image_full_path} />
-                                  <img src={item.art_photo_path} alt="" />
+                                  {
+                                    ProductsData.slug == 'posters' ? (
+                                      <div className="posters-wrapper">
+                                        <img src={item.art_photo_path} alt="" />
+                                        <img className="poster-bg" src={posterBg} alt="" /> 
+                                      </div>
+                                    ) : (
+                                      <>
+                                        <img className="product_frame" src={item.product_image_full_path} />
+                                        <img src={item.art_photo_path} alt="" />
+                                      </>
+                                    )
+                                  }
+                                  
                                 </Link>
                                 </div>
                                 <div className="art_category_item_hover">
                                     {/* <Link className="shop_btn" to={`${process.env.PUBLIC_URL}/product/${item.slug}/${item.art_id}`}>View Shop</Link> */}
                                     {isLoggedIn ? (
                                             <>
-                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>View Shop</a>
+                                            <a className="shop_btn" href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${ProductsData.slug}`}>View Shop</a>
                                             </>
                                           ) : (
                                               <>
@@ -286,7 +308,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                 </div>
                             </div>
                             <div className="art_category_item_text">
-                              <h4><a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}`}>{item.title}</a></h4>
+                              <h4><a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product_by_orientation.id}/${ProductsData.slug}`}>{item.title}</a></h4>
                               <span className="price">${item.price}</span>
                             </div>
                           </div>

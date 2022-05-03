@@ -5831,18 +5831,16 @@ body.signup_body .header_navigation {
     font-size: 18px;
 }
 
-
-
 .htmlToImageVis img {
     left: 50%;
+    max-width: 212px;
     padding: 0;
     position: absolute;
     top: 50%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    width: 100%!important;
-    max-width: 212px;
- }
+    width: 50%!important;
+}  
  .htmlToImageVis .product_frame {
     padding: 0!important;
     position: unset;
@@ -6195,3 +6193,174 @@ a.account_profile .gatsby-image-wrapper-constrained {
     font-size: 16px;
 }
 }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+body .container {
+    max-width: 1560px;
+}
+.art_category .art_category_inner .col-lg-4.col-sm-6 {
+    flex: 100%;
+    max-width: 20%;
+}
+.art_category .art_category_inner .art_category_item_text {
+    box-shadow: none;
+}
+.art_category .art_category_inner .art_category_item_text h4 a {
+    color: #212121;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+.art_category .art_category_inner .art_category_item_text {
+    padding: 12px;
+}
+.art_category .art_category_inner .art_category_item_text span.price {
+    font-size: 16px;
+    font-weight: 700;
+}
+.art_category .art_category_inner .art_category_item_hover a.shop_btn {
+    font-size: 14px;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    padding: 10px;
+}
+.art_category .art_category_inner .art_category_item_hover a.heart {
+    font-size: 14px;
+    height: auto;
+    line-height: normal;
+    padding: 10px;
+}
+.art_category_item {
+    margin-top: 30px;
+    border: 1px solid #f1eded;
+    box-shadow: 0px 10px 25px #0000001f;
+    transition: all .3s;
+}
+.art_category_item:hover {
+    box-shadow: none;
+    transition: all .3s;
+}
+.art_category .results_main {
+    padding: 12px 0;
+}
+.art_category .results_main h3 {
+    font-size: 18px;
+}
+.art_category .results_main h3  span {
+    margin-left: 10px;
+}
+.art_category_item_img:before {
+    transition: all .3s;
+}
+.results_main .results_select_form select#exampl-drp {
+    border: 1px solid #f1eded!important;
+    border-radius: 0;
+    background: #f8f8f8;
+    font-size: 15px;
+}
+body .results_select_form:after {
+    font-size: 22px;
+    top: 7px;
+}
+
+body .art_category h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+body .art_category .results_main {
+    padding: 12px 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+body .art_category p {
+    font-size: 16px;
+}
+body .art_category_list h2 {
+    font-size: 22px;
+}
+body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
+    font-size: 18px;
+}
+
+@media only screen and (max-width:1370px){
+.art_category .art_category_inner .col-lg-4.col-sm-6 {
+    flex: 100%;
+    max-width: 25%;
+}
+}
+
+@media only screen and (max-width:1023px){
+.art_category .art_category_inner .col-lg-4.col-sm-6 {
+    flex: 100%;
+    max-width: 33.33%;
+}
+}
+
+@media only screen and (max-width:900px){
+.art_category .art_category_inner .col-lg-4.col-sm-6 {
+    flex: 100%;
+    max-width: 50%;
+}
+}
+
+@media only screen and (max-width:767){
+.art_category .art_category_inner .col-lg-4.col-sm-6 {
+    flex: 100%;
+    max-width: 33.33%;
+}
+}
+
+@media only screen and (max-width:575px){
+.art_category .art_category_inner .col-lg-4.col-sm-6 {
+    flex: 100%;
+    max-width: 50%;
+}
+}
+
+@media only screen and (max-width:399){
+.art_category .art_category_inner .col-lg-4.col-sm-6 {
+    flex: 100%;
+    max-width: 100%;
+}
+}
+
+
+.htmlToImageVis.posters .posters-wrapper img.poster-bg {
+        display: none;
+   }
+
+.htmlToImageVis.posters .posters-wrapper img {
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+    transform: none;
+    display: block;
+    width: 100%!important;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%!important;
+}
+.htmlToImageVis.posters .posters-wrapper {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 110px;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    margin-top: 22px;
+}
+.htmlToImageVis.posters .posters-wrapper:after {
+    border-bottom: 30px solid #fff;
+    border-left: 30px solid #f8f8f8;
+    bottom: 0;
+    box-shadow: -7px -7px 7px rgb(0 0 0 / 30%);
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 0;
+    width: 0;
+}
+   
