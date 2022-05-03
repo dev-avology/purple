@@ -5330,3 +5330,35 @@ img.white_img {
 .visibl-hd {
     visibility: hidden;
 }
+
+.posters-category img {
+    position: static;
+    transform: none;
+    width: 100%!important;
+    display: block;
+}
+.posters-category {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 2% auto;
+}
+.posters-category:After {
+    content: "";
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 0px;
+    height: 0px;
+    border-bottom: 70px solid #fff;
+    border-left: 70px solid #f8f8f8;
+    -webkit-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
+    box-shadow: -3px -3px 8px rgb(0 0 0 / 30%);
+}
+
+
+.home-demo .owl-stage {
+    display: flex;
+}
+   

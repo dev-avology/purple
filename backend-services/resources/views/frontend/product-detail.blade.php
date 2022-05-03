@@ -10,8 +10,15 @@
 								<ul>
 									<li>
 										<a href="javascript:void();" alt="" class="image htmlToImageVis" title="">
-											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
-											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+											@if ($category == 'posters') 
+												<div class="posters-category">
+												<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+												</div>
+											@else
+												<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+												<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+											@endif 
+
 										</a>
 										<a href="javascript:void();" alt="" class="image" title="">
 											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
@@ -19,8 +26,14 @@
 									</li>
 									<li class="htmlToImageVis" id="final-product-image">
 										<a href="javascript:void();" alt="" class="image" title="">
-											<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
-											<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+											@if ($category == 'posters') 
+												<div class="posters-category">
+												<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+												</div>
+											@else
+												<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+												<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+											@endif 
 										</a>
 									</li>
 								</ul>
@@ -46,16 +59,25 @@
 							
 													<div class="owl-carousel new-cr">
 														<div class="item">
-														<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
-										            	<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+														@if ($category == 'posters') 
+															<div class="posters-category">
+															<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+															</div>
+														@else
+															<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+															<img  class="product_frame" src="{{$productImage}}" alt="Product Image" />
+														@endif 
 														</div>
 														<div class="item">
-														<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
-														<img  class="product_frame visibl-hd" src="{{$productImage}}" alt="Product Image" />
+														@if ($category == 'posters') 
+															
+															<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+															
+														@else
+															<img src="{{$product['art_photo_path']}}" alt="Alt text" style="" />
+															<img  class="product_frame visibl-hd" src="{{$productImage}}" alt="Product Image" />
+														@endif 
 														</div>
-														
-														
-												
 												    </div>
 											</div>
 										</a>
