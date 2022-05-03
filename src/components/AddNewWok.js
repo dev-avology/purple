@@ -39,7 +39,7 @@ function AddNewWok (currentUser) {
   const [loading, setLoading] = useState("");
   const [ArtworkMedia, setArtworkMedia] = useState([]);
   const [SelectedArtWork, setSelectedArtWork] = useState({});
-  const [UserData, setUserData] = useState("");
+  const [UserData, setUserData] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,6 +62,15 @@ function AddNewWok (currentUser) {
         setArtworkMedia(_ArtworkMedia);
       }
     );
+
+    UserService.getUserData()
+    .then((response) => {
+      setUserData(response.data.id);     
+    })
+    .catch((error) => {
+      console.log('Error: '+error);
+    });
+
   }, []);
 
   if (!isLoggedIn) {
@@ -123,7 +132,7 @@ function AddNewWok (currentUser) {
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
       const data = new FormData();
-      data.append("user_id", UserData.id);
+      data.append("user_id", UserData);
       data.append("art_photo", StepImage);
       data.append("title", Title);
       data.append("tags", Tags);
