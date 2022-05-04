@@ -30,12 +30,17 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
     const [productsData, setProductsData] = useState(data);
     const [fetchFilter, setFetchFilter] = useState(false);
 
+    const tabs = [
+      { id: 1, label: "Category", description: "Content of Category Tab" },
+      { id: 2, label: "Price", description: "Content of Price Tab" },
+      { id: 3, label: "Artwork Medium", description: "Content of Artwork Medium Tab" }
+    ];
+
     useEffect(() => {
 
       UserService.getFilterCategoryData(selectedCategoryFilter, selectedPriceFilter, selectedMediumFilter)
         .then((response) => {
           setLoading(false);
-          console.log(response.data[0]);
           setProductsData(response.data[0]);
         })
         .catch((error) => {
@@ -71,14 +76,14 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
       
     }, [dispatch])
 
-    const onSaveWishlist = (seller_id, product_id) => {
+    const onSaveWishlist = (seller_id, product_id, frame_id) => {
         setLoading(true);
         const data = { 
-            buyer_id: currentUser.id,
+            buyer_id: userId,
             product_id: product_id,
             quantity: 1,
             seller_id: seller_id,
-
+            frame_id: frame_id
         };
           UserService.saveWishlist(data)
             .then((response) => {
@@ -89,7 +94,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                 icon: "success",
                 button: "Ok!",
               }).then((value) => {
-                window.location.reload();
+                //window.location.reload();
               });
             })
             .catch((error) => {
@@ -127,12 +132,6 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
 
     return (
       <Layout>
-
-      {
-        productsData ? (console.log(console.log('Here Printing Data'+ productsData.id))) : (console.log('Product is going in else part'))
-      }
-
-
       {productsData ? (
       <Helmet>
         <title>{productsData.name} | Splashen</title>
@@ -145,6 +144,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
             <div className="col-lg-3 col-md-4">
               <div className="art_category_list">
                 <h2>Filters </h2>	
+
                 <Accordion defaultActiveKey="0">
                   <div className="card">
                     <Accordion.Item eventKey="0" >
@@ -176,8 +176,10 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                       </Accordion.Body>
                     </Accordion.Item>
                   </div>
-                  <div className="card">
-                    <Accordion.Item eventKey="1">
+              </Accordion>
+              <Accordion defaultActiveKey="1">
+                <div className="card">
+                  <Accordion.Item eventKey="1">
                       <Accordion.Header>
                         <div className="card-head" id="headingTwo">
                           <h4><a href="#" className="mb-0">Price</a></h4>
@@ -221,7 +223,9 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                       </Accordion.Body>
                     </Accordion.Item>
                   </div>
-                  <div className="card">
+              </Accordion>
+              <Accordion defaultActiveKey="2">
+                <div className="card">
                     <Accordion.Item eventKey="2">
                         <Accordion.Header>
                           <div className="card-head" id="headingThree">
@@ -345,7 +349,7 @@ function ProductDetail({ dispatch, loading, cats, hasErrors, currentUser }) {
                                           )
                                       }
     
-                                    <Link className="heart" to="#" onClick={() => onSaveWishlist(item.user_id, item.id)}><i className="fa fa-heart" aria-hidden="true"></i></Link>
+                                    <Link className="heart" to="#" onClick={() => onSaveWishlist(item.user_id, item.id, item.product_by_orientation.id)}><i className="fa fa-heart" aria-hidden="true"></i></Link>
                                 </div>
                             </div>
                             <div className="art_category_item_text">

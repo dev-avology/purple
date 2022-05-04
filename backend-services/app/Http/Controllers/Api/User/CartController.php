@@ -33,9 +33,11 @@ class CartController extends Controller
         $validateCartData = $request->validated();  
         if ($request->path() === 'api/save-wishlist') {
             $validateCartData['is_wishlist_product'] = 1;
+            $validateCartData['frame_id'] = $request['frame_id'];
             $validateCartData['final_product_image'] = 'Final Product Image is not created yet.';
             $itemType = $this->wishlistItemType;
         } else {
+            $validateCartData['frame_id'] = 0;
             if ($request->final_product_image) {
                 $productImage = $this->uploadService->handleUploadedImages($request->final_product_image, $this->finalProductUploadPath, $this->availableExtensions);
                 if (!$productImage) {

@@ -13,6 +13,7 @@ class Cart extends Model
         'buyer_id',
         'seller_id',
         'product_id',
+        'frame_id',
         'quantity',
         'final_product_image',
         'is_wishlist_product',

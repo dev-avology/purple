@@ -1956,8 +1956,6 @@ body.signup_body .header_navigation {
 }
 
 
-
-
 .art_category_sec {
     padding: 50px 0;
     border-top: 1px solid #ededf2;
@@ -1967,8 +1965,21 @@ body.signup_body .header_navigation {
     font-weight: 600;
     color: #212121;
 }
-.art_category_list .accordion {
+/* .art_category_list .accordion {
     margin-top: 30px;
+} */
+.art_category_sec .accordion-item {
+    border: 0;
+    border-radius: 0;
+}
+.art_category_sec button.accordion-button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+}
+.art_category_sec .accordion-body {
+    padding-top: 0;
 }
 .art_category_list .accordion .card {
     border: 0px;
@@ -6364,7 +6375,7 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     width: 0;
 }
    
-.accordion-item:first-of-type .accordion-button {
+/* .accordion-item:first-of-type .accordion-button {
     background-color: #e7f1ff;
     box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
  }
@@ -6375,4 +6386,9 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
 
  .accordion .accordion-collapse {
     display: block;
- }
+ } */
+
+ #accordion ul li:first-child div { 
+    display:block;
+    border-top:3px solid #FFCDCD;
+}
