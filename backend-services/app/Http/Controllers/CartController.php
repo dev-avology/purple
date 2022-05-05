@@ -50,6 +50,7 @@ class CartController extends Controller
             'product_id' => $product_id,
             'quantity' => $quantity,
             'final_product_image' => $final_product_image,
+            'frame_id' => 0,
         ];
 
         $itemType = $this->cartTypeItem;

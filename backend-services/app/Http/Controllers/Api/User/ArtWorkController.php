@@ -72,7 +72,7 @@ class ArtWorkController extends Controller
 
     public function getFeaturedProducts()
     {
-        $featuredProducts = ArtistArt::with(['artist', 'artist_profile'])->where([
+        $featuredProducts = ArtistArt::with(['artist', 'artist_profile', 'designsByCategory'])->where([
             'is_featured' => $this->isProductFeatured,
             'is_public' => $this->isProductPublic,
             'is_approved' => $this->isProductApproved,
@@ -121,7 +121,7 @@ class ArtWorkController extends Controller
 
     public function getExploreDesign()
     {
-        $exploreDesign = ArtistArt::with(['artist'])->where([
+        $exploreDesign = ArtistArt::with(['artist', 'designsByCategory'])->where([
             //'is_featured' => $this->isProductFeatured,
             'is_public' => $this->isProductPublic,
             'is_approved' => $this->isProductApproved,
@@ -149,6 +149,4 @@ class ArtWorkController extends Controller
         $response = User::with('design')->where('role', 'seller')->inRandomOrder()->limit(5)->get();
         return $response;
     }
-
-
 }

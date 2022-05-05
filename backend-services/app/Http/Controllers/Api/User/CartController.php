@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CartRequest;
 use App\Services\UploadService;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartController extends Controller
 {
     private $availableExtensions;
     private $artworkImagesPath;
+    private $productImagesPath;
     private $uploadService;
     private $finalProductUploadPath;
     private $cartTypeItem;
@@ -21,6 +23,7 @@ class CartController extends Controller
     {
         $this->availableExtensions = config('file-upload-extensions.image');
         $this->artworkImagesPath = 'file-upload-paths.artwork';
+        $this->productImagesPath = 'file-upload-paths.products';
         $this->FinalImagesPath = 'file-upload-paths.final-product-image';
         $this->finalProductUploadPath = config('file-upload-paths.final-product-image');
         $this->uploadService = new uploadService();
@@ -67,9 +70,13 @@ class CartController extends Controller
         }
 
         $cartArray = $cartCollection->toArray();
+
         foreach ($cartArray as $key => $cart) {
+
+            $productData = Product::where('id', $cart['frame_id'])->first();
+
             $cartArray[$key]['product']['art_photo_path'] = addFullPathToUploadedImage($this->artworkImagesPath, $cartArray[$key]['product']['art_photo_path']);
-			$cartArray[$key]['final_product_image'] = addFullPathToUploadedImage($this->FinalImagesPath, $cartArray[$key]['final_product_image']);
+			$cartArray[$key]['final_product_image'] = addFullPathToUploadedImage($this->productImagesPath, optional($productData)->product_image);
         }
         return $cartArray;
     }

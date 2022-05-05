@@ -6392,3 +6392,29 @@ body .art_category_list .accordion .accordion-item h2.accordion-header h4 a {
     display:block;
     border-top:3px solid #FFCDCD;
 }
+
+a.images-container {
+    display: block;
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+a.images-container img.product-frame{
+    width: 100%!important;
+    height: auto!important;
+    max-width: 100%!important;
+}
+a.images-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+a.images-container img.artwork-design {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    height: calc(100% - 20px)!important;
+    width: calc(100% - 20px);
+    max-width: 100%!important;
+}

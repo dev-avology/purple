@@ -156,7 +156,7 @@ export const FeaturedProduct = () => {
   const FeaturedProducts = featuredProducts.data?.map((item) => (
     <li key={item.id}>
       {isLoggedIn ? (
-        <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}`}>
+        <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}/${item.designs_by_category.slug}`}>
         <div className="featured_products_item htmlToImageVis">
             <img className="product_frame" src={item.product.product_image} alt="" />
             <img src={item.art_photo_path} alt="" />
@@ -277,7 +277,7 @@ export const ExploreDesign = () => {
   const ExploreDesignProducts = exploreDesign.data?.map((item) => (
     <li key={item.id}>
       {isLoggedIn ? (
-      <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}`}>
+      <a href={`http://146.190.226.38/backend-services/product-detail/${item.art_id}/${userId}/${item.slug}/${item.product.id}/${item.designs_by_category.slug}`}>
       <div className="explore_designs_item htmlToImageVis">
       <img className="product_frame" src={item.product.product_image} alt="" />
       <img src={item.art_photo_path} alt="" />

@@ -79,7 +79,6 @@ const Wishlist = () => {
                           <th colSpan="2" className="product-thumbnail">
                             Item
                           </th>
-                          <th className="product-quantity">Quantity</th>
                           <th className="product-price">Price</th>
                         </tr>
                       </thead>
@@ -100,16 +99,26 @@ const Wishlist = () => {
                             </td>
                             <td className="product-thumbnail">
                               {item.final_product_image ? (
-                                <Link to="#">
-                                  <img
-                                    width="300"
-                                    height="300"
-                                    src={item?.final_product_image}
-                                    className=""
-                                    alt=""
-                                    loading=""
-                                  />
-                                </Link>
+                                <>
+                                  <Link to="#" className="images-container">
+                                    <img
+                                      width="300"
+                                      height="300"
+                                      src={item?.final_product_image}
+                                      className="product-frame"
+                                      alt=""
+                                      loading=""
+                                    />
+                                    <img
+                                      width="300"
+                                      height="300"
+                                      src={item?.product.art_photo_path}
+                                      className="artwork-design"
+                                      alt=""
+                                      loading=""
+                                    />
+                                  </Link>
+                                </>
                               ) : null}
                             </td>
                             <td className="product-name" data-title="Product">
@@ -120,36 +129,6 @@ const Wishlist = () => {
                                 Price: <span className="">$</span>
                                 {item?.product.price}
                               </small>
-                            </td>
-                            <td
-                              className="product-quantity"
-                              data-title="Quantity"
-                            >
-                              <div className="quantity buttons_added">
-                                <button
-                                  type="button"
-                                  className="minus quantity_button"
-                                >
-                                  -
-                                </button>
-                                <input
-                                  type="text"
-                                  step="1"
-                                  min="1"
-                                  max=""
-                                  name="quantity"
-                                  defaultValue={item?.quantity}
-                                  title="Qty"
-                                  className="input-text qty text"
-                                  size="4"
-                                />
-                                <button
-                                  type="button"
-                                  className="plus quantity_button"
-                                >
-                                  +
-                                </button>
-                              </div>
                             </td>
                             <td className="product-price" data-title="Price">
                               <span className="amount">
