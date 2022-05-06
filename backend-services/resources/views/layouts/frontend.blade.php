@@ -225,7 +225,7 @@
                     <div class="mobile_footer_logo text-center">
                         <a href="http://146.190.226.38/"><img src="{{asset('public/frontend/images/footer_logo.png')}}" alt="" /></a>
                     </div>
-					<div class="footer_language mobile_footer_language text-center">
+					<!-- <div class="footer_language mobile_footer_language text-center">
 						<ul>
 						<li>
 						<div class="dropdown_language">
@@ -243,17 +243,17 @@
 						<li><a class="dollar_btn" href="#">DOLLAR($)</a></li>
 						<li><a class="euro_btn" href="#">EURO(€)</a></li>
 						</ul>
-					</div>
+					</div> -->
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
                             <div class="footer_item">
                                 <h3>Shop</h3>
                                 <ul>
-                                    <li><a href="fan-art.html">Fan Art</a></li>
-                                    <li><a href="new-works.html">New Works</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="signup.html">Signup</a></li>
-                                    <li><a href="#">Bulk orders</a></li>
+								<li class="active"><a href="http://146.190.226.38/product-category/wall-art">Wall Art</a></li>
+								<li><a href="http://146.190.226.38/product-category/art-board-prints">Art Board Prints </a></li>
+								<li><a href="http://146.190.226.38/product-category/art-prints">Art Prints</a></li>
+								<li><a href="http://146.190.226.38/product-category/canvas-prints">Canvas Prints</a></li>
+								<li><a href="http://146.190.226.38/product-category/framed-prints">Framed Prints</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -286,20 +286,20 @@
                             <div class="footer_item">
                                 <h3>Social</h3>
                                 <ul>
-                                    <li>
-                                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
+									<li>
+                                        <a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+                                        <a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+                                        <a href="https://www.twitter.com/" target="_blank"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-tumblr" aria-hidden="true"></i> Tumblr</a>
+                                        <a href="https://www.tumblr.com/" target="_blank"><i className="fa fa-tumblr" aria-hidden="true"></i> Tumblr</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a>
+                                        <a href="https://www.pinterest.com/" target="_blank"><i className="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a>
                                     </li>
                                 </ul>
                             </div>
@@ -311,7 +311,7 @@
 								<a href="http://146.190.226.38/"><img src="{{asset('public/frontend/images/footer_logo.png')}}" alt="" /></a>
 							</div>
 						</div>
-						<div class="col-lg-6">
+						<!-- <div class="col-lg-6">
 							<div class="footer_language text-right">
 							<ul>
 							<li>
@@ -331,7 +331,7 @@
 							<li><a class="euro_btn" href="#">EURO(€)</a></li>
 							</ul>
 							</div>
-						</div>
+						</div> -->
 					</div>
                 </div>
             </div>

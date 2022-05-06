@@ -9,6 +9,7 @@ const Wishlist = () => {
     const [WishlistError, setWishlistError] = useState([]);
     const [loading, setLoading] = useState(false);
     const [removed, setRemoved] = useState(false);
+    const [userId, setUserId] = useState();
   
     const RemoveFromWishlist = (product_id, buyer_id) => {
       if (window.confirm("Are you sure to remove this product from Wishlist?")) {
@@ -32,6 +33,16 @@ const Wishlist = () => {
         );
       }
     };
+
+    useEffect(() => {
+      UserService.getUserData()
+      .then((response) => {
+          setUserId(response.data.id);
+      })
+      .catch((error) => {
+        console.log('Error: '+error);
+      });
+    }, []);
   
     useEffect(() => {
       setLoading(true);
@@ -80,6 +91,7 @@ const Wishlist = () => {
                             Item
                           </th>
                           <th className="product-price">Price</th>
+                          <th className="product-price">View Product</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -135,6 +147,17 @@ const Wishlist = () => {
                                 <span className="">$</span>
                                 {item?.product.price * item.quantity}
                               </span>
+                            </td>
+                            <td className="product-price" data-title="Price">
+                              <div class="cart_size_btn">
+                                <button type="button" class="styles_button">
+                                  <a 
+                                    class="children" 
+                                    href={`http://146.190.226.38/backend-services/product-detail/${item.product.art_id}/${userId}/${item.product.slug}/${item.frame_id}/${item.product.category_slug}`}                                  >
+                                    View
+                                  </a>
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}

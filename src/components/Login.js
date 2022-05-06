@@ -125,11 +125,6 @@ const Login = (props) => {
                       </div>
                       <div className="col-lg-12">
                         <div className="lost_password">
-                          <label className="custom_checkbox">
-                            Remember Me
-                            <Input type="checkbox" />
-                            <span className="checkmark"></span>
-                          </label>
                           <p>
                             <a href="#">Lost Password?</a>
                           </p>

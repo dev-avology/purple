@@ -1,10 +1,30 @@
-import React, { Component } from "react"
+import React, { useEffect, useState } from "react"
+import { connect } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import VisaImg from "../assets/images/visa.png"
 import FooterLogo from "../assets/images/footer_logo.png"
+import { fetchCats } from '../actions/postsActions'
 
-export const Footer = () => {
+export const Footer = ({dispatch, loading, cats, hasErrors, closeMenu}) => {
+
+        useEffect(() => {
+            dispatch(fetchCats())
+        }, [dispatch])
+
+
+
+
+        const renderCats = () => {
+            //if (loading) return <p>Loading posts...</p>
+            if (hasErrors) return <p>Unable to display Menu.</p>
+        
+            return cats.slice(0, 5).map(cat =>
+                 <li key={cat.id} class={window.location.pathname === '/product-category/'+cat.slug ? 'active': ''}>
+                     <a href={`/product-category/${cat.slug}`}>{cat.name}</a></li>
+                     
+            )
+          }
         const { isLoggedIn } = useSelector(state => state.auth);
         return(
             <div className="footer_sec">
@@ -13,7 +33,7 @@ export const Footer = () => {
                     <div className="mobile_footer_logo text-center">
                         <Link to="#"><img src="../images/footer_logo.png" alt="" /></Link>
                     </div>
-					<div className="footer_language mobile_footer_language text-center">
+					{/* <div className="footer_language mobile_footer_language text-center">
 						<ul>
 						<li>
 						<div className="dropdown_language">
@@ -31,24 +51,13 @@ export const Footer = () => {
 						<li><Link className="dollar_btn" to="#">DOLLAR($)</Link></li>
 						<li><Link className="euro_btn" to="#">EURO(€)</Link></li>
 						</ul>
-					</div>
+					</div> */}
                     <div className="row">
                         <div className="col-lg-3 col-md-6">
                             <div className="footer_item">
                                 <h3>Shop</h3>
                                 <ul>
-                                    <li><a href="#">Fan Art</a></li>
-                                    <li><a href="#">New Works</a></li>
-                                    
-                                    {isLoggedIn ? (
-                                        null
-                                    ): <li><Link to={`${process.env.PUBLIC_URL}/login`}>Login</Link> </li> }
-                             
-                                    {isLoggedIn ? (
-                                        null
-                                    ): <li><Link to={`${process.env.PUBLIC_URL}/signup`}>Signup</Link></li> }
-                                    
-                                    <li><a href="#">Bulk orders</a></li>
+                                    {renderCats()}
                                 </ul>
                             </div>
                         </div>
@@ -103,10 +112,10 @@ export const Footer = () => {
 					<div className="row footer_logo">
 						<div className="col-lg-6">
 							<div className="desktop_footer_logo text-left">
-								<a href="#"><img src={FooterLogo} alt="" /></a>
+								<a href="http://146.190.226.38/"><img src={FooterLogo} alt="" /></a>
 							</div>
 						</div>
-						<div className="col-lg-6">
+						{/* <div className="col-lg-6">
                             <div class="footer_language text-right">
 								<ul>
 								<li>
@@ -126,7 +135,7 @@ export const Footer = () => {
 								<li><a class="euro_btn" href="#">EURO(€)</a></li>
 								</ul>
 							</div>
-						</div>
+						</div> */}
 					</div>
                 </div>
             </div>
@@ -164,4 +173,10 @@ export const Footer = () => {
         </div>
         )
 }
-export default Footer;
+
+const mapStateToProps = state => ({
+    loading: state.cats.loading,
+    cats: state.cats.cats,
+    hasErrors: state.cats.hasErrors,
+  })
+export default connect(mapStateToProps)(Footer)
