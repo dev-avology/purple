@@ -40,6 +40,8 @@ function AddNewWok (currentUser) {
   const [ArtworkMedia, setArtworkMedia] = useState([]);
   const [SelectedArtWork, setSelectedArtWork] = useState({});
   const [UserData, setUserData] = useState();
+  const [mockups, setMockups] = useState();
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -73,6 +75,27 @@ function AddNewWok (currentUser) {
 
   }, []);
 
+  useEffect(() => {
+
+    UserService.getAlltheMockups().then(
+      (response) => {
+        setMockups(response.data);
+        console.log('MockUps Data: '+response.data);
+      },
+      (error) => {
+        const dataError =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        console.log('Something went wrong while getting Mockups: '+dataError);
+      }
+    );
+
+  }, [isImageUploaded]);
+
   if (!isLoggedIn) {
     return <Navigate to={`${process.env.PUBLIC_URL}/login`} />;
   }
@@ -81,6 +104,7 @@ function AddNewWok (currentUser) {
     const StepImage = e.target.files[0];
     setStep1Image(StepImage);
     setStep1ImagePreview(URL.createObjectURL(e.target.files[0]));
+    setIsImageUploaded(true);
     setStep(2);
   };
 
@@ -446,7 +470,7 @@ function AddNewWok (currentUser) {
                                       <img src="images/i_icon.png" alt="" />
                                       <div className="hover-tooltip-title">
                                         Share the story or meaning behind your
-                                        work. You don’t have to give away any
+                                        work. `1You don’t have to give away any
                                         secrets, but your audience will
                                         appreciate a little insight into what
                                         you created.
@@ -463,6 +487,35 @@ function AddNewWok (currentUser) {
                               </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                    
+        
+                    <center><h3>Product Preview</h3></center>
+                    <div className="art_category_inner">
+                      <div className="row">
+                        {
+                          mockups?.length > 0 ? (
+                            mockups.map(item => {
+                              return (
+                                <div className="col-lg-4 col-sm-6">
+                                  <div className="art_category_item">
+                                    <div className="art_category_item_img">
+                                      <div className="htmlToImageVis">
+                                        <img className="product_frame" src={item.product_image} alt="" />
+                                        <img src={StepImagePreview} alt="" />
+                                      </div>
+                                    </div>
+                                    <div className="art_category_item_text">
+                                      <h4><a href="#">{item.title}</a></h4>
+                                      <button className="btn">enabled</button>
+                                      <button className="btn">Edit</button>
+                                    </div>
+                                  </div>
+                                </div>     
+                              )})
+                          ) : (<div className="notfound-text"><p>No products found!</p></div>)
+                        }
                       </div>
                     </div>
 
