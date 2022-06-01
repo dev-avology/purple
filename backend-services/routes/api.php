@@ -81,3 +81,5 @@ Route::get('shop/{catSlug?}', [SearchController::class, 'searchProducts']);
 Route::get('filter-products', [FilterController::class, 'index']);
 
 Route::get('get-all-products', [ProductController::class, 'index']);
+
+Route::post('save-product', [ProductController::class, 'saveProduct'])->name('save-product');

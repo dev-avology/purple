@@ -24,7 +24,7 @@ class PriceCalculation
    private function getArtistShareByProductCategory($id)
    {
         $rawData = ArtistPriceShare::where([
-            'artist_id' => auth()->user()->id, 
+            'artist_id' => 15, //auth()->user()->id, 
             'product_category_id' => $id
         ])->first();
         if($rawData) return $rawData->price_share;

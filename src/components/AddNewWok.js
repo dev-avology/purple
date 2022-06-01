@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import {Rnd} from "react-rnd";
 import { Layout } from "./Layout";
 import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector,connect } from "react-redux";
@@ -498,25 +499,38 @@ function AddNewWok (currentUser) {
                           mockups?.length > 0 ? (
                             mockups.map(item => {
                               return (
-                                <div className="col-lg-4 col-sm-6">
-                                  <div className="art_category_item">
-                                    <div className="art_category_item_img">
-                                      <div className="htmlToImageVis">
-                                        <img className="product_frame" src={item.product_image} alt="" />
-                                        <img src={StepImagePreview} alt="" />
+                                <>
+                                  <div className="col-lg-4 col-sm-6">
+                                    <div className="art_category_item">
+                                      <div className="art_category_item_img">
+                                        <div className="htmlToImageVisAddNew">
+                                          <img className="product_frame" src={item.product_image} alt="" />
+                                            <img src={StepImagePreview} alt="" />
+                                        </div>
+                                      </div>
+                                      <div className="art_category_item_text">
+                                        <h4><a href="#">{item.title}</a></h4>
+                                        <button className="btn">enabled</button>
+                                        <button className="btn">Edit</button>
                                       </div>
                                     </div>
-                                    <div className="art_category_item_text">
-                                      <h4><a href="#">{item.title}</a></h4>
-                                      <button className="btn">enabled</button>
-                                      <button className="btn">Edit</button>
-                                    </div>
-                                  </div>
-                                </div>     
+                                  </div>                             
+                                </>
+                                
                               )})
                           ) : (<div className="notfound-text"><p>No products found!</p></div>)
                         }
                       </div>
+                      <div
+                        style={{
+                            border: '1px solid black', 
+                            height: '350px', 
+                            width: '250px', 
+                            margin: 'auto', 
+                            marginTop: '15%'
+                          }}
+                        >
+                      </div> 
                     </div>
 
                     <div className="media_select_sec">

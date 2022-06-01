@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\Api\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,11 @@ Route::get('payment/success', [StripeController::class, 'paymentSuccess'])->name
 
 Route::get('connect-stripe-account', [StripeController::class, 'stripeConnect'])->name('connect-stripe-account');
 Route::get('stripe-account-response', [StripeController::class, 'stripeConnectResponse'])->name('stripe-account-response');
+
+
+Route::get('product-tool', [ProductController::class, 'productDesigner'])->name('product-tool');
+Route::post('upload-artist-design', [ProductController::class, 'uploadArtistDesign'])->name('upload-artist-design');
+Route::get('show-products', [ProductController::class, 'showProducts'])->name('show-products');
 
 Route::group(['middleware' => ['auth']], function(){
 

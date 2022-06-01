@@ -14,6 +14,12 @@
         <link rel="stylesheet" href="{{asset('public/frontend/fonts/stylesheet.css')}}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" />
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+
+		<!-- Style sheets -->
+		<link rel="stylesheet" type="text/css" href="{{asset('public/product-designer/css/main.css')}}">
+
+		<!-- The CSS for the plugin itself - required -->
+		<link rel="stylesheet" type="text/css" href="{{asset('public/product-designer/css/FancyProductDesigner-all.min.css')}}" />
        
         <title>Product Details</title>
     </head>

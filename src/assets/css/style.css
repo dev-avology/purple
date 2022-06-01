@@ -2240,7 +2240,7 @@ body.signup_body .header_navigation {
     top: 0;
     width: 100%;
     height: 100%;
-    background: #865cd0;
+    /* background: #865cd0; */
     z-index: 1;
     opacity: 0.9;
     display: none;
@@ -5888,6 +5888,25 @@ body.signup_body .header_navigation {
     padding: 0;
 }
 
+.htmlToImageVisAddNew img {
+    left: 50%;
+    max-width: 160px;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 50%!important;
+}
+
+.htmlToImageVisAddNew .product_frame {
+    padding: 0!important;
+    position: unset;
+    -webkit-transform: unset;
+    transform: unset;
+    width: 100%!important;
+    max-width: 100%;
+ }
 
 .cart-page {
     margin: 90px auto;

@@ -1,0 +1,56 @@
+[
+    [
+        {
+            "title": "Front",
+            "thumbnail": "http://localhost/purple/backend-services/public/product-designer/images/shirt_turq/frame.png",
+            "options": {
+                "stageWidth": "800"
+            },
+            "elements": [
+                {
+                    "title": "Frame",
+                    "source": "http://localhost/purple/backend-services/public/product-designer/images/shirt_turq/frame.png",
+                    "type": "image",
+                    "parameters": {
+                        "left": 400,
+                        "top": 300,
+                        "originX": "center",
+                        "originY": "center",
+                        "z": -1,
+                        "fill": false,
+                        "colors": false,
+                        "colorLinkGroup": false,
+                        "draggable": false,
+                        "rotatable": false,
+                        "resizable": false,
+                        "removable": false,
+                        "zChangeable": false,
+                        "scaleX": 1,
+                        "scaleY": 1,
+                        "lockUniScaling": false,
+                        "uniScalingUnlockable": false,
+                        "angle": 0,
+                        "price": 0,
+                        "autoCenter": false,
+                        "replaceInAllViews": false,
+                        "autoSelect": false,
+                        "topped": true,
+                        "boundingBoxMode": "inside",
+                        "opacity": 1,
+                        "excludeFromExport": false,
+                        "locked": false,
+                        "showInColorSelection": false,
+                        "boundingBox": false,
+                        "resizeToW": 0,
+                        "resizeToH": 0,
+                        "filter": null,
+                        "scaleMode": "fit",
+                        "minScaleLimit": 0.01,
+                        "advancedEditing": false,
+                        "uploadZone": false
+                    }
+                }
+            ]
+        }
+    ]
+]
