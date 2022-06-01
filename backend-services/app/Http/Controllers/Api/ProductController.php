@@ -59,22 +59,42 @@ class ProductController extends Controller
 
     public function productDesigner() {
 
+        // $data = [
+        //     [
+        //         'frame_image' => 'http://localhost/purple/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
+        //         'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://localhost/purple/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+        //         'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://localhost/purple/backend-services/uploads/products/742297801.Feature-Metal-Prints.png',
+        //         'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://localhost/purple/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+        //         'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        // ];
+
+
         $data = [
             [
-                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
-                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
+                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
             ],
             [
-                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
-                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
             ],
             [
-                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/742297801.Feature-Metal-Prints.png',
-                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/742297801.Feature-Metal-Prints.png',
+                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
             ],
             [
-                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
-                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
             ],
         ];
 
