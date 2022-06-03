@@ -57,6 +57,8 @@ Route::get('product-tool', [ProductController::class, 'productDesigner'])->name(
 Route::post('upload-artist-design', [ProductController::class, 'uploadArtistDesign'])->name('upload-artist-design');
 Route::get('show-products', [ProductController::class, 'showProducts'])->name('show-products');
 
+Route::get('add-new-work', [ProductController::class, 'addNewWork'])->name('add-new-work');
+
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');

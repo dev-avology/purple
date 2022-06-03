@@ -25,6 +25,7 @@ class ArtistArt extends Model
         'is_mature_content',
         'is_public',
         'price',
+        'category_id'
     ];
 
     public function artist()

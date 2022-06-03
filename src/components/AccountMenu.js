@@ -16,7 +16,7 @@ function AccountMenu ({currentUser}) {
       useEffect(() => {
         dispatch(getProfileFetch())
       }, [dispatch])
-      
+    
     return (
         <>
             <ul>
@@ -39,7 +39,8 @@ function AccountMenu ({currentUser}) {
                             <Link to="#">View Shop</Link>
                             <Link to="#">Activity Feed</Link>
                             <Link to="#">Manage Portfolio</Link>
-                            <span className="new_work"><Link to="/add-new-work">Add New Work</Link></span>
+                            {/* <span className="new_work"><Link to="/add-new-work">Add New Work</Link></span> */}
+                            <span className="new_work"><a href={`http://146.190.226.38/backend-services/add-new-work?id=${currentUser.id}`}>Add New Work</a></span>
                             <span className="order_history">
                                 <Link to="#">Order History</Link>
                                 <Link to="/account">Account Settings</Link>

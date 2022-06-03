@@ -10,7 +10,6 @@ use App\Models\Product;
 use App\Models\FinalProduct;
 use App\Models\ArtistArt;
 use App\Services\PriceCalculation;
-use Illuminate\Http\UploadedFile;
 
 class ProductController extends Controller
 {
@@ -59,7 +58,73 @@ class ProductController extends Controller
 
     public function productDesigner() {
 
+        // For Local Server
+        $data = [
+            [
+                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
+                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+            ],
+            [
+                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+            ],
+            [
+                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/742297801.Feature-Metal-Prints.png',
+                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+            ],
+            [
+                'frame_image' => 'http://localhost/purple/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+                'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+            ],
+        ];
+
+
+        // For Staging Server
         // $data = [
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/742297801.Feature-Metal-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        // ];
+
+        return view('product-designer', ['products' => $data]);
+    }
+
+    public function addNewWork(Request $request) 
+    {
+        if (!empty($request->id)) {
+            session()->put('userId',$request->id);
+        }
+        
+        $products = $this->getProducts();
+        return view('add-new-work', ['products' => $products]);
+    }
+
+    private function getProducts()
+    {
+
+        $products = Product::get()->toArray();
+
+        foreach ($products as $key => $product) {
+            $products[$key]['frame_image'] = asset(config('file-upload-paths.products') . '/' . $product['product_image']);
+        }
+
+        return $products;
+
+        // For Local Server
+        // return $data = [
         //     [
         //         'frame_image' => 'http://localhost/purple/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
         //         'design_image' => 'http://localhost/purple/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
@@ -79,26 +144,25 @@ class ProductController extends Controller
         // ];
 
 
-        $data = [
-            [
-                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
-                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
-            ],
-            [
-                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
-                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
-            ],
-            [
-                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/742297801.Feature-Metal-Prints.png',
-                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
-            ],
-            [
-                'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
-                'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
-            ],
-        ];
-
-        return view('product-designer', ['products' => $data]);
+        // For Staging Server
+        // return $data = [
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/12752849951.Featured-Mockups-Art-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/742297801.Feature-Metal-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        //     [
+        //         'frame_image' => 'http://146.190.226.38/backend-services/uploads/products/21255265891.Feature-Framed-Prints.png',
+        //         'design_image' => 'http://146.190.226.38/backend-services/uploads/artwork-images/258465388klara-kulikova-7kup71V823I-unsplash.jpeg'
+        //     ],
+        // ];
     }
 
     public function uploadArtistDesign(Request $request) 
@@ -109,15 +173,26 @@ class ProductController extends Controller
         $artistDesignName = Str::random(10) . '.png';
     
         Storage::disk('artist-designs')->put($artistDesignName, base64_decode($image));
+        
+        $request->is_public = $this->convertcheckBoxesValues($request->is_public);
+        $request->is_mature_content = $this->convertcheckBoxesValues($request->is_mature_content);
+
+        $media_ids = implode(',', $request->media_data);
+
+        if (empty($media_ids)) {
+            $media_ids = '1,2';
+        }
+        //$request->tags = str_replace(' ', ',', strtolower($request->tags));
 
         $validatedArtWorkData = [
-            'user_id' => 8,
-            'title' => 'test', 
-            'tags' => 'test,test,testing',
-            'description' => 'test description',
-            'artwork_media_id' => '1,2',
-            'is_mature_content' => 0,
-            'is_public' => 1,
+            'user_id' => 15,
+            'title' => $request->title, 
+            'tags' => $request->tags,
+            'description' => $request->design_description,
+            'artwork_media_id' => $media_ids,
+            'is_mature_content' => $request->is_public,
+            'is_public' => $request->is_mature_content,
+            'category_id' => $request->category_id,
         ];
 
         $dataArray = $this->artWorkDataArray($validatedArtWorkData, $artistDesignName);
@@ -131,6 +206,15 @@ class ProductController extends Controller
             return response()->json(['message' => 'Artwork has been created successfully.'], 200);
         }
         return response()->json(['message' => 'Something went wrong while saving Artwork on server.'], 500);
+    }
+
+    private function convertcheckBoxesValues($value)
+    {
+        if ($value == 'on') {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public function showProducts()
@@ -156,6 +240,7 @@ class ProductController extends Controller
             'artwork_media_id'  => $validatedArtWorkData['artwork_media_id'],
             'is_mature_content' => $validatedArtWorkData['is_mature_content'],
             'is_public'         => $validatedArtWorkData['is_public'],
+            'category_id'       => $validatedArtWorkData['category_id'],
         ];
     }
 

@@ -135,6 +135,7 @@
 						</div>
 
 						<div class="col-lg-9">
+							
 							<div class="middle_navigation">
 								<ul>
 									<li>
@@ -143,6 +144,7 @@
 											<button class="submit_btn" type="submit"><img src="{{asset('public/frontend/images/search_icon.png')}}" alt="" /></button>
 										</div>
 									</li>
+									@if (empty(session()->get('userId')))
 									<li><a href="http://146.190.226.38/login">Sell your art</a></li>
 									<li><a href="http://146.190.226.38/login">Login</a></li>
 									<li><a href="http://146.190.226.38/signup">Signup</a></li>
@@ -152,8 +154,38 @@
 									<li>
 										<a href="{{route('cart')}}"><img class="color_icon" src="{{asset('public/frontend/images/cart_icon.png')}}" alt="" /></a>
 									</li>
+									@else 
+									<li>
+										<div class="profile">
+											<a class="account_profile" href="javascript:void(0)">
+												<img src="{{asset('public/frontend/images/rb-default-avatar.png')}}" alt="">
+											</a>
+											<div class="account_category">
+												<a href="#" class="account_category_profile">
+													<div class="account_profile">
+														<img src="{{asset('public/frontend/images/rb-default-avatar.png')}}" alt="">
+														<span>Avology</span>
+													</div>
+												</a>
+												<a href="#">Dashboard</a>
+												<a href="#">View Shop</a>
+												<a href="#">Activity Feed</a>
+												<a href="#">Manage Portfolio</a>
+												<span class="new_work"><a href="{{route('add-new-work')}}">Add New Work</a></span>
+												<span class="order_history">
+													<a href="#">Order History</a>
+													<a href="#">BubbleMail</a>
+													<a href="#">Account Settings</a>
+												</span>
+												<a href="#">RB Blog</a>
+												<a class="account_logout" href="#">Logout</a>
+											</div>
+										</div>
+									</li>
+									@endif
 								</ul>
 							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -164,7 +196,7 @@
 						<div class="col-lg-12">
 							<div class="header_navigation">
 								<div class="navigation" id="mySidenav">
-									<div class="middle_navigation">
+									<!-- <div class="middle_navigation">
 										<ul>
 											<li>
 												<div class="search_design_form">
@@ -182,7 +214,7 @@
 												<a href="{{route('cart')}}"><img class="color_icon" src="{{asset('public/frontend/images/cart_icon.png')}}" alt="" /></a>
 											</li>
 										</ul>
-									</div>
+									</div> -->
 									<div class="nav-main">
 										<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 										<ul class="menu1 text-center">
@@ -267,10 +299,10 @@
                             <div class="footer_item">
                                 <h3>About</h3>
                                 <ul>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="social-responsibility.html">Social Responsibility</a></li>
-                                    <li><a href="sell-your-art.html">Sell your art</a></li>
-                                    <li><a href="jobs.html">Jobs</a></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Social Responsibility</a></li>
+                                    <li><a href="#">Sell your art</a></li>
+                                    <li><a href="#">Jobs</a></li>
                                     <li><a href="#">Artist Blog</a></li>
                                 </ul>
                             </div>
