@@ -483,7 +483,7 @@ $('#save_artist_work').click(function() {
                 success: (data) => {
                     if (i == productDesigner.length - 1) {
                         $('#save_artist_work').text("Save Work");
-                        window.location.href = 'http://localhost/purple/backend-services/show-products';
+                        window.location.href = 'http://146.190.226.38/backend-services/show-products';
                     }   
                 },
                 error: function(data){

@@ -40,6 +40,23 @@ class ProductDetailController extends Controller
         ]);
     }
 
+    public function indexCopy($art_id, $userId, $slug, $product_id, $category) {
+        session()->put('userId',$userId);
+    
+        $singleProduct = $this->getProductBySlugAndID($art_id, $slug);
+
+        $productData = Product::where('id', $product_id)->first();
+        
+        //echo $productData->product_image;
+        $productImage = addFullPathToUploadedImage($this->productImagesPath, $productData->product_image); 
+        
+        return view('frontend.product-details-copy', [
+            'product' => $singleProduct, 
+            'productImage' => $productImage, 
+            'category' => $category
+        ]);
+    }
+
     private function getProductBySlugAndID($art_id, $slug)
     {
        

@@ -33,6 +33,7 @@ Route::get('/', function () {
 // });
 
 Route::get('product-detail/{art_id}/{userId}/{slug}/{product_id}/{category}', [ProductDetailController::class, 'index'])->name('product-detail');
+Route::get('product-detail-copy/{art_id}/{userId}/{slug}/{product_id}/{category}', [ProductDetailController::class, 'indexCopy'])->name('product-detail-copy');
 
 Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
