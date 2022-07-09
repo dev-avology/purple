@@ -112,15 +112,42 @@ class ProductController extends Controller
         return view('add-new-work', ['products' => $products]);
     }
 
-    private function getProducts()
+    public function getFrames(Request $request)
     {
-
-        $products = Product::get()->toArray();
+        $products = Product::where([
+            'sub_category' => 1, 
+            'orientation' => $request->orientation
+        ])
+        ->get()
+        ->toArray();
 
         foreach ($products as $key => $product) {
             $products[$key]['frame_image'] = asset(config('file-upload-paths.products') . '/' . $product['product_image']);
         }
 
+        $html = view('frames-list', [
+            'products' => $products, 
+            'artist_image' => $request->artist_image
+        ])->render();
+        return response()->json([
+            'status' => true, 
+            'html' => $html, 
+            'product_count' => count($products)
+        ]);
+    }
+
+    private function getProducts()
+    {
+
+        $products = Product::where(['sub_category' => 1])->get()->toArray();
+
+        foreach ($products as $key => $product) {
+            $products[$key]['frame_image'] = asset(config('file-upload-paths.products') . '/' . $product['product_image']);
+        }
+
+        // echo "<pre>";
+        // print_r($products);
+        // die;
         return $products;
 
         // For Local Server

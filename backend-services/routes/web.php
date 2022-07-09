@@ -59,6 +59,7 @@ Route::post('upload-artist-design', [ProductController::class, 'uploadArtistDesi
 Route::get('show-products', [ProductController::class, 'showProducts'])->name('show-products');
 
 Route::get('add-new-work', [ProductController::class, 'addNewWork'])->name('add-new-work');
+Route::post('get-frames', [ProductController::class, 'getFrames'])->name('get-frames');
 
 Route::group(['middleware' => ['auth']], function(){
 
